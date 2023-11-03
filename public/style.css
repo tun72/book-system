@@ -406,7 +406,10 @@ body {
     width: fit-content;
     gap: 15px;
     border-radius: 20px;
+
+    transition: all 0.4s;
 }
+
 
 .recommend-image {
     width: 80px;
@@ -414,6 +417,7 @@ body {
     border-radius: 12px;
     overflow: hidden;
     position: relative;
+    box-shadow: 0px 9px 20px rgba(13, 38, 76, 0.19);
 }
 
 .recommend-artical {
@@ -451,14 +455,16 @@ body {
 
 .recommend-artical-2 {
     display: flex;
-    flex-direction: column;
     gap: 3px;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
 }
 
-.recommend-artical-2 i {
+/* .recommend-artical-2 i {
     font-size: 16px;
     margin-right: 10px;
-}
+} */
 
 .recommend-artical-2 button {
     font-size: 12px !important;

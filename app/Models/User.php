@@ -66,4 +66,14 @@ class User extends Authenticatable
     {
         return $this->favouritedBooks->contains("id", $book->id);
     }
+
+    public function isBought($book)
+    {
+        return $this->boughtBooks->contains("id", $book->id);
+    }
+
+    public function boughtBooks()
+    {
+        return $this->belongsToMany(Book::class, "buy_book");
+    }
 }

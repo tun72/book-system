@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BuyBookController;
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SubscribeController;
@@ -27,12 +29,20 @@ Route::get("/book-details/{book:slug}", [BookController::class, "show"]);
 
 Route::post("/books/{book:slug}/favourite", [FavouriteController::class, "handelFavourite"]);
 
+// buy book
+Route::post("/books/{book:slug}/buy", [BuyBookController::class, "handelBuyBook"]);
+
+//read book
+
+Route::get("/book/chapter/{chapter:slug}/read", [ChapterController::class, "show"]);
+
 // user
 Route::get('/user-profile/{user:username}', [UserController::class, "getUser"]);
 Route::get('/pricing-section', [UserController::class, "getPrice"]);
 
 Route::get('/user/update-user', [UserController::class, "getUpdate"]);
 Route::patch('/user/update-user/{user:username}', [UserController::class, "update"]);
+Route::get('/user/{user:username}/purchased', [UserController::class, "purchased"]);
 
 // comment
 

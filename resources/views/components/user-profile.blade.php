@@ -90,15 +90,14 @@
                     </div>
                     <div class="col-lg-4">
 
-                        @if (auth()->user()->role === 0 && auth()->user()->user_plan === 0)
+                        {{-- @if (auth()->user()->role === 0 && auth()->user()->user_plan === 0) --}}
                             <div class="card p-4 mb-2">
                                 <div class="d-flex justify-content-center flex-column align-items-center">
-                                    <span class="mb-2 text-info"><i class="fa-solid fa-crown"></i> Upgrade to
-                                        Premium</span>
-                                    <a type="button" class="btn btn-info" href="/pricing-section">Upgrade</a>
+                                    <span class="mb-2 text-info fs-5"><i class="fa-brands fa-gg-circle text-primary"></i> {{auth()->user()->ggcoin }} ggcoin</span>
+                                    <a type="button" class="btn btn-info" href="/pricing-section">Buy ggcoins</a>
                                 </div>
                             </div>
-                        @endif
+                        {{-- @endif --}}
 
                         <div class="card mb-4">
                             <div class="card-body">

@@ -21,7 +21,7 @@ class Favourite extends Component
      */
     public function render(): View|Closure|string
     {
-        $favBooks = auth()->user()->favouritedBooks;
+        $favBooks = auth()->user() ? auth()->user()->favouritedBooks : [];
         return view('components.favourite', [
             "books" => $favBooks
         ]);

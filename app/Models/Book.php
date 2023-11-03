@@ -12,7 +12,8 @@ class Book extends Model
     protected $fillable = [
         'title',
         'slug',
-        "isFree"
+        "isFree",
+        "ggcoin"
     ];
 
     public function user()
@@ -35,6 +36,10 @@ class Book extends Model
     
     public function readers() {
         return $this->belongsToMany(User::class);
+    }
+
+    public function purchasers() {
+        return $this->belongsToMany(User::class, "buy_book");
     }
 
     public function scopeFilter($bookQuery, $filters)

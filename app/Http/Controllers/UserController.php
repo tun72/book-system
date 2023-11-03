@@ -37,4 +37,10 @@ class UserController extends Controller
         $user->update($cleanData);
         return redirect("/user-profile/" . $user->username)->with("success", "Successfully Updated !");
     }
+
+    public function purchased(User $user) {
+        return view("components.purchased", [
+           "books" => $user->boughtBooks()->latest()->get()
+        ]);
+    }
 }

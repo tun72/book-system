@@ -28,8 +28,8 @@ class BookFactory extends Factory
             "publish" => fake()->year(),
             "rating" => rand(1, 5),
             "isFree" => $isFree,
-            "dosh" => $isFree !=0 ? 1000 : 0,
-            "user_id" => User::factory()->create(["role" => 2, "user_plan" => 1]),
+            "ggcoin" => $isFree !=0 ? 1000 : 0,
+            "user_id" => User::factory()->create(["role" => 2]),
         ];
     }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->longText("intro");
+            $table->string("slug");
             $table->string("file");
             $table->unsignedBigInteger("book_id");
             $table->timestamps();

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("image");
             $table->string("file");
             $table->integer("publish");
-            $table->integer("dosh");
+            $table->integer("ggcoin");
             $table->unsignedBigInteger("user_id");
             $table->timestamps();
         });

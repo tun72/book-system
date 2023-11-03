@@ -6,7 +6,7 @@
             <p class="color-secondary fs-7">DISCOVER</p>
             <li><a href="/"><i class="fas fa-th-large"></i>Home</a></li>
             <li><a href="#" data-mdb-toggle="modal" data-mdb-target="#browse"><i class="fas fa-search"></i>Browse</a></li>
-            <li><a href=""><i class="fas fa-heart"></i>For You</a></li>
+            <li><a href="/user/{{ auth()->user()->username }}/purchased"><i class="fas fa-heart"></i>Purchased Book</a></li>
         </ul>
 
         <ul>

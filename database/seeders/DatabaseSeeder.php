@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             "name" => "admin",
             "username" => "admin",
             "imageUrl" => "https://i.pinimg.com/564x/ec/9a/b2/ec9ab2c9257e838798e5509bd85edbdf.jpg",
-            "role" => 1
+            "role" => 1,
+            'ggcoin' => 99999
         ]);
 
         Book::factory(10)->has(Chapter::factory()->count(10))->create();

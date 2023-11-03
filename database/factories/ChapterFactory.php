@@ -15,13 +15,16 @@ class ChapterFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
     public function definition(): array
     {
+
         return [
             //
             "title" => fake()->title(),
             "intro" => fake()->text(),
-            "file" => fake()->url(),
+            "file" => 'simple.pdf',
+            "slug" => fake()->slug(),
             "book_id" => Book::factory()
         ];
     }

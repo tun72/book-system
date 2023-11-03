@@ -24,19 +24,33 @@
             @endif
         @endfor
 
-        <form action="/books/{{ $book->slug }}/favourite" method="POST">
-            @csrf
-            @if (auth()->user()->isFavourited($book))
-                <button type="submit" class="btn btn-danger">Favourited</button>
+        @if (auth()->user())
+            <form action="/books/{{ $book->slug }}/favourite" method="POST">
+                @csrf
+                @if (auth()->user()->isFavourited($book))
+                    <button type="submit" class="btn btn-danger">Favourited</button>
+                @else
+                    <button type="submit" class="btn btn-success">Add to
+                        Favourite</button>
+                @endif
+            </form>
+
+            @if (!auth()->user()->isBought($book))
+                <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#price">
+                    <i class="fa-brands fa-gg-circle text-primary me-2"></i>1000
+                </button>
             @else
-                <button type="submit" class="btn btn-success">Add to
-                    Favourite</button>
+                <form action="/book/chapter/{{$book->chapters[0]->slug}}/read" method="GET">
+                    <button type="submit" class="btn btn-primary">
+                        read
+                    </button>
+                </form>
             @endif
-        </form>
 
-        {{-- <a href="/books/{{ $book->slug }}/save" class="btn btn-info">Save</a> --}}
 
-        <!-- Buttons trigger collapse -->
+        @endif
+
+
         @foreach ($book->chapters as $chapter)
             <div class="col-9 mx-auto">
                 <div class="col-12 bg-secondary" data-mdb-toggle="collapse" href="#collapseExample{{ ++$index }}"
@@ -68,4 +82,7 @@
             </div>
         @endforeach
     </div>
+
+    <x-price-model :book="$book" />
+
 </x-layout>

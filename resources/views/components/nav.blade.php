@@ -46,12 +46,16 @@
                             <div>
                                 <a href="#" class="text-dark toggle-btn">&#x2BC6;</a>
                                 <ul class="drop-down-form">
+                                    <li><a href="#" class="text-dark"><i
+                                                class="fa-brands fa-gg-circle text-primary fs-5 me-1"></i>
+                                            <span>{{ auth()->user()->ggcoin}}</span></a></li>
+
                                     <li><a href="/user-profile/{{ auth()->user()->username }}"
                                             class="text-dark">Profile</a></li>
-
                                     @if (auth()->user()->role === 1)
                                         <li><a href="#" class="text-dark">Dashboard</a></li>
                                     @endif
+
                                     <li>
                                         <form action="/logout" method="POST" class="col-10">
                                             @csrf
