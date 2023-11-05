@@ -14,7 +14,7 @@ class ChapterController extends Controller
     {
 
         $text = Pdf::getText(public_path($chapter->file), 'C:\Program Files\Git\mingw64\bin\pdftotext.exe');
-        return view("components.read-book", [
+        return view("book.read-book", [
             "text" => $text,
             "chapter" => $chapter,
             "book" => $chapter->book

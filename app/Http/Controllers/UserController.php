@@ -12,35 +12,36 @@ class UserController extends Controller
     public function getUser()
     {
         return view(
-            "components.user-profile",
+            "user.user-profile",
         );
     }
 
     public function getPrice()
     {
-        return view("components.pricing-section");
+        return view("pricing.pricing-section");
     }
 
     public function getUpdate()
     {
-        return view("components.update-user");
+        return view("user.update-user");
     }
 
     public function update(User $user)
     {
         $cleanData = request()->validate([
             "name" => ["required", "max:20"],
-            "username" => ["required", "max:20", auth()->user()->username == request("username") ? "" :  Rule::unique("users", "username")],
-            "email" => ["required", "max:20", auth()->user()->email == request("email") ? "" :  Rule::unique("users", "email")],
+            "username" => ["required", "max:20", auth()->user()->username == request("username") ? "" : Rule::unique("users", "username")],
+            "email" => ["required", "max:20", auth()->user()->email == request("email") ? "" : Rule::unique("users", "email")],
             "phoneNumber" => ["required", "max:20"]
         ]);
         $user->update($cleanData);
         return redirect("/user-profile/" . $user->username)->with("success", "Successfully Updated !");
     }
 
-    public function purchased(User $user) {
-        return view("components.purchased", [
-           "books" => $user->boughtBooks()->latest()->get()
+    public function purchased(User $user)
+    {
+        return view("book.purchased", [
+            "books" => $user->boughtBooks()->latest()->get()
         ]);
     }
 }

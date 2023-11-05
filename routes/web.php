@@ -33,7 +33,6 @@ Route::post("/books/{book:slug}/favourite", [FavouriteController::class, "handel
 Route::post("/books/{book:slug}/buy", [BuyBookController::class, "handelBuyBook"]);
 
 //read book
-
 Route::get("/book/chapter/{chapter:slug}/read", [ChapterController::class, "show"]);
 
 // user
@@ -56,3 +55,7 @@ Route::get("/register", [AuthController::class, "viewRegister"]);
 Route::post("/register", [AuthController::class, "register"]);
 Route::post("/login", [AuthController::class, "login"]);
 Route::post("/logout", [AuthController::class, "logout"]);
+
+// author 
+
+Route::get("/book/new-book", [BookController::class, "create"]);
