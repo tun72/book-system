@@ -22,7 +22,7 @@
                     </div>
                     <div class="trend-artical-2">
                         <button class=""><i class="fas fa-eye text-primary"></i>details</button>
-                        <button class=""><i class="fa-brands fa-gg-circle text-primary"></i>{{ $book->dosh }}</button>
+                        <button class=""><i class="fa-brands fa-gg-circle text-primary"></i>{{ $book->ggcoin }}</button>
                     </div>
                 </div>
             </li>

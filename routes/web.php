@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BuyBookController;
 use App\Http\Controllers\ChapterController;
@@ -26,7 +27,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [BookController::class, "index"]);
 Route::get('/search-books', [BookController::class, "books"]);
 Route::get("/book-details/{book:slug}", [BookController::class, "show"]);
-
 Route::post("/books/{book:slug}/favourite", [FavouriteController::class, "handelFavourite"]);
 
 // buy book
@@ -34,6 +34,26 @@ Route::post("/books/{book:slug}/buy", [BuyBookController::class, "handelBuyBook"
 
 //read book
 Route::get("/book/chapter/{chapter:slug}/read", [ChapterController::class, "show"]);
+
+
+// author 
+
+// book
+Route::get("/book/new-book", [BookController::class, "create"]);
+Route::get("/book/{book:id}/book-update", [BookController::class, "edit"]);
+
+Route::patch("/book/{book:id}/book-update", [BookController::class, "update"]);
+
+//create book
+Route::post("/book/new-book", [BookController::class, "insert"]);
+
+//delete book
+Route::delete("/book/{book:id}/book-delete", [BookController::class, "destory"]);
+
+// dashboard
+Route::get("/author/dashboard", [AuthorController::class, "index"]);
+
+/////////////////////////////////////////////////////////////////////
 
 // user
 Route::get('/user-profile/{user:username}', [UserController::class, "getUser"]);
@@ -44,7 +64,6 @@ Route::patch('/user/update-user/{user:username}', [UserController::class, "updat
 Route::get('/user/{user:username}/purchased', [UserController::class, "purchased"]);
 
 // comment
-
 Route::post("/books/{book:slug}/review", [ReviewController::class, 'store']);
 
 // Auth Route - GET
@@ -56,6 +75,4 @@ Route::post("/register", [AuthController::class, "register"]);
 Route::post("/login", [AuthController::class, "login"]);
 Route::post("/logout", [AuthController::class, "logout"]);
 
-// author 
 
-Route::get("/book/new-book", [BookController::class, "create"]);

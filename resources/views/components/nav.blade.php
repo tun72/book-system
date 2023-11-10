@@ -56,6 +56,10 @@
                                         <li><a href="#" class="text-dark">Dashboard</a></li>
                                     @endif
 
+                                    @if (auth()->user()->role === 2)
+                                        <li><a href="/author/dashboard" class="text-dark">Work Place</a></li>
+                                    @endif
+
                                     <li>
                                         <form action="/logout" method="POST" class="col-10">
                                             @csrf

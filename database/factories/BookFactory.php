@@ -24,7 +24,6 @@ class BookFactory extends Factory
             "slug" => fake()->slug(),
             "body" => fake()->paragraph(),
             "image" => 'https://loremflickr.com/640/480?lock=' . rand(100, 1000),
-            "file" => fake()->url(),
             "publish" => fake()->year(),
             "rating" => rand(1, 5),
             "isFree" => $isFree,

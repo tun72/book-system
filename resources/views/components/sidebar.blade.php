@@ -24,7 +24,7 @@
         </ul>
 
     </div>
-    <div></div>
+ 
     @auth
        @if (auth()->user()->role == 2)
           <a href="/book/new-book" class="btn btn-primary">+ New Book</a>
@@ -32,5 +32,6 @@
        <a href="#" class="btn btn-primary">read new book</a>
        @endif
     @endauth
-    <div></div>
+    <a href="#" class="small">Copyright © 2023 ttm</a>
+    {{-- <div></div> --}}
 </div>

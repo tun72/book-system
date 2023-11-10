@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->string('slug');
-            $table->double("rating");
+            $table->double("rating")->default(0);
             $table->longText("body");
             $table->boolean("isFree")->default(0);
             $table->string("image");
-            $table->string("file");
             $table->integer("publish");
             $table->integer("ggcoin");
             $table->unsignedBigInteger("user_id");

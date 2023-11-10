@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\BookRequest;
+use Illuminate\Support\Facades\File;
 use App\Models\Book;
 use App\Models\Genres;
 
@@ -29,11 +30,85 @@ class BookController extends Controller
         ]);
     }
 
-    public function subscribe(Book $book) {
-        
+    public function subscribe(Book $book)
+    {
+
     }
 
-    public function create() {
-        return view("book.create");
+    public function create()
+    {
+        return view(
+            "book.create",
+            ["genres" => Genres::all()]
+        );
+    }
+
+    public function edit(Book $book)
+    {
+        return view(
+            "book.edit",
+            [
+                "book" => $book,
+                "genres" => Genres::all()
+            ]
+        );
+    }
+
+    public function insert(BookRequest $request)
+    {
+        $cleanData = $request->validated();
+        $cleanData["user_id"] = auth()->id();
+        $cleanData["image"] = "/storage/" . request("image")->store("/books");
+
+
+        if ($cleanData["ggcoin"]) {
+            $cleanData["isFree"] = 1;
+        } else {
+            $cleanData["isFree"] = 0;
+        }
+
+        $book = Book::create($cleanData);
+
+        // dd($book);
+        $book->genres()->attach($cleanData["genres"]);
+
+        return redirect("/author/dashboard");
+    }
+
+    public function update(BookRequest $request, Book $book)
+    {
+        $cleanData = $request->validated();
+        $cleanData["user_id"] = auth()->id();
+
+        $book->title = $cleanData["title"];
+        $book->slug = $cleanData["slug"];
+        $book->publish = $cleanData["publish"];
+        $book->body = $cleanData["body"];
+        $book->ggcoin = $cleanData["ggcoin"];
+        $book->isFree = $cleanData["ggcoin"] == 0 ? 0 : 1;
+
+        if ($file = request("image")) {
+            if ($path = public_path($book->image)) {
+                File::delete($path);
+                $book->image = '/storage/' . $file->store('/books');
+            }
+        }
+
+        $book->genres()->detach($book->genres);
+        $book->genres()->attach($cleanData["genres"]);
+
+
+
+
+        $book->update();
+
+
+        return redirect("/author/dashboard");
+    }
+
+    public function destory(Book $book) {
+        $book->genres()->detach($book->genres);
+        $book->delete();
+        return redirect("/author/dashboard");
     }
 }

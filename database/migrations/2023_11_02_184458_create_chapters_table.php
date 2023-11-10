@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("slug");
             $table->string("file");
             $table->unsignedBigInteger("book_id");
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->timestamps();
         });
     }

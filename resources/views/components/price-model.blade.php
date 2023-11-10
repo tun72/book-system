@@ -18,12 +18,12 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         title
-                        <span class="badge badge-primary rounded-pill">{{ $book->title }}</span>
+                        <span class="badge badge-primary rounded-pill fs-6">{{ $book->title }}</span>
                     </li>
 
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         ggcoin
-                        <span class="badge badge-primary rounded-pill"><i class="fa-brands fa-gg-circle text-primary"></i>{{ $book->ggcoin }}</span>
+                        <span class="badge badge-primary rounded-pill fs-7"><i class="fa-brands fa-gg-circle text-primary"></i>{{ $book->ggcoin }}</span>
                     </li>
                 </ul>
 
