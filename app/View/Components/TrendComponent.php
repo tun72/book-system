@@ -23,7 +23,7 @@ class TrendComponent extends Component
     public function render(): View|Closure|string
     {
         return view('components.trend-component', [
-            "books" => Book::with(["user"])->orderBy("rating", "DESC")->latest()->limit(5)->get()
+            "books" => Book::with(["user"])->orderBy("rating", "DESC")->latest()->limit(3)->get()
         ]);
     }
 }

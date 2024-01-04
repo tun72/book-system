@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer("publish");
             $table->integer("ggcoin");
             $table->unsignedBigInteger("user_id");
+            $table->boolean("isPublished");
+            $table->string("status");
             $table->timestamps();
         });
     }

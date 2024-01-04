@@ -1,8 +1,5 @@
-<x-layout>
-    <div class="my-body">
-        <x-sidebar />
-        <x-nav />
-    </div>
+<x-user-layout>
+  
     <div class="content">
         <form class="mt-4" action="/user/update-user/{{ auth()->user()->username }}" method="POST">
             @csrf
@@ -68,4 +65,4 @@
         </form>
     </div>
 
-</x-layout>
+</x-user-layout>

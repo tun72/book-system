@@ -27,7 +27,9 @@ class BookFactory extends Factory
             "publish" => fake()->year(),
             "rating" => rand(1, 5),
             "isFree" => $isFree,
-            "ggcoin" => $isFree !=0 ? 1000 : 0,
+            "ggcoin" => $isFree != 0 ? 1000 : 0,
+            "isPublished" => true,
+            "status" => "complete",
             "user_id" => User::factory()->create(["role" => 2]),
         ];
     }

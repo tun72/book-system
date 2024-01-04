@@ -32,7 +32,6 @@ class BookController extends Controller
 
     public function subscribe(Book $book)
     {
-
     }
 
     public function create()
@@ -61,6 +60,10 @@ class BookController extends Controller
         $cleanData["image"] = "/storage/" . request("image")->store("/books");
 
 
+        $cleanData["isPublished"] = false;
+        $cleanData["status"] = "ongoing";
+
+
         if ($cleanData["ggcoin"]) {
             $cleanData["isFree"] = 1;
         } else {
@@ -87,6 +90,7 @@ class BookController extends Controller
         $book->ggcoin = $cleanData["ggcoin"];
         $book->isFree = $cleanData["ggcoin"] == 0 ? 0 : 1;
 
+
         if ($file = request("image")) {
             if ($path = public_path($book->image)) {
                 File::delete($path);
@@ -106,7 +110,8 @@ class BookController extends Controller
         return redirect("/author/dashboard");
     }
 
-    public function destory(Book $book) {
+    public function destory(Book $book)
+    {
         $book->genres()->detach($book->genres);
         $book->delete();
         return redirect("/author/dashboard");

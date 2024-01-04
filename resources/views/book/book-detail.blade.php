@@ -7,18 +7,19 @@
 
     $random = ['warning', 'danger', 'info', 'success', 'secondary'];
 @endphp
-<x-layout>
-    <div class="my-body">
+<x-home-layout>
+
+    {{-- <div class="my-body">
         <x-book-sidenav />
 
-    </div>
+    </div> --}}
 
-    <div class="content" style="height: 97vh">
+    <div class="content">
         <div class="col-12 mt-5">
             <div class="col-lg-10 m-auto">
                 <div class="d-flex align-content-center justify-content-center gap-5">
                     <div class="mr-lg-5 poster shadow">
-                        <img src="{{ $book->image }}" alt="" >
+                        <img src="{{ $book->image }}" alt="">
                     </div>
                     <div class="col-lg-9 col-sm-6 shadow p-4">
                         <h4 class="mb-2 fs-4 text-primary">{{ $book->title }}</h4>
@@ -47,12 +48,12 @@
                         @if (auth()->user())
                             <div class="d-flex gap-3">
                                 @if (!auth()->user()->isBought($book))
-                                    <button type="button" class="badge rounded-pill badge-success border-0 fs-6 px-2" data-mdb-toggle="modal"
-                                        data-mdb-target="#price">
-                                        <i class="fa-brands fa-gg-circle text-primary me-2 "></i><span>{{ $book->ggcoin }}</span>
+                                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                        type="button">
+                                        <i
+                                            class="fa-brands fa-gg-circle text-primary me-2 "></i><span>{{ $book->ggcoin }}</span>
                                     </button>
-
-                                    
                                 @else
                                     <form action="/book/chapter/{{ $book->chapters[0]->slug }}/read" method="GET">
                                         <button type="submit" class="btn btn-primary">
@@ -79,7 +80,7 @@
 
     <x-price-model :book="$book" />
 
-</x-layout>
+</x-home-layout>
 
 
 

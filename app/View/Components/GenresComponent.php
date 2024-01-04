@@ -2,12 +2,12 @@
 
 namespace App\View\Components;
 
-use App\Models\Genres as ModelsGenres;
+use App\Models\Genres;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Genres extends Component
+class GenresComponent extends Component
 {
     /**
      * Create a new component instance.
@@ -22,8 +22,8 @@ class Genres extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.genres', [
-            "genres" => ModelsGenres::all(),
+        return view('components.genres-component', [
+            "genres" => Genres::all()
         ]);
     }
 }

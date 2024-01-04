@@ -17,7 +17,7 @@ class BuyBookController extends Controller
         );
 
         if (!($user->ggcoin >= $book->ggcoin))
-            return back();
+            return back()->with(["error" => "Not Enough coin."]);
 
         if (!$user->isBought($book)) {
             $user->ggcoin = $user->ggcoin - $book->ggcoin;
@@ -26,4 +26,5 @@ class BuyBookController extends Controller
         }
         return back();
     }
+
 }

@@ -1,5 +1,4 @@
 <x-home-layout>
-
     @if (count($books) === 0)
         <p class="text-primary text-center mt-5 fs-3">No book found 😓</p>
     @else

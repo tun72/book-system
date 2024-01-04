@@ -44,4 +44,24 @@ class UserController extends Controller
             "books" => $user->boughtBooks()->latest()->get()
         ]);
     }
+
+    public function readList(User $user)
+    {
+        return view("book.readlist", [
+            "books" => $user->boughtBooks()->latest()->get()
+        ]);
+    }
+
+    public function buycoin(User $user)
+    {
+        $cleanData = request()->validate([
+            "amount" => ["required", "max:20"]
+        ]);
+
+
+        $user->ggcoin += $cleanData["amount"] / 10;
+        $user->update();
+
+        return redirect("/user-profile/" . $user->username);
+    }
 }

@@ -2,12 +2,12 @@
 
 
     <div class="recommend">
-        <h3 class="fs-4 text-primary mb-2"><i class="fas fa-book"></i></i>Purchased Book</h3>
+        <h3 class="fs-4 text-primary mb-2"><i class="fas fa-book"></i></i>Read List</h3>
         <div class="recommend-books">
             <ul class="recommend-list">
                 @foreach ($books as $book)
-                    <li class="mb-3">
-                        <a href="/book-details/{{ $book->slug }}" class="recommend-book">
+                    <li>
+                        <div class="recommend-book">
                             <div class="recommend-image">
                                 <img src="{{ $book->image }}" alt="">
                             </div>
@@ -27,9 +27,19 @@
                                     <span class="name">{{ $book->title }}</span>
                                     <span>{{ $book->user->name }}</span>
                                 </div>
-                                <div class="recommend-artical-1">go</div>
+                                <div class="recommend-artical-1">
+                                    <div class="w-full bg-brand-500 rounded-full">
+                                        <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                                            style="width: 45%"> 45%</div>
+                                    </div>
+
+                                </div>
+
+                                <div>
+                                    <a href="/book-details/{{ $book->slug }}">Read</a>
+                                </div>
                             </div>
-                        </a>
+                        </div>
                     </li>
                 @endforeach
             </ul>

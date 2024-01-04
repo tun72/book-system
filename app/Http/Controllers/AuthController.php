@@ -29,7 +29,7 @@ class AuthController extends Controller
             "password" => ["required", "min:8"],
         ]);
 
-        $cleanData = array_merge($cleanData, ["imageUrl" => 'https://i.pravatar.cc/480?u=' . rand(10000, 40000)]);
+        $cleanData = array_merge($cleanData, ["imageUrl" => 'https://i.pravatar.cc/480?u=' . rand(10000, 40000), "phoneNumber" => "NULL"]);
         $user = User::create($cleanData);
         auth()->login($user);
         return redirect("/")->with("success", "Welcome to book reader " . $user->name . " 🎉");

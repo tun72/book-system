@@ -1,8 +1,7 @@
-<div class="trends mx-auto mb-3 mt-3">
-    <h3 class="fs-4 text-primary mb-0"><i class="fas fa-fire me-2"></i>Top Trends</h3>
+<div class="trends mx-auto mb-5 mt-5">
     <ul class="trend-list">
-        @foreach ($books as $book)
-            <li class="trend-book">
+        @foreach ($books as $key => $book)
+            <li class="trend-book bg-brand-600">
                 <div class="trend-image">
                     <img src="{{ $book->image }}" alt="">
                 </div>
@@ -22,11 +21,11 @@
                     </div>
                     <div class="trend-artical-2">
                         <button class=""><i class="fas fa-eye text-primary"></i>details</button>
-                        <button class=""><i class="fa-brands fa-gg-circle text-primary"></i>{{ $book->ggcoin }}</button>
+                        <button class=""><i
+                                class="fa-brands fa-gg-circle text-primary"></i>{{ $book->ggcoin }}</button>
                     </div>
                 </div>
             </li>
         @endforeach
-
     </ul>
 </div>

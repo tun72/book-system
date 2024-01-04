@@ -19,8 +19,9 @@ class Book extends Model
         "body",
         'rating',
         "user_id",
-        "publish"
-
+        "publish",
+        "isPublished",
+        "status"
     ];
 
     public static function boot()
@@ -66,6 +67,7 @@ class Book extends Model
     public function scopeFilter($bookQuery, $filters)
     {
         if ($genres = $filters["genres"] ?? null) {
+            dd($genres);
             $bookQuery->whereHas("genres", function ($genresQuery) use ($genres) {
                 $genresQuery->where("slug", $genres);
             });
