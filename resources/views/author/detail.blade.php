@@ -1,8 +1,8 @@
 <x-author-layout>
     <!-- component -->
     <section class="text-gray-700 body-font overflow-hidden bg-white">
-        <div class="container px-5 py-5 mx-auto">
-            <div class="lg:w-4/5 mx-auto flex flex-wrap">
+        <div class="container px-5 py-10 mx-auto">
+            <div class="lg:w-4/5 mx-auto flex flex-wrap bg-brand-100">
                 <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
                     src="{{ $book->image }}">
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -105,27 +105,33 @@
                 </div>
             </div>
         </div>
-        <div class="px-5 pb-10 flex justify-center">
-            <div class="p-3 lg:w-2/5 shadow-lg">
-                <h4>Chapter</h4>
-                <ul class="flex flex-col gap-4">
-                    @foreach ($book->chapters as $chapter)
-                        <li class="flex justify-between">
-                            <a href="/">Chapter-{{ $loop->index + 1 }} {{ $chapter->title }}</a>
-                            <span>{{ $chapter->created_at->diffForHumans() }}</span>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-            <div class="lg:w-2/5 px-10 py-5">
-                <div>
-                    <a type="button" href="/author/book/{{ $book->id }}/new-chapter"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <i class="fas fa-plus"></i>
-                        New Chapter
-                    </a>
+        <div class="container px-5 py-10 mx-auto">
+            <div class="lg:w-4/5 mx-auto flex flex-wrap">
+                <div class="p-3 lg:w-1/2 shadow-lg">
+                    <h4 class="mb-5">Chapter</h4>
+                    <ul class="flex flex-col gap-8">
+                        @foreach ($book->chapters as $chapter)
+                            <li class="flex justify-between">
+                                <a href="/">Chapter-{{ $loop->index + 1 }} {{ $chapter->title }}</a>
+                                <span>{{ $chapter->created_at->diffForHumans() }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div class="lg:w-1/2 px-10 py-5">
+                    <div class="">
+                        <a type="button" href="/author/book/{{ $book->id }}/new-chapter"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <i class="fas fa-plus"></i>
+                            New Chapter
+                        </a>
+                    </div>
                 </div>
             </div>
+
+
+
         </div>
 
     </section>

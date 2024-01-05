@@ -1,3 +1,11 @@
+import "tinymce/tinymce";
+import "tinymce/skins/ui/oxide/skin.min.css";
+import "tinymce/skins/content/default/content.min.css";
+import "tinymce/skins/content/default/content.css";
+import "tinymce/icons/default/icons";
+import "tinymce/themes/silver/theme";
+import "tinymce/models/dom/model";
+
 import jQuery from "jquery";
 window.$ = jQuery;
 
@@ -86,4 +94,12 @@ $(".book-checkbox").each(function () {
                 .remove();
         // detectAllCheck();
     });
+});
+
+tinymce.init({
+    selector: "#editor",
+    plugins: "advlist code emoticons link lists table",
+    toolbar: "bold italic | bullist numlist | link emoticons",
+    skin_url: "default",
+    content_css: "default",
 });

@@ -37,7 +37,7 @@
 
     body {
         position: relative;
-        overflow: hidden;
+        overflow-y: scroll;
         height: 100%;
         width: 100%;
     }
