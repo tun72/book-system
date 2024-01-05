@@ -23,79 +23,6 @@ import { PasteFromOffice } from "@ckeditor/ckeditor5-paste-from-office";
 import { Table, TableToolbar } from "@ckeditor/ckeditor5-table";
 import { TextTransformation } from "@ckeditor/ckeditor5-typing";
 
-// ClassicEditor.create(document.querySelector("#editortext"), {
-//     // The plugins are now passed directly to .create().
-//     plugins: [
-//         Alignment,
-//         Autoformat,
-//         BlockQuote,
-//         Bold,
-//         CloudServices,
-//         Essentials,
-//         Heading,
-//         Image,
-//         ImageCaption,
-//         ImageStyle,
-//         ImageToolbar,
-//         ImageUpload,
-//         Indent,
-//         Italic,
-//         Link,
-//         List,
-//         MediaEmbed,
-//         Paragraph,
-//         PasteFromOffice,
-//         Table,
-//         TableToolbar,
-//         TextTransformation,
-//     ],
-
-//     // So is the rest of the default configuration.
-//     toolbar: {
-//         items: [
-//             "alignment", // Displaying the proper UI element in the toolbar.
-//             "heading",
-//             "|",
-//             "bold",
-//             "italic",
-//             "link",
-//             "bulletedList",
-//             "numberedList",
-//             "|",
-//             "outdent",
-//             "indent",
-//             "|",
-//             "imageUpload",
-//             "blockQuote",
-//             "insertTable",
-//             "mediaEmbed",
-//             "undo",
-//             "redo",
-//         ],
-//     },
-//     language: "en",
-//     image: {
-//         toolbar: [
-//             "imageTextAlternative",
-//             "toggleImageCaption",
-//             "imageStyle:inline",
-//             "imageStyle:block",
-//             "imageStyle:side",
-//         ],
-//     },
-//     table: {
-//         contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"],
-//     },
-// })
-//     .then((editor) => {
-//         editor.ui.view.editable.element.style.height = '500px';
-//         console.log(editor);
-//     })
-//     .catch((error) => {
-//         console.error(error);
-//     });
-
-// ckeditor.js
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -147,7 +74,7 @@ ClassicEditor.defaultConfig = {
             "redo",
         ],
     },
-    language: "en",
+    language: "mm",
     image: {
         toolbar: [
             "imageTextAlternative",

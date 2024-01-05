@@ -30,12 +30,18 @@
 
 .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
     border: 0px !important;
+    background: transparent !important;
 }
 
 .ck-rounded-corners :is(.ck.ck-editor__main > .ck-editor__editable),
 .ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
     border: 0px !important;
     box-shadow: none !important;
+    height: 70vh;
+}
+
+.ck-focused {
+    background: transparent !important;
 }
 
 @layer components {

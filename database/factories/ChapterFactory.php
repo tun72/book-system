@@ -23,7 +23,7 @@ class ChapterFactory extends Factory
             //
             "title" => fake()->title(),
             "intro" => fake()->text(),
-            "file" => 'simple.pdf',
+            "story" => fake()->paragraph(),
             "slug" => fake()->slug(),
             "book_id" => Book::factory()
         ];

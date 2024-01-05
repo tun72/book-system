@@ -11,8 +11,9 @@ class Chapter extends Model
     protected $fillable = [
         "title",
         "intro",
-        "file",
-        "book_id"
+        "story",
+        "book_id",
+        "slug"
     ];
     public function book() {
         return $this->belongsTo(Book::class);

@@ -33,6 +33,15 @@ Route::delete("/book/book-delete", [BookController::class, "destory"]);
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
+// Chapter
+
+Route::get("/author/chapter/{book:id}/create", [ChapterController::class, "create"]);
+Route::post("/author/chapter/{book:id}/store", [ChapterController::class, "store"]);
+
+Route::get("/chapter/{chapter:slug}/edit", [ChapterController::class, "edit"]);
+Route::patch("/chapter/{chapter:slug}/update", [ChapterController::class, "update"]);
+Route::delete("/chapter/{chapter:slug}/delete", [ChapterController::class, "delete"]);
+
 
 
 // author
@@ -44,7 +53,7 @@ Route::post("/book/new-book", [BookController::class, "insert"]);
 
 Route::get("/author/book/{book:id}/detail", [BookController::class, "detail"]);
 
-Route::get("/author/book/{book:id}/new-chapter", [BookController::class, "newChapter"]);
+
 
 // author register
 Route::get("/author/register", [AuthorController::class, "register"]);

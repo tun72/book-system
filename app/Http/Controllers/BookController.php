@@ -125,8 +125,5 @@ class BookController extends Controller
         return redirect("/author/creation");
     }
 
-    public function newChapter(Book $book)
-    {
-        return view("book.new-chapter");
-    }
+    
 }

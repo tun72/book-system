@@ -16,7 +16,7 @@
         <div class="col-6 p-3 shadow">
             <h4>{{ $chapter->title }}</h4>
             <p class="">
-                {{ $text }}
+                {!! $chapter->story !!}
             </p>
         </div>
     </div>

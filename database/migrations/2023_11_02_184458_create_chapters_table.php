@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("title");
             $table->longText("intro");
             $table->string("slug");
-            $table->string("file");
+            $table->longText("story");
             $table->unsignedBigInteger("book_id");
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->timestamps();
