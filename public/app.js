@@ -23,3 +23,4 @@ function buycoin(e, amount) {
     document.querySelector(".checkout").textContent = `Pay ${amount} mmk`;
     document.getElementById("coin-amount").value = amount;
 }
+

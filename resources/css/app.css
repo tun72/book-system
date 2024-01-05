@@ -28,6 +28,16 @@
     pointer-events: visible;
 }
 
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+    border: 0px !important;
+}
+
+.ck-rounded-corners :is(.ck.ck-editor__main > .ck-editor__editable),
+.ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
+    border: 0px !important;
+    box-shadow: none !important;
+}
+
 @layer components {
     * {
         margin: 0;
@@ -37,10 +47,12 @@
 
     body {
         position: relative;
-        overflow-y: scroll;
+        overflow: hidden;
         height: 100%;
         width: 100%;
+        margin: 0 !important;
     }
+
     .my-body {
         display: grid;
         height: 100vh !important;
@@ -114,7 +126,6 @@
     .slide-bar-hide {
         display: none;
     }
-
 
     .content {
         scrollbar-width: auto;
