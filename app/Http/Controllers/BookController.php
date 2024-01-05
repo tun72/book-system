@@ -32,7 +32,6 @@ class BookController extends Controller
 
     public function subscribe(Book $book)
     {
-        
     }
 
     public function create()
@@ -48,10 +47,17 @@ class BookController extends Controller
         return view(
             "book.edit",
             [
-                "book" => $book,
+                "book" => $book->load(["chapters", "genres"]),
                 "genres" => Genres::all()
             ]
         );
+    }
+
+    public function detail(Book $book)
+    {
+        return view("author.detail", [
+            "book" => $book
+        ]);
     }
 
     public function insert(BookRequest $request)
@@ -117,5 +123,10 @@ class BookController extends Controller
             $book->genres()->detach($book->genres);
         }
         return redirect("/author/creation");
+    }
+
+    public function newChapter(Book $book)
+    {
+        return view("book.new-chapter");
     }
 }

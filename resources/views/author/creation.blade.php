@@ -128,7 +128,7 @@
                                 <!-- Modal toggle -->
                                 <a href="/book/{{ $book->id }}/book-update"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="/book/{{ $book->id }}/book-update"
+                                <a href="/author/book/{{ $book->id }}/detail"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                             </td>
                         </tr>

@@ -42,6 +42,10 @@ Route::get("/author/creation", [AuthorController::class, "creation"]);
 Route::patch("/book/{book:id}/book-update", [BookController::class, "update"]);
 Route::post("/book/new-book", [BookController::class, "insert"]);
 
+Route::get("/author/book/{book:id}/detail", [BookController::class, "detail"]);
+
+Route::get("/author/book/{book:id}/new-chapter", [BookController::class, "newChapter"]);
+
 // author register
 Route::get("/author/register", [AuthorController::class, "register"]);
 Route::post("/author/register", [AuthorController::class, "confirm"]);
