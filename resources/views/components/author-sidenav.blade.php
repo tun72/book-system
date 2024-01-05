@@ -10,7 +10,7 @@
                         <a href="/">home</a>
                     </li>
                     <li>
-                        <a href="">your creation</a>
+                        <a href="/author/creation">your creation</a>
                     </li>
                     <li>
                         <a href="/book/new-book">write</a>

@@ -32,6 +32,7 @@ class BookController extends Controller
 
     public function subscribe(Book $book)
     {
+        
     }
 
     public function create()
@@ -75,7 +76,7 @@ class BookController extends Controller
         // dd($book);
         $book->genres()->attach($cleanData["genres"]);
 
-        return redirect("/author/dashboard");
+        return redirect("/author/creation");
     }
 
     public function update(BookRequest $request, Book $book)
@@ -97,23 +98,24 @@ class BookController extends Controller
                 $book->image = '/storage/' . $file->store('/books');
             }
         }
-
         $book->genres()->detach($book->genres);
         $book->genres()->attach($cleanData["genres"]);
-
-
-
-
         $book->update();
-
-
-        return redirect("/author/dashboard");
+        return redirect("/author/creation");
     }
 
-    public function destory(Book $book)
+    public function destory()
     {
-        $book->genres()->detach($book->genres);
-        $book->delete();
-        return redirect("/author/dashboard");
+        $ids = request("book");
+
+        if (count($ids)) {
+            return redirect("/author/creation")->with("error", "complete filll boxes");
+        }
+
+        foreach (Book::whereIn("id", $ids)->get() as $book) {
+            $book->delete();
+            $book->genres()->detach($book->genres);
+        }
+        return redirect("/author/creation");
     }
 }

@@ -29,7 +29,7 @@ Route::get("/book/new-book", [BookController::class, "create"]);
 Route::get("/book/{book:id}/book-update", [BookController::class, "edit"]);
 
 //delete book
-Route::delete("/book/{book:id}/book-delete", [BookController::class, "destory"]);
+Route::delete("/book/book-delete", [BookController::class, "destory"]);
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
