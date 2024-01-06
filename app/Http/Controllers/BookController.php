@@ -114,8 +114,8 @@ class BookController extends Controller
     {
         $ids = request("book");
 
-        if (count($ids)) {
-            return redirect("/author/creation")->with("error", "complete filll boxes");
+        if (!$ids) {
+            return redirect("/author/creation")->with("error", "complete fill boxes");
         }
 
         foreach (Book::whereIn("id", $ids)->get() as $book) {
@@ -125,5 +125,16 @@ class BookController extends Controller
         return redirect("/author/creation");
     }
 
-    
+    public function publish(Book $book)
+    {
+
+        if ($book?->isPublished === 0) {
+            $book->isPublished = true;
+            $book->update();
+            return back();
+        }
+        return back();
+    }
+
+
 }

@@ -28,6 +28,8 @@ Route::get("/book/chapter/{chapter:slug}/read", [ChapterController::class, "show
 Route::get("/book/new-book", [BookController::class, "create"]);
 Route::get("/book/{book:id}/book-update", [BookController::class, "edit"]);
 
+Route::get("/book/{book:id}/publish", [BookController::class, "publish"]);
+
 //delete book
 Route::delete("/book/book-delete", [BookController::class, "destory"]);
 

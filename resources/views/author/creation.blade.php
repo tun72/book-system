@@ -28,10 +28,12 @@
                             </li>
                         </ul>
 
-                        <form action="/book/book-delete" method="POST" class="py-2" >
+                        <form action="/book/book-delete" method="POST" class="py-2 delete-form">
                             @csrf
                             @method('DELETE')
-                            <button class="block px-4 py-2  text-sm text-red-700 hover:bg-red-100 dark:hover:bg-red-600 dark:text-red-200 dark:hover:text-white" type="submits">
+                            <button
+                                class="block px-4 py-2  text-sm text-red-700 hover:bg-red-100 dark:hover:bg-red-600 dark:text-red-200 dark:hover:text-white"
+                                type="submits">
                                 Delete
                             </button>
                         </form>
@@ -57,7 +59,7 @@
                         <th scope="col" class="p-4">
                             <div class="flex items-center">
                                 <input id="checkbox-all-search" type="checkbox"
-                                    class="all-check w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+                                    class="all-check w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 <label for="checkbox-all-search" class="sr-only">checkbox</label>
                             </div>
                         </th>
@@ -76,6 +78,11 @@
                         <th scope="col" class="px-6 py-3">
                             Chapters
                         </th>
+
+                        <th scope="col" class="px-6 py-3">
+                            Published
+                        </th>
+
                         <th scope="col" class="px-6 py-3">Created At</th>
                         <th>
                             actions
@@ -89,7 +96,8 @@
                             <td class="w-4 p-4">
                                 <div class="flex items-center">
                                     <input id="checkbox-table-search-1" type="checkbox"
-                                        class="book-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" value="{{ $book->id }}">
+                                        class="book-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                        value="{{ $book->id }}">
                                     <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                 </div>
                             </td>
@@ -97,7 +105,8 @@
                                 class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                 <img class="w-12 h-12 rounded" src="{{ $book->image }}" alt="Jese image">
                                 <div class="ps-3">
-                                    <div class="text-base font-semibold">{{ $book->title }}</div>
+                                    <a class="text-base font-semibold"
+                                        href="/author/book/{{ $book->id }}/detail">{{ $book->title }}</a>
                                     <div class="font-normal text-gray-500">{{ $book->slug }}</div>
                                 </div>
                             </th>
@@ -116,9 +125,12 @@
                             </td>
 
                             <td class="px-6 py-4">
-                                <div class="flex items-center">
-                                    {{ count($book->chapters) }}
-                                </div>
+
+                                {{ count($book->chapters) }} Chapter
+                            </td>
+
+                            <td class="px-6 py-4">
+                                {{ $book->isPublished ? 'Yes' : 'No' }}
                             </td>
 
                             <td class="px-6 py-4">
@@ -128,8 +140,7 @@
                                 <!-- Modal toggle -->
                                 <a href="/book/{{ $book->id }}/book-update"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="/author/book/{{ $book->id }}/detail"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
+
                             </td>
                         </tr>
                     @endforeach

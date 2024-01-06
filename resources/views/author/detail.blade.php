@@ -3,11 +3,13 @@
     <section class="text-gray-700 body-font overflow-hidden bg-white">
         <div class="container px-5 py-10 mx-auto">
             <div class="lg:w-4/5 mx-auto flex flex-wrap bg-brand-100">
-                <img alt="ecommerce" class="lg:w-1/2 w-full h-[26rem] object-cover object-center rounded border border-gray-200"
+                <img alt="ecommerce"
+                    class="lg:w-1/2 w-full h-[26rem] object-cover object-center rounded border border-gray-200"
                     src="{{ $book->image }}">
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                     <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
                     <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $book->title }}</h1>
+
                     <div class="flex mb-4">
                         <span class="flex items-center">
                             <svg fill="currentColor" stroke="currentColor" stroke-linecap="round"
@@ -73,22 +75,20 @@
                     </div>
                     <p class="leading-relaxed">{{ $book->body }}</p>
                     <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-                        <div class="flex">
-                            <span class="mr-3">Genres</span>
+                        <div class="flex flex-wrap gap-1 items-center">
                             @foreach ($book->genres as $gen)
                                 <span
                                     class="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">{{ $gen->name }}</span>
                             @endforeach
                         </div>
-                        <div class="flex ml-6 items-center">
-                            <span class="mr-3">Chapters</span>
-                            <p
-                                class="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400">
-                                {{ count($book->chapters) }}
-                            </p>
-                        </div>
+                        
                     </div>
-                    <div class="flex">
+                    <div class="flex items-start flex-col gap-3 ">
+                        <p
+                            class="bg-indigo-100 text-indigo-800 text-xl font-lg me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-indigo-400 border border-indigo-400">
+                            {{ $book->status }}
+                        </p>
+                        
                         <span class="title-font font-medium text-2xl text-gray-900">{{ $book->ggcoin }} coins</span>
                         {{-- <button
                             class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded" disabled>Buy</button> --}}
@@ -129,12 +129,37 @@
                 </div>
 
                 <div class="lg:w-1/2 px-10 py-5">
-                    <div class="">
+
+                    <div class="flex flex-wrap gap-3 items-center">
                         <a type="button" href="/author/chapter/{{ $book->id }}/create"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <i class="fas fa-plus"></i>
                             New Chapter
                         </a>
+
+                        <a type="button" href="/book/{{ $book->id }}/publish"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <i class="fas fa-plus"></i>
+                            Publish
+                        </a>
+
+                        <a type="button" href="/book/{{ $book->id }}/book-update"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <i class="fas fa-plus"></i>
+                            Edit
+                        </a>
+
+                        <form action="/book/book-delete" method="POST" class="py-2">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="book[]" id="" value="{{ $book->id }}">
+                            <button
+                                class="block px-4 py-2  text-sm text-red-700 hover:bg-red-100 dark:hover:bg-red-600 dark:text-red-200 dark:hover:text-white"
+                                type="submits">
+                                Delete
+                            </button>
+                        </form>
+
                     </div>
                 </div>
 
