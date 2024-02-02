@@ -2,8 +2,6 @@ import laravel from "laravel-vite-plugin";
 import { defineConfig } from "vite";
 
 
-
-
 import ckeditor5 from "@ckeditor/vite-plugin-ckeditor5";
 
 import { createRequire } from "node:module";

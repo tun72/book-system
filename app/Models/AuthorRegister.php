@@ -16,4 +16,9 @@ class AuthorRegister extends Model
         "user_id",
         "description",
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

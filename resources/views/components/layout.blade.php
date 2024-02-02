@@ -14,9 +14,17 @@
 </head>
 
 <body class="bg-brand-50">
+
+
+
     @if (session()->has('success'))
+        {{-- <div id="toast-top-right"
+            class="fixed flex items-center w-full z-50 max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow top-5 right-5 dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800"
+            role="alert">
+            <div class="text-sm font-normal">Top right positioning.</div>
+        </div> --}}
         <div id="toast-success"
-            class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full  flex  max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+            class="fixed top-5 right-10 z-[100] justify-center items-center w-full  flex  max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
             role="alert">
             <div
                 class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
@@ -42,8 +50,8 @@
     @endif
 
     @if (session()->has('error'))
-        <div id="toast-success"
-            class="fixed top-0 right-0 left-0 z-50 justify-center items-center w-full  flex  max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+        {{-- <div id="toast-success"
+            class="fixed top-5 right-5 left-0 z-[100] justify-center items-center w-full  flex  max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
             role="alert">
             <div
                 class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
@@ -65,6 +73,12 @@
                         d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                 </svg>
             </button>
+        </div> --}}
+
+        <div id="toast-top-right"
+            class="fixed flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow top-5 right-5 dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800"
+            role="alert">
+            <div class="text-sm font-normal">Top right positioning.</div>
         </div>
     @endif
 
@@ -79,12 +93,13 @@
 </body>
 
 <!-- from node_modules -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script> --}}
 
-<script async src="node_modules/@material-tailwind/html/scripts/ripple.js"></script>
+{{-- <script async src="node_modules/@material-tailwind/html/scripts/ripple.js"></script> --}}
+
 
 <!-- from cdn -->
-<script async src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
+{{-- <script async src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script> --}}
 <script src="{{ asset('app.js') }}"></script>
 
 </html>

@@ -13,9 +13,32 @@ class Chapter extends Model
         "intro",
         "story",
         "book_id",
-        "slug"
+        "slug",
+        "chapter",
+        "is_free"
+
     ];
-    public function book() {
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleted(function ($chapQuery) {
+            foreach ($chapQuery->comments as $comment) {
+                if ($comment) {
+                    $comment->delete();
+                }
+            }
+        });
+    }
+
+
+    public function book()
+    {
         return $this->belongsTo(Book::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comments::class, 'commentable');
     }
 }

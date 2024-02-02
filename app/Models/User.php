@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->hasMany(Book::class);
     }
 
+    public function outcomes()
+    {
+        return $this->hasMany(AuthorIncomes::class);
+    }
+
     public function reviews()
     {
         return $this->hasMany(Review::class);
@@ -67,6 +72,18 @@ class User extends Authenticatable
         return $this->favouritedBooks->contains("id", $book->id);
     }
 
+  
+    public function author()
+    {
+        return $this->belongsTo(AuthorProfile::class);
+    }
+
+    public function isFollowed($book)
+    {
+        return $this->favouritedBooks->contains("id", $book->id);
+    }
+
+
     public function isBought($book)
     {
         return $this->boughtBooks->contains("id", $book->id);
@@ -75,5 +92,29 @@ class User extends Authenticatable
     public function boughtBooks()
     {
         return $this->belongsToMany(Book::class, "buy_book");
+    }
+
+    public function subscribe()
+    {
+        return $this->belongsToMany(AuthorProfile::class, "author_user");
+    }
+
+    public function isSubscribed($author)
+    {
+        return $this->subscribe->contains("user_id", $author->user_id);
+    }
+
+    public function notifications() {
+        return $this->hasMany(Notification::class, "recipient_id");
+    }
+    
+    public function getCountNotifications() {
+        return count($this->notifications()->where("is_seen",  0)->get());
+    }
+    
+  
+    public function readLists($author)
+    {
+        return $this->hasMany(ReadList::class);
     }
 }

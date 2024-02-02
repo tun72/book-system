@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\AuthorProfile;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use PharIo\Manifest\Author;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Book>
@@ -19,6 +21,9 @@ class BookFactory extends Factory
 
     {
         $isFree = rand(0, 1);
+
+        $user = AuthorProfile::factory()->create();
+        // dd($user->id);
         return [
             "title" => fake()->name(),
             "slug" => fake()->slug(),
@@ -30,7 +35,7 @@ class BookFactory extends Factory
             "ggcoin" => $isFree != 0 ? 1000 : 0,
             "isPublished" => true,
             "status" => "complete",
-            "user_id" => User::factory()->create(["role" => 2]),
+            "user_id" => $user->user_id,
         ];
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthorRequest;
+use App\Models\AuthorIncomes;
 use App\Models\AuthorRegister;
+use App\Models\Book;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,14 +23,14 @@ class AuthorController extends Controller
     }
 
     // creation 
-    public function creation() {
+    public function creation()
+    {
         return view("author.creation", [
-          "books" => auth()->user()->books
+            "books" => auth()->user()->books
         ]);
     }
 
-
-
+   
 
     // author register
 
@@ -44,11 +46,21 @@ class AuthorController extends Controller
         $cleanData = $request->validated();
         $cleanData["user_id"] = auth()->id();
 
-        
+
         $author = AuthorRegister::create($cleanData);
         $author->save();
-        return redirect("/user-profile/" . auth()->user()->username );
+        return redirect("/user-profile/" . auth()->user()->username);
     }
 
+    public function comments(Book $user)
+    {
+        return view("author.comments", ["reviews" => $user->reviews->load(["user", "book"])]);
+    }
 
+    public function incomes($author)
+    {
+
+        $incomes = AuthorIncomes::where("author_id", $author)->get();
+        return view("author.incomes", ["earns" => $incomes->load(["user"])]);
+    }
 }

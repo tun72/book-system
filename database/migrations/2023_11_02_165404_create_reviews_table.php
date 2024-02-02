@@ -17,6 +17,7 @@ return new class extends Migration
             $table->double("rating");
             $table->unsignedInteger("user_id");
             $table->unsignedInteger("book_id");
+            $table->integer("like")->default(0);
             $table->timestamps();
         });
     }

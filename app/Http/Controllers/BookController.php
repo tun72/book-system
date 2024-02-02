@@ -6,6 +6,7 @@ use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\File;
 use App\Models\Book;
 use App\Models\Genres;
+use Exception;
 
 class BookController extends Controller
 {
@@ -14,19 +15,72 @@ class BookController extends Controller
         return view("book.index");
     }
 
+    public function searchBookApi($query)
+    {
+        try {
+            $books = Book::where("title", "LIKE", "%" . $query . "%")->orwhere("body", "LIKE", "%" . $query . "%")->get();
+            return response()->json($books, 201);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'status' => 500
+            ], 500);
+        }
+    }
+    public function trends()
+    {
+        return view("book.trend", [
+            "books" => Book::with(["user"])->orderBy("rating", "DESC")->latest()->limit(10)->get(),
+        ]);
+    }
+
+    public function populars()
+    {
+        return view("book.popular", [
+            "books" => Book::with(["user"])->orderBy("rating", "ASC")->latest()->limit(10)->get(),
+        ]);
+    }
+
+
     public function books()
     {
+
+        $bookQuery = Book::with(["user"])->filter(request(["genres", "search", "author"]));
+
+        // dd(request("sort") === "new");
+        if (request("sort") === "new") {
+            $bookQuery->orderBy("created_at", "DESC");
+        } else {
+            $bookQuery->orderBy("rating", "DESC");
+        }
+
+        $bookQuery = $bookQuery->latest()->paginate(10)->withQueryString();
+      
         $title = request("genres") ? Genres::where("slug", request("genres"))->first()?->name : "Result";
         return view("book.filter-books", [
-            "books" => Book::with(["user"])->filter(request(["genres", "search", "author"]))->latest()->paginate(10)->withQueryString(),
-            "title" => $title
+            "books" => $bookQuery,
+            "title" => $title,
+            "genres" => Genres::all()
+
         ]);
     }
 
     public function show(Book $book)
     {
+
+        $slugArray = [];
+        foreach ($book->genres as $item) {
+            $slugArray[] = $item['slug'];
+        }
+
         return view("book.book-detail", [
-            "book" => $book->load(["reviews", "chapters"])
+            "book" => $book->load(["reviews", "chapters"]),
+            'randomBooks' => cache()->remember('blogs' . $book->slug, now()->addSeconds(10), function () use ($slugArray) {
+
+                return Book::inRandomOrder()->whereHas("genres", function ($genresQuery) use ($slugArray) {
+                    $genresQuery->whereIn("slug", $slugArray);
+                })->take(4)->get();
+            })
         ]);
     }
 
@@ -135,6 +189,4 @@ class BookController extends Controller
         }
         return back();
     }
-
-
 }

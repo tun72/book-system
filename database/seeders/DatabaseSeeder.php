@@ -4,9 +4,11 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\AuthorProfile;
 use App\Models\Book;
 use App\Models\Chapter;
 use App\Models\Genres;
+use App\Models\ReadList;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -31,6 +33,11 @@ class DatabaseSeeder extends Seeder
         Book::factory(10)->has(Chapter::factory()->count(10))->create();
         Genres::factory(20)->create();
         User::factory(10)->create();
+
+        // ReadList::factory()->create([
+        //     "title" => "My Library",
+        //     "private" => true
+        // ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

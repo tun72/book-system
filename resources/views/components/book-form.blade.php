@@ -1,5 +1,174 @@
 @props(['type', 'genres', 'book' => null])
 
+
+{{-- <section class="w-full">
+
+
+    <div class="w-full">
+        <div>
+            <div class="flex lg:flex-row md:flex-row flex-col justify-between">
+                <h1 class="font-semibold text-lg text-gray-500">Add New Post</h1>
+                <div>
+                    <div class="flex gap-2">
+                        <div class="flex gap-4 lg:justify-center md:justify-center justify-between w-full">
+                            <div>
+                                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                    class="text-brand-600 bg-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    type="button">English<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+
+
+                                <div id="dropdown"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownDefaultButton">
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
+                                                out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div>
+                                    <button type="button"
+                                        class="py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Preview</button>
+                                </div>
+                                <div>
+                                    <button type="button"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="lg:flex-row flex flex-col lg:gap-0 gap-4 justify-between">
+            <div class="lg:w-[60%] w-full">
+                <div class="w-full">
+
+                    <input type="text" placeholder="Title"
+                        class="py-2 px-2 w-full bg-white pl-5 rounded-xl shadow-sm border-[1px] border-solid border-gray-400 text-lg outline-none">
+                    <div class="border-[1px] rounded-lg  mt-[20px] border-solid border-gray-400 px-3 py-4 bg-white">
+                        <div
+                            class="border-[1px] lg:mt-[20px] md:mt-[20px] mt-[5px]  rounded-lg border-solid px-3 border-gray-400 lg:py-2 md:py-2 py-1">
+                            <div class="flex gap-2"><span><i class="fa-solid fa-angle-down text-gray-500"></i></span>
+                                <h1 class="font-semibold text-gray-500">Text Content</h1>
+                            </div>
+                            <div class="w-[99%] mx-auto bg-gray-200 h-[2px] mt-[6px] mb-5"></div>
+                            <div>
+                                <textarea id="message" rows="4"
+                                    class="lg:h-[300px] md:h-[300px] bg-white outline-none w-full block p-2.5 text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Write your thoughts here..."></textarea>
+
+                            </div>
+                        </div>
+
+                        <div class="border-[1px] rounded-lg border-solid border-gray-400 py-2 px-3 mt-3">
+                            <div class="flex gap-2"><span><i class="fa-solid fa-angle-down text-gray-500"></i></span>
+                                <h1 class="font-semibold text-gray-500">Caption & Images</h1>
+                            </div>
+                            <div class="w-[99%] mx-auto bg-gray-600 h-[1px] mt-[10px] mb-[10px]"></div>
+                            <div>
+                                <h1 class=" font-semibold text-gray-500">Caption</h1>
+                            </div>
+                            <input type="text" placeholder="Title"
+                                class="py-2 px-2 w-full pl-5 rounded-lg mt-4 border-[1px] border-solid border-gray-400 text-lg outline-none bg-brand-100">
+                            <div>
+                                <h1 class=" font-semibold text-gray-500 mt-[10px]">Upload Images</h1>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="lg:w-[38%] w-full">
+                <div class="border-[1px] rounded-lg border-solid border-gray-400 px-5 py-2 flex flex-col gap-3">
+                    <div>
+                        <h1 class="font-semibold text-gray-500">Written by</h1>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Your name"
+                            class="py-1 px-2 w-full pl-5 rounded-lg  border-[1px] border-solid border-gray-400 text-lg outline-none bg-brand-100">
+                    </div>
+                    <div>
+                        <h1 class="font-semibold text-gray-500">Post Date</h1>
+                    </div>
+                    <div>
+                        <input type="date" name="" id=""
+                            class="py-1 px-2 w-full pl-5 rounded-lg  border-[1px] border-solid border-gray-400 text-lg outline-none bg-brand-100">
+                    </div>
+                    <div>
+                        <h1 class="font-semibold text-gray-500">Published</h1>
+                    </div>
+                    <div>
+
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                            </div>
+
+                        </label>
+
+                    </div>
+                    <div>
+                        <h1 class="font-semibold text-gray-500">Show Author Name</h1>
+                    </div>
+                    <div>
+
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section> --}}
+
+
+
 <div class="max-w-[62rem] mx-auto  p-[20px] mt-2">
 
 
@@ -111,7 +280,20 @@
 
 
 
-        {{-- <div class="mb-4">
+        <div>
+
+        </div>
+        
+
+        <button type="submit"
+            class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
+    </form>
+
+</div>
+
+
+
+{{-- <div class="mb-4">
             <img src="{{ old('image', $book?->image) }}" alt="" width="150" height="200">
             <div class="mb-4">
                 <label for="formFileMultiple" class="form-label text-primary mb-1">cImage</label>
@@ -120,7 +302,7 @@
             <x-error name="image" />
         </div> --}}
 
-        {{-- <div class="mb-3 row">
+{{-- <div class="mb-3 row">
             <div class="col-6">
                 <div class="dropdown">
                     <button class="btn shadow-0 border border-secondary dropdown-toggle" type="button"
@@ -164,11 +346,9 @@
                 <x-error name="publish" />
             </div>
         </div> --}}
-        <div>
 
-        </div>
-        <!-- Message input -->
-        {{-- <div class="mb-4">
+<!-- Message input -->
+{{-- <div class="mb-4">
             <div class="form-outline">
                 <textarea class="form-control" id="form6Example7" rows="4" name="body">{{ old('body', $book?->body) }}</textarea>
                 <label class="form-label" for="form6Example7">Body</label>
@@ -178,11 +358,5 @@
 
 
 
-        <!-- Submit button -->
-        {{-- <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button> --}}
-
-        <button type="submit"
-            class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
-    </form>
-
-</div>
+<!-- Submit button -->
+{{-- <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button> --}}

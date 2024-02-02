@@ -7,7 +7,7 @@
     },
     "devDependencies": {
         "autoprefixer": "^10.4.16",
-        "axios": "^1.1.2",
+        "axios": "^1.6.5",
         "jquery": "^3.7.1",
         "laravel-vite-plugin": "^0.8.0",
         "postcss": "^8.4.32",
@@ -28,6 +28,8 @@
         "@ckeditor/ckeditor5-list": "^40.2.0",
         "@ckeditor/ckeditor5-paragraph": "^40.2.0",
         "@ckeditor/ckeditor5-theme-lark": "^40.2.0",
-        "@ckeditor/vite-plugin-ckeditor5": "^0.1.3"
+        "@ckeditor/vite-plugin-ckeditor5": "^0.1.3",
+        "flowbite": "^2.2.1",
+        "jquery.typewatch": "^3.0.2"
     }
 }

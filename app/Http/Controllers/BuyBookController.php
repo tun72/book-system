@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AuthorIncomes;
 use App\Models\User;
 use App\Models\Book;
 
@@ -22,9 +23,15 @@ class BuyBookController extends Controller
         if (!$user->isBought($book)) {
             $user->ggcoin = $user->ggcoin - $book->ggcoin;
             $user->boughtBooks()->attach($book->id);
+            $authorIncome = AuthorIncomes::create([
+                "user_id" => $user->id,
+                "author_id" => $book->user_id,
+                "ggcoin" =>  $book->ggcoin
+            ]);
+
+            $authorIncome->save();
             $user->save();
         }
-        return back();
+        return back()->with(["success" => "Successfully Buy a book ✅"]);;
     }
-
 }

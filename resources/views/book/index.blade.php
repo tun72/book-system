@@ -6,4 +6,5 @@
         <x-top-rated-component />
     </div>
     <x-new-book-component />
+
 </x-home-layout>

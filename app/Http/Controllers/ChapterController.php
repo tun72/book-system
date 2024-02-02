@@ -12,7 +12,6 @@ class ChapterController extends Controller
     //
     public function show(Chapter $chapter)
     {
-
         // $text = Pdf::getText(public_path($chapter->file), 'C:\Program Files\Git\mingw64\bin\pdftotext.exe');
         return view("book.read-book", [
             "chapter" => $chapter,
@@ -31,46 +30,58 @@ class ChapterController extends Controller
             "story" => ["required", "min:10"],
             "title" => ["required", "min:3"]
         ]);
-
         $chapter = Chapter::create([
             "title" => $cleanData["title"],
             "slug" => fake()->slug(),
             "intro" => fake()->paragraph(),
+            "chapter" => count($book->chapters) + 1,
             "story" => $cleanData["story"],
             "book_id" => $book->id
         ]);
-
         $chapter->save();
+        
         return redirect("/author/book/" . $book->id . "/detail");
     }
 
     public function edit(Chapter $chapter)
     {
-
-
         return view("chapter.edit", ["book" => $chapter->book, "chapter" => $chapter]);
     }
 
     public function update(Chapter $chapter)
     {
-
         $cleanData = request()->validate([
             "story" => ["required", "min:10"],
             "title" => ["required", "min:3"]
         ]);
         $chapter->title = $cleanData["title"];
-
         $chapter->story = $cleanData["story"];
-
         $chapter->update();
 
         return redirect("/author/book/" . $chapter->book->id . "/detail");
-
     }
 
     public function delete(Chapter $chapter)
     {
         $chapter->delete();
         return redirect("/author/book/" . $chapter->book->id . "/detail");
+    }
+
+    public function new(Book $book)
+    {
+
+        $cleanData = request()->validate([
+            "chapter" => "required",
+            "is_free" => "required",
+            "title" => "required"
+        ]);
+        $cleanData["is_free"] = $cleanData["is_free"] === "true";
+        $cleanData["story"] = "No Story Yet";
+        $cleanData["slug"] = fake()->slug();
+        $cleanData["book_id"] = $book->id;
+
+
+        Chapter::create($cleanData);
+        return back();
     }
 }

@@ -3,8 +3,8 @@
 
 <!-- Main modal -->
 <div id="model-fav" tabindex="-1" aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-slate-200/20 backdrop-blur-sm">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-slate-200/20 backdrop-blur-sm">
+    <div class="relative p-4 w-full max-w-[60rem] max-h-[100vh]">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow">
             <!-- Modal header -->
@@ -25,22 +25,30 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5 space-y-4">
-                @if (count($books) > 0)
-                    <ul>
-                        @foreach ($books as $book)
-                            <li class="row">
-                                <div class="col-3">
-                                    <img src="{{ $book->image }}" alt="" class="" width="100"
-                                        height="100">
-                                    <p>{{ $book->title }}</p>
+                <div class="mx-auto">
+                    <!-- Book Cards -->
+                    @if (count($books) > 0)
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            @foreach ($books as $book)
+                                <!-- Book Card 1 -->
+                                <div class=" dark:bg-gray-700 p-6 rounded-md">
+                                    <a href="/book-details/{{ $book->slug }}"><img src="{{ $book->image }}"
+                                            alt="Book Cover 1" class="w-full h-30 object-cover mb-4 rounded-md">
+                                        <h3 class="text-lg font-semibold mb-2">{{ $book->title }}</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">Author: {{ $book->user->name }}</p>
+                                    </a>
                                 </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p>No book found</p>
-                @endif
+                            @endforeach
 
+
+                            <!-- Add more book cards as needed -->
+
+                        </div>
+                    @else
+                        <p>No book found</p>
+                    @endif
+
+                </div>
             </div>
         </div>
     </div>

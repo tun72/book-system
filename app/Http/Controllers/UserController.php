@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AuthorProfile;
+use App\Models\ReadList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
@@ -16,10 +18,6 @@ class UserController extends Controller
         );
     }
 
-    public function getPrice()
-    {
-        return view("pricing.pricing-section");
-    }
 
     public function getUpdate()
     {
@@ -45,10 +43,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function readList(User $user)
+    public function readList()
     {
         return view("book.readlist", [
-            "books" => $user->boughtBooks()->latest()->get()
+            "readlists" => ReadList::where("user_id", auth()->id())->latest()->paginate(10)
         ]);
     }
 

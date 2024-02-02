@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use File;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Book extends Model
 {
@@ -31,6 +32,8 @@ class Book extends Model
             if (File::exists($file = public_path($bookQuery->image))) {
                 File::delete($file);
             }
+
+          
         });
     }
 
@@ -42,6 +45,12 @@ class Book extends Model
     public function genres()
     {
         return $this->belongsToMany(Genres::class, "book_genres");
+    }
+
+
+    public function readLists()
+    {
+        return $this->belongsToMany(ReadList::class);
     }
 
     public function reviews()
@@ -64,11 +73,22 @@ class Book extends Model
         return $this->belongsToMany(User::class, "buy_book");
     }
 
+
+    public function getPurchasers()
+    {
+        return $this->purchasers->filter(fn ($user) => $user->id != auth()->user()->id);
+    }
+
     public function scopeFilter($bookQuery, $filters)
     {
         if ($genres = $filters["genres"] ?? null) {
+
+            // dd($genres);
+            $genres = explode( ",", $genres);
+            // dd($genres);
+
             $bookQuery->whereHas("genres", function ($genresQuery) use ($genres) {
-                $genresQuery->where("slug", $genres);
+                $genresQuery->whereIn("slug", $genres);
             });
         }
 

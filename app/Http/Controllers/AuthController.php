@@ -39,7 +39,7 @@ class AuthController extends Controller
     public function login()
     {
         request()->validate([
-            "email" => ["required", "max:30", Rule::exists("users", "email")],
+            "email" => ["required", "min:10", Rule::exists("users", "email")],
             "password" => ["required", "min:8"],
         ]);
 

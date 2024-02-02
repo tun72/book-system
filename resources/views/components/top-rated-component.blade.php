@@ -2,7 +2,7 @@
     $i = 0;
 @endphp
 <div class="rated">
-    <h3 class="text-2xl text-brand-700"><i class="fas fa-star me-2"></i>Top Rated</h3>
+    <h3 class="text-2xl font-bold text-brand-700 mb-6"><i class="fas fa-star me-2"></i>Top Rated</h3>
     <div class="rated-items mt-4">
         <ul>
             @foreach ($books as $book)
