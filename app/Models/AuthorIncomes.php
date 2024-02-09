@@ -12,11 +12,18 @@ class AuthorIncomes extends Model
         'author_id',
         'user_id',
         "ggcoin",
+        "book_id"
     ];
 
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
     }
 }

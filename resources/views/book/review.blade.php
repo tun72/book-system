@@ -49,7 +49,6 @@
                         <h1>{{ $comment->user->name }}</h1>
                         <span>{{ $comment->user->id === $book->user->id ? 'Owner' : '' }}</span>
                         <span>{{ $comment->user->id === auth()->user()->id ? 'You' : '' }}</span>
-           
                         <p>{{ $comment->body }}</p>
                     </div>
                 @endforeach

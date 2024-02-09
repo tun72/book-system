@@ -20,9 +20,9 @@
                 <input type="hidden" name="search" value="{{ request('search') }}" />
             @endif
 
-            <input type="text" id="simple-search"
+            <input type="text" id="simple-search" data-modal-target="crud-modal" data-modal-toggle="crud-modal"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block w-full ps-10 p-2.5 outline-none"
-                placeholder="Search branch name..." required name="search">
+                placeholder="Search branch name..." required name="search" autocomplete="off">
             <button data-ripple-light="true" class="bg-brand-500 py-2 px-2 rounded text-brand-50" id="search-addon">
                 <i class="fas fa-search"></i>
             </button>

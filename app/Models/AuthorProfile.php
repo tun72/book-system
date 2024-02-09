@@ -11,7 +11,9 @@ class AuthorProfile extends Model
     protected $fillable = [
         "name",
         "id",
-        "user_id"
+        "user_id",
+        "about",
+        "experience"
     ];
 
     public function user()
@@ -24,9 +26,9 @@ class AuthorProfile extends Model
         return $this->favouritedBooks->contains("id", $book->id);
     }
 
-    public function subscribers() {
-        
+    public function subscribers()
+    {
+
         return $this->belongsToMany(User::class, "author_user");
     }
-
 }

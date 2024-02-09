@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger("recipient_id");
             $table->boolean("is_seen")->default(0);
-            $table->unsignedBigInteger("book_id")->default(null);
-            $table->unsignedBigInteger("chapter_id")->default(null);
+            $table->unsignedBigInteger("book_id")->default(0);
+            $table->unsignedBigInteger("chapter_id")->default(0);
             $table->timestamps();
         });
     }

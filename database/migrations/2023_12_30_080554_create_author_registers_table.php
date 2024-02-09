@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->string("name");
             $table->string("email");
-            $table->longText("description");
+            $table->longText("about");
             $table->string("phone");
             $table->unsignedInteger("exp");
             $table->boolean("confirm")->default(false);

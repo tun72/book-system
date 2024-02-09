@@ -32,8 +32,6 @@ class Book extends Model
             if (File::exists($file = public_path($bookQuery->image))) {
                 File::delete($file);
             }
-
-          
         });
     }
 
@@ -55,7 +53,7 @@ class Book extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class, "book_id");
     }
 
     public function chapters()
@@ -84,7 +82,7 @@ class Book extends Model
         if ($genres = $filters["genres"] ?? null) {
 
             // dd($genres);
-            $genres = explode( ",", $genres);
+            $genres = explode(",", $genres);
             // dd($genres);
 
             $bookQuery->whereHas("genres", function ($genresQuery) use ($genres) {

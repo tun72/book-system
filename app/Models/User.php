@@ -72,10 +72,10 @@ class User extends Authenticatable
         return $this->favouritedBooks->contains("id", $book->id);
     }
 
-  
+
     public function author()
     {
-        return $this->belongsTo(AuthorProfile::class);
+        return $this->belongsTo(AuthorProfile::class, "id");
     }
 
     public function isFollowed($book)
@@ -104,16 +104,18 @@ class User extends Authenticatable
         return $this->subscribe->contains("user_id", $author->user_id);
     }
 
-    public function notifications() {
+    public function notifications()
+    {
         return $this->hasMany(Notification::class, "recipient_id");
     }
-    
-    public function getCountNotifications() {
+
+    public function getCountNotifications()
+    {
         return count($this->notifications()->where("is_seen",  0)->get());
     }
-    
-  
-    public function readLists($author)
+
+
+    public function readLists()
     {
         return $this->hasMany(ReadList::class);
     }

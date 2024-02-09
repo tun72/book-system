@@ -23,7 +23,9 @@ class AuthorProfileFactory extends Factory
             //
             "id" => $user->id,
             "user_id" => $user->id,
-            "name" => $user->name
+            "name" => $user->name,
+            "about" => fake()->paragraph(3),
+            "experience" => fake()->numberBetween(0, 10)
         ];
     }
 }

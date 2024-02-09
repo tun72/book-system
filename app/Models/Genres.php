@@ -10,7 +10,9 @@ class Genres extends Model
 {
     use HasFactory;
 
-    public function books() {
+    protected $guarded = [];
+    public function books()
+    {
         return $this->belongsToMany(Book::class, "book_genres");
     }
 }

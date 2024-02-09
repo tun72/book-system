@@ -1,5 +1,5 @@
-@props(['book'])
-<div id="default-modal-{{ $book->id }}" tabindex="-1" aria-hidden="true"
+@props(['book', 'id'])
+<div id="default-modal-{{ $id }}" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-slate-200/20 backdrop-blur-sm">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
         <!-- Modal content -->
@@ -18,7 +18,7 @@
                             <p class="text-lg font-semibold">{{ $book->title }}</p>
                             <button type="button"
                                 class="w-[30px] h-[30px] mt-1 hover:bg-gray-200 ease-linear flex justify-center items-center"
-                                data-modal-hide="default-modal-{{ $book->id }}">
+                                data-modal-hide="default-modal-{{ $id }}">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -52,8 +52,8 @@
                                 </div>
 
                                 <div class="w-[10%] flex justify-center items-center cursor-pointer"
-                                    data-modal-target="dropdown-example-{{ $book->id }}"
-                                    data-modal-toggle="dropdown-example-{{ $book->id }}"><span><i
+                                    data-modal-target="dropdown-example-{{ $id }}"
+                                    data-modal-toggle="dropdown-example-{{ $id }}"><span><i
                                             class="fa-solid fa-plus"></i></span>
                                 </div>
 
@@ -68,7 +68,7 @@
                         @endif
 
 
-                        <x-read-list :book="$book" />
+                        <x-read-list :book="$book" :id="$id" />
                         <div class="text-sm px-2 text-gray-500">
                             <p>{{ $book->body }}</p>
                         </div>

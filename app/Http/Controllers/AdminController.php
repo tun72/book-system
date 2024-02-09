@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AuthorProfile;
 use App\Models\AuthorRegister;
 use App\Models\Book;
+use App\Models\Genres;
+use App\Models\Tag;
 use App\Models\Transfer;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -55,7 +57,7 @@ class AdminController extends Controller
 
         $requser->update();
         $requser->user->update();
-        AuthorProfile::create(["name" => $requser->user->name, "id" => $requser->user->id, "user_id" =>  $requser->user->id]);
+        AuthorProfile::create(["name" => $requser->user->name, "id" => $requser->user->id, "user_id" =>  $requser->user->id, "about" => $requser->about, "experience" => $requser->exp]);
 
         return redirect("/admin/authors/request"); // cheange redirect back later
     }
@@ -91,5 +93,46 @@ class AdminController extends Controller
     {
         $transfer->delete();
         return back()->with("success", "Successfully deleted Chief🪲 ✅.");
+    }
+
+    public function genres()
+    {
+        return view("admin.genres", ["genres" => Genres::latest()->get()]);
+    }
+
+    public function postGenres()
+    {
+        Genres::create([
+            "name" => request("name"),
+            "slug" => fake()->slug()
+        ]);
+        return back()->with("success", "New Genres Successfully Added Chief🪲 ✅.");;
+    }
+
+    public function editGenres(Genres $genres)
+    {
+
+        $genres->name = request("name");
+        $genres->update();
+        return back()->with("success", "Genres Successfully Updated  Chief🪲 ✅.");
+    }
+
+    public function deleteGenres(Genres $genres)
+    {
+        $genres->delete();
+        return back()->with("success", "Genres Successfully Deleted  Chief🪲 ✅.");
+    }
+
+    public function tags()
+    {
+        return view("admin.tags");
+    }
+
+    public function postTags()
+    {
+        Tag::create([
+            "name" => request("name"),
+        ]);
+        return back()->with("success", "New Genres Successfully Added Chief🪲 ✅.");;
     }
 }

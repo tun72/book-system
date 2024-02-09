@@ -1,4 +1,5 @@
 <x-home-layout>
+    @vite('resources/js/readlist.js')
     <x-genres-component />
     <x-trend-component />
     <div class="books mb-10">

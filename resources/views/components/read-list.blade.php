@@ -1,11 +1,10 @@
-@props(['book'])
+@props(['book', 'id'])
 
 @php
-    $index = $book->id;
+    $index = $id;
 @endphp
 
 {{-- @dd($book) --}}
-
 
 <div class="relative w-full select-none shadow-xl">
     <div id="dropdown-example-{{ $index }}"
@@ -13,12 +12,14 @@
 
         <form action="#" class="addReadList w-full">
             <input type="hidden" value="{{ $index }}">
+            <input type="hidden" value="{{ $book->id }}">
             <div class="flex justify-between items-center gap-4 py-1 px-2">
                 <label for="input-group-search" class="opacity-0">Add</label>
                 <h5 class="text-base">Add to</h5>
-                <button data-modal-hide="dropdown-example-{{ $book->id }}">Done</button>
+                <button data-modal-hide="dropdown-example-{{ $id }}">Done</button>
             </div>
-            <ul class="h-[8rem] overflow-y-scroll overflow-x-hidden w-full text-sm text-gray-700 dark:text-gray-200 readlists">
+            <ul
+                class="h-[8rem] overflow-y-scroll overflow-x-hidden w-full text-sm text-gray-700 dark:text-gray-200 readlists">
                 @foreach ($readlists as $readlist)
                     <li>
                         <div class="flex items-center rounded hover:bg-gray-100 dark:hover:bg-gray-600 p-1">
@@ -37,6 +38,7 @@
 
         <form class="p-3 newReadList relative flex gap-3 items-center  w-full" action="#">
             <input type="hidden" value="{{ $index }}">
+
             <input type="hidden" value="{{ auth()->user()?->id }}" class="userId-{{ $index }}">
             <input type="text" id="readlist"
                 class="block w-full p-2 newreadlist-{{ $index }} text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

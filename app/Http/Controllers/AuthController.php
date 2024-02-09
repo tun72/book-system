@@ -59,4 +59,7 @@ class AuthController extends Controller
         auth()->logout();
         return redirect("/")->with("success", "Logout Success. See u soon 🪲.");
     }
+
+
+    
 }

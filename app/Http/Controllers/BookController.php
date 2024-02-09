@@ -116,7 +116,10 @@ class BookController extends Controller
 
     public function insert(BookRequest $request)
     {
+
+    
         $cleanData = $request->validated();
+
         $cleanData["user_id"] = auth()->id();
         $cleanData["image"] = "/storage/" . request("image")->store("/books");
 
@@ -188,5 +191,9 @@ class BookController extends Controller
             return back();
         }
         return back();
+    }
+
+    public function welcome() {
+        return view("other.welcome");
     }
 }

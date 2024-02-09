@@ -5,7 +5,7 @@
             <ul>
                 <li><a href="/"><i class="fa-solid fa-house"></i>Home</a></li>
 
-                <li><a href="#" data-modal-target="crud-modal" data-modal-toggle="crud-modal"><i
+                <li><a href="#"><i
                             class="fas fa-search"></i>Browse</a>
                 </li>
                 @auth

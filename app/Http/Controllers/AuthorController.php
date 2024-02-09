@@ -6,6 +6,7 @@ use App\Http\Requests\AuthorRequest;
 use App\Models\AuthorIncomes;
 use App\Models\AuthorRegister;
 use App\Models\Book;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,12 @@ class AuthorController extends Controller
     {
         $user = User::find(auth()->id())->load("books");
 
+        $incomes = AuthorIncomes::where("author_id", $user->id)->get();
         // dd($user->books());
+
         return view("author.index", [
-            "books" => $user->books
+            "books" => $user->books,
+            "earns" => $incomes->load(["user"])
         ]);
     }
 
@@ -30,7 +34,7 @@ class AuthorController extends Controller
         ]);
     }
 
-   
+
 
     // author register
 
@@ -62,5 +66,17 @@ class AuthorController extends Controller
 
         $incomes = AuthorIncomes::where("author_id", $author)->get();
         return view("author.incomes", ["earns" => $incomes->load(["user"])]);
+    }
+
+    public function sell()
+    {
+        return view("author.sell");
+    }
+
+    public function notification()
+    {
+        return view("author.notification", [
+            "notifications" => Notification::where("user_id", auth()->user()->id)->get()
+        ]);
     }
 }

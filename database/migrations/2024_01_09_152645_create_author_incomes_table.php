@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("author_id");
             $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("book_id");
             $table->integer("ggcoin");
             $table->timestamps();
         });

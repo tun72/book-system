@@ -12,14 +12,12 @@ use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ReadListController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SellsController;
 use App\Http\Controllers\SentFeedBackController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\SuccessController;
 use App\Http\Controllers\UserController;
-use App\Models\AuthorProfile;
-use App\Models\ReadList;
-use App\Models\SentFeedBack;
-use Egulias\EmailValidator\Parser\Comment;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,7 +34,7 @@ Route::post("/books/{book:slug}/buy", [BuyBookController::class, "handelBuyBook"
 Route::get("/book/chapter/{chapter:slug}/read", [ChapterController::class, "show"]);
 
 // book
-Route::get("/book/new-book", [BookController::class, "create"]);
+Route::get("/book/new-book", [BookController::class, "create"])->middleware('checkbook');;
 Route::get("/book/trends", [BookController::class, "trends"]);
 Route::get("/book/populars", [BookController::class, "populars"]);
 Route::get("/book/{book:id}/book-update", [BookController::class, "edit"]);
@@ -83,16 +81,21 @@ Route::get("/author/{user:user_id}/comments", [AuthorController::class, "comment
 
 Route::get("/author/{author}/incomes", [AuthorController::class, "incomes"]);
 
+Route::get("/author/incomes/sell", [SellsController::class, "index"]);
+Route::post("/author/incomes/sell", [SellsController::class, "store"]);
+
+
 Route::get("/author/{username}/profile", [AuthorProfileController::class, "index"]);
 Route::get("/author/{username}/books", [AuthorProfileController::class, "books"]);
 Route::get("/author/{username}/readlists", [AuthorProfileController::class, "index"]);
 
 Route::patch("/book/{book:id}/book-update", [BookController::class, "update"]);
+
 Route::post("/book/new-book", [BookController::class, "insert"]);
 
 Route::get("/author/book/{book:id}/detail", [BookController::class, "detail"]);
 
-
+Route::get("/author/notifications", [AuthorController::class, "notification"]);
 
 // author register
 Route::get("/author/register", [AuthorController::class, "register"]);
@@ -178,3 +181,20 @@ Route::get("/admin/users/coins/buy", [AdminController::class, "coinsBuy"]);
 Route::post("/admin/users/coins/{transfer:id}/confirm", [AdminController::class, "coinsConfirm"]);
 
 Route::delete("/admin/users/coins/{transfer:id}/delete", [AdminController::class, "coinsDelete"]);
+
+Route::get("/admin/books/genres", [AdminController::class, "genres"]);
+
+Route::post("/admin/books/genres", [AdminController::class, "postGenres"]);
+
+Route::delete("/admin/genres/{genres:slug}/delete", [AdminController::class, "deleteGenres"]);
+
+Route::patch("/admin/genres/{genres:slug}/edit", [AdminController::class, "editGenres"]);
+
+
+
+
+
+// welcome 
+
+
+Route::get("/welcome", [BookController::class, "welcome"]);

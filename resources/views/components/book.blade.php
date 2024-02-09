@@ -1,5 +1,6 @@
 <li class="mb-3">
-    <a href="#" class="recommend-book" data-modal-target="default-modal-{{ $book->id }}" data-modal-toggle="default-modal-{{ $book->id }}">
+    <a href="#" class="recommend-book" data-modal-target="default-modal-{{ $book->id }}"
+        data-modal-toggle="default-modal-{{ $book->id }}">
         <div class="recommend-image">
             <img src="{{ $book->image }}" alt="">
             @if ($book->isFree == 0)
@@ -24,7 +25,7 @@
 
                 </p>
                 <h3 class="text-lg text-brand-700 text-bold ">{{ Str::of($book->title)->limit(12) }}</h3>
-                <span>{{   Str::of($book->user->name)->limit(18) }}</span>
+                <span>{{ Str::of($book->user->name)->limit(18) }}</span>
             </div>
             <div class="recommend-artical-2 badge rounded-pill badge-warning">
                 <i class="fa-brands fa-gg-circle text-primary fs-5"></i>
@@ -34,4 +35,4 @@
     </a>
 </li>
 
-<x-book-modal :book="$book" />
+<x-book-modal :book="$book" :id="$book->id" />

@@ -28,7 +28,8 @@ class ChapterController extends Controller
     {
         $cleanData = request()->validate([
             "story" => ["required", "min:10"],
-            "title" => ["required", "min:3"]
+            "title" => ["required", "min:3"],
+        
         ]);
         $chapter = Chapter::create([
             "title" => $cleanData["title"],
@@ -73,11 +74,15 @@ class ChapterController extends Controller
         $cleanData = request()->validate([
             "chapter" => "required",
             "is_free" => "required",
-            "title" => "required"
+            "title" => "required",
+            "intro" => "required"
         ]);
+
+        // dd($cleanData);
         $cleanData["is_free"] = $cleanData["is_free"] === "true";
         $cleanData["story"] = "No Story Yet";
         $cleanData["slug"] = fake()->slug();
+
         $cleanData["book_id"] = $book->id;
 
 
