@@ -21,7 +21,9 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="#">
+            <form action="/admin/edit-user/{{$user->username}}" method="POST">
+                @csrf
+                @method("PATCH")
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
                         <label for="name"
@@ -31,9 +33,9 @@
                             placeholder="Ex. Apple iMac 27&ldquo;">
                     </div>
                     <div>
-                        <label for="name"
+                        <label for="username"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                        <input type="text" name="name" id="name" value="{{ $user->username }}"
+                        <input type="text" name="username" id="name" value="{{ $user->username }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Ex. Apple iMac 27&ldquo;">
                     </div>
@@ -74,7 +76,7 @@
                         <div class="sm:col-span-2">
                             <label for="description"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                            <textarea id="description" rows="5"
+                            <textarea id="description" name="about" rows="5"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="Write a description...">{{ $user->description }}</textarea>
                         </div>
@@ -89,7 +91,7 @@
                         <div>
                             <label for="category" name="role"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-                            <select id="category"
+                            <select id="category" name="role[]"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option value="1">Admin</option>
                                 <option value="2" {{ $user->role === 2 ? 'selected' : '' }}>Author</option>

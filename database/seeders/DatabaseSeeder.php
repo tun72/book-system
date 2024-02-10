@@ -10,6 +10,7 @@ use App\Models\Chapter;
 use App\Models\Genres;
 use App\Models\ReadList;
 use App\Models\User;
+use App\Models\UserProfiles;
 use Illuminate\Database\Seeder;
 
 
@@ -32,7 +33,8 @@ class DatabaseSeeder extends Seeder
 
         Book::factory(10)->has(Chapter::factory()->count(10))->create();
         Genres::factory(20)->create();
-        User::factory(10)->create();
+        UserProfiles::factory(20)->create();
+        
 
         // ReadList::factory()->create([
         //     "title" => "My Library",

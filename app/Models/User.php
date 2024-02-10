@@ -78,6 +78,11 @@ class User extends Authenticatable
         return $this->belongsTo(AuthorProfile::class, "id");
     }
 
+    public function reader()
+    {
+        return $this->belongsTo(UserProfiles::class, "id");
+    }
+
     public function isFollowed($book)
     {
         return $this->favouritedBooks->contains("id", $book->id);

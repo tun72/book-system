@@ -172,6 +172,10 @@ Route::get("/success", [SuccessController::class, "index"]);
 Route::get("/admin", [AdminController::class, "index"]);
 Route::get("/admin/all-users", [AdminController::class, "users"]);
 
+Route::get("/admin/user/{user:username}", [AdminController::class, "user"]);
+Route::patch("/admin/edit-user/{user:username}", [AdminController::class, "updateUser"]);
+Route::delete("/admin/{user:username}/delete", [AdminController::class, "deleteUser"]);
+
 Route::get("/admin/authors/request", [AdminController::class, "reqAuthor"]);
 
 Route::patch("/admin/authors/success/{requser}", [AdminController::class, "successRegAuthor"]);

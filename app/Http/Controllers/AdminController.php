@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Models\Transfer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use PharIo\Manifest\Author;
 
 class AdminController extends Controller
@@ -26,9 +27,45 @@ class AdminController extends Controller
 
     public function users()
     {
+        $ROLE = ["user" => [0], "author" => [2], "all" => [0, 2], "" => [0, 2]];
+        $filter = $ROLE[request("filter")];
         return view("admin.users", [
-            "users" => User::whereIn("role", [0, 2])->get(),
+            "users" => User::whereIn("role", $filter)->get()
         ]);
+    }
+
+    public function user(User $user)
+    {
+
+        return view("admin.profile", [
+            "user" => $user,
+            "genres" => Genres::whereIn("id", explode(",", $user->reader->genres))->get()
+        ]);
+    }
+
+    public function updateUser(User $user)
+    {
+
+
+ 
+        $clean_data = request()->validate([
+            "name" => ["required"],
+            "username" => ["required"],
+            "email" => ["required"],
+            "role" => ["required"],
+            "ggcoin" => ["required"],
+            "phoneNumber" => ["required"]
+        ]);
+        $user->update($clean_data);
+
+        return back()->with("success", "Successfully Edited Chief🪲 ✅.");
+    }
+
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+        return back()->with("success", "Successfully Deleted Chief🪲 ✅.");
     }
 
 
