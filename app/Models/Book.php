@@ -22,7 +22,8 @@ class Book extends Model
         "user_id",
         "publish",
         "isPublished",
-        "status"
+        "status",
+        "discount"
     ];
 
     public static function boot()
@@ -74,7 +75,7 @@ class Book extends Model
 
     public function getPurchasers()
     {
-        return $this->purchasers->filter(fn ($user) => $user->id != auth()->user()->id);
+        return $this->purchasers->filter(fn($user) => $user->id != auth()->user()->id);
     }
 
     public function scopeFilter($bookQuery, $filters)

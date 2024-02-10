@@ -20,19 +20,26 @@ class AuthController extends Controller
         return view("auth.register");
     }
 
+    public function completeProfile($id)
+    {
+        return view("auth/complete", ["id" => $id]);
+    }
+
     public function register()
     {
         $cleanData = request()->validate([
-            "name" => ["required", "max:20", "min:5"],
+            // "name" => ["required", "max:20", "min:5"],
             "username" => ["required", "max:10", Rule::unique("users", "username")],
             "email" => ["required", "max:30", Rule::unique("users", "email")],
             "password" => ["required", "min:8"],
         ]);
 
+        $cleanData["name"] = $cleanData["username"];
+
         $cleanData = array_merge($cleanData, ["imageUrl" => 'https://i.pravatar.cc/480?u=' . rand(10000, 40000), "phoneNumber" => "NULL"]);
         $user = User::create($cleanData);
         auth()->login($user);
-        return redirect("/")->with("success", "Welcome to book reader " . $user->name . " 🎉");
+        return redirect("/complete-your-profile");
     }
 
 
@@ -61,5 +68,5 @@ class AuthController extends Controller
     }
 
 
-    
+
 }

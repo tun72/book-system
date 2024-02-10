@@ -154,6 +154,8 @@ Route::post('/pricing-section', [PriceController::class, "store"]);
 Route::get("/login", [AuthController::class, "viewLogin"])->name("login");
 Route::get("/register", [AuthController::class, "viewRegister"]);
 
+Route::get("/complete-your-profile/{id}", [AuthController::class, "completeProfile"]);
+
 // Auth Route - POST
 Route::post("/register", [AuthController::class, "register"]);
 Route::post("/login", [AuthController::class, "login"]);

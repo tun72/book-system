@@ -1,87 +1,7 @@
 @props(['type', 'genres', 'book' => null])
 
-
-{{-- <div class="max-w-[62rem] mx-auto  p-[20px] mt-2">
-
-
-    <h4 class="text-2xl font-bold">{{ $type == 'create' ? 'Create new' : 'Update' }} Book </h4>
-
-
-    <form action="{{ $type == 'create' ? '/book/new-book' : '/book/' . $book->id . '/book-update' }}" method="POST"
-        enctype="multipart/form-data">
-        @csrf
-
-        @if ($type == 'update')
-            @method('PATCH')
-        @endif
-
-
-        <div class="mb-5">
-            <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
-            <input type="text" id="base-input" name="title" value="{{ old('title', $book?->title) }}"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <x-error name="title" />
-        </div>
-
-        <div class="grid md:grid-cols-3 md:gap-6">
-            <div class="mb-5">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900">Slug</label>
-                <input type="text" id="base-input" name="slug" value="{{ old('slug', $book?->slug) }}"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <x-error name="slug" />
-            </div>
-            <div class="mb-5">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900">Coins</label>
-                <input type="number" id="base-input" name="ggcoin" value="{{ old('ggcoin', $book?->ggcoin) }}"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <x-error name="ggcoin" />
-            </div>
-            <div class="mb-5">
-                <label for="base-input" class="block mb-2 text-sm font-medium text-gray-900">Publish Year</label>
-                <input type="number" id="base-input" name="publish" value="{{ old('publish', $book?->publish) }}"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <x-error name="publish" />
-            </div>
-        </div>
-
-
-
-
-
-        <div class="max-w-lg mx-auto">
-            <label class="block mb-2 text-sm font-medium text-gray-900" for="user_avatar">Upload
-                file</label>
-            <input name="image"
-                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                aria-describedby="user_avatar_help" id="user_avatar" type="file">
-
-        </div>
-
-
-        <div class="mb-5">
-            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                message</label>
-            <textarea id="message" rows="4" name="body"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Leave a comment...">{{ old('body', $book?->body) }}</textarea>
-        </div>
-
-
-
-
-        <div>
-
-        </div>
-
-
-        <button type="submit"
-            class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Submit</button>
-    </form>
-
-</div> --}}
-
 @vite('resources/js/image.js')
-
+@vite('resources/js/select.js')
 <section class="w-full">
     <form class="w-full" action="{{ $type == 'create' ? '/book/new-book' : '/book/' . $book->id . '/book-update' }}"
         method="POST" enctype="multipart/form-data">
@@ -418,9 +338,9 @@
                             <x-error name="ggcoin" />
                         </div>
                     </div>
-                    <div class="relative mt-3 mb-4">
+                    <div class="relative mt-3 mb-4" id="drop-down-section">
                         <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
-                            class="inline-flex justify-between items-center w-full px-4 py-2 text-sm font-medium text-center text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                            class="inline-flex justify-between items-center  flex-wrap gap-3 w-full px-4 py-2 text-sm font-medium text-center text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
                             type="button">Choose Genres<svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -429,19 +349,21 @@
 
                         <div id="dropdownSearch"
                             class="z-10 hidden  bg-white rounded-lg shadow  dark:bg-gray-700 mt-5">
-                            <ul class="max-h-[10rem] w-[25rem] px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
+                            <ul id="checkboxList"
+                                class="max-h-[10rem] w-[30rem] px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
                                 aria-labelledby="dropdownSearchButton">
                                 @foreach ($genres as $gen)
                                     <li>
                                         <div
                                             class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                                            <input id="checkbox-item-11" type="checkbox" value="{{ $gen->id }}"
-                                                name="genres[]"
+                                            <input id="checkbox-item-{{ $gen->id }}" type="checkbox"
+                                                value="{{ $gen->id }}" name="genres[]"
+                                                data-title="{{ $gen->name }}"
                                                 {{ old('genres[]', $book?->genres)?->contains($gen->id) ? 'checked' : 'false' }}
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="checkbox-item-11"
+                                            <label for="checkbox-item-{{ $gen->id }}"
                                                 class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $gen->name }}
-                                                Green</label>
+                                            </label>
                                         </div>
                                     </li>
                                 @endforeach
@@ -449,6 +371,10 @@
                             </ul>
                             <x-error name="genres[]" />
                         </div>
+                    </div>
+
+                    <div class="relative mt-3 mb-4">
+
                     </div>
 
                     @if ($type !== 'create')

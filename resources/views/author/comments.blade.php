@@ -86,10 +86,11 @@
                                         {{ $review->user->name }}</h3>
                                     <p class="text-gray-500 dark:text-gray-400 mb-6">{{ $review->body }}</p>
 
+                                    @if ($review->isCommented(auth()->user()))
                                     <div class="flex items-center mt-6 space-x-2 rtl:space-x-reverse mb-4">
-                                        <p class="text-green-500">{{  $review->isCommented(auth()->user()) ?  "Successfully Replied" : ""}}</p>
+                                        <p class="text-green-500">{{    "Successfully Replied" }}</p>
                                     </div>
-
+                                    @else
                                     <form action="/reviews/{{ $review->id }}/comment" method="POST">
                                         @csrf
                                         <label for="chat" class="sr-only">Your message</label>
@@ -109,7 +110,9 @@
                                             </button>
                                         </div>
                                     </form>
-                                    <!-- Modal footer -->
+                                    @endif
+                                   
+                             <!-- Modal footer -->
                                     
                                 </div>
                             </div>
