@@ -34,7 +34,8 @@ Route::post("/books/{book:slug}/buy", [BuyBookController::class, "handelBuyBook"
 Route::get("/book/chapter/{chapter:slug}/read", [ChapterController::class, "show"]);
 
 // book
-Route::get("/book/new-book", [BookController::class, "create"])->middleware('checkbook');;
+Route::get("/book/new-book", [BookController::class, "create"])->middleware('checkbook');
+;
 Route::get("/book/trends", [BookController::class, "trends"]);
 Route::get("/book/populars", [BookController::class, "populars"]);
 Route::get("/book/{book:id}/book-update", [BookController::class, "edit"]);
@@ -182,6 +183,15 @@ Route::patch("/admin/authors/success/{requser}", [AdminController::class, "succe
 Route::patch("/admin/authors/deny/{requser}", [AdminController::class, "denyRegAuthor"]);
 
 
+Route::get("/admin/users/coins/sell", [AdminController::class, "coinsSell"]);
+
+
+
+Route::post("/admin/users/sell/{sell:id}/confirm", [SellsController::class, "confirm"]);
+
+Route::delete("/admin/users/sell/{sell:id}/delete", [SellsController::class, "delete"]);
+
+
 Route::get("/admin/users/coins/buy", [AdminController::class, "coinsBuy"]);
 
 Route::post("/admin/users/coins/{transfer:id}/confirm", [AdminController::class, "coinsConfirm"]);
@@ -195,6 +205,10 @@ Route::post("/admin/books/genres", [AdminController::class, "postGenres"]);
 Route::delete("/admin/genres/{genres:slug}/delete", [AdminController::class, "deleteGenres"]);
 
 Route::patch("/admin/genres/{genres:slug}/edit", [AdminController::class, "editGenres"]);
+
+
+Route::get("/admin/books", [AdminController::class, "books"]);
+
 
 
 

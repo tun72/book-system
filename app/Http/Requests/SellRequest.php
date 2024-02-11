@@ -30,7 +30,9 @@ class SellRequest extends FormRequest
             "payment" => "required",
             "address" => "required",
             "ggcoin" => 'required|integer|max:' . auth()->user()->ggcoin,
-            "city" => "required"
+            "city" => "required",
+            "accname" => "required",
+            "qrcode" => "image"
         ];
     }
 }

@@ -102,6 +102,25 @@ class Book extends Model
                 $query->where("username", $author);
             });
         }
+
+
+        if ($status = $filters["status"] ?? null) {
+            $bookQuery->where(function ($query) use ($status) {
+                $query->where("status", $status);
+            });
+        }
+
+
+        if ($price = $filters["price"] ?? null) {
+            $bookQuery->where(function ($query) use ($price) {
+
+                if ($price === "free") {
+                    $query->where("ggcoin", 0);
+                } else if ($price === "paid") {
+                    $query->where("ggcoin", ">", 0);
+                }
+            });
+        }
     }
 }
 

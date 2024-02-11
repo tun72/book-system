@@ -16,6 +16,11 @@ class ReviewController extends Controller
         ]);
 
 
+        $totalReview = Book->review;
+
+        $book->rating += request("rating");
+
+        $book->rating = $book->rating / (5 * 5 ) * 100;
 
         $book->reviews()->create([
             "body" => request("body"),

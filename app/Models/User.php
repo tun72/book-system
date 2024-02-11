@@ -27,6 +27,23 @@ class User extends Authenticatable
         "phoneNumber"
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+        static::deleted(function ($userQuery) {
+
+            if ($userQuery->role === 0) {
+
+                $userQuery->reader->delete();
+
+
+            } else if ($userQuery->role === 2) {
+                $userQuery->author->delete();
+            }
+        });
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -116,7 +133,7 @@ class User extends Authenticatable
 
     public function getCountNotifications()
     {
-        return count($this->notifications()->where("is_seen",  0)->get());
+        return count($this->notifications()->where("is_seen", 0)->get());
     }
 
 

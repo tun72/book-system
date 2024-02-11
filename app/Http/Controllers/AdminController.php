@@ -6,6 +6,7 @@ use App\Models\AuthorProfile;
 use App\Models\AuthorRegister;
 use App\Models\Book;
 use App\Models\Genres;
+use App\Models\Sells;
 use App\Models\Tag;
 use App\Models\Transfer;
 use App\Models\User;
@@ -30,7 +31,7 @@ class AdminController extends Controller
         $ROLE = ["user" => [0], "author" => [2], "all" => [0, 2], "" => [0, 2]];
         $filter = $ROLE[request("filter")];
         return view("admin.users", [
-            "users" => User::whereIn("role", $filter)->get()
+            "users" => User::whereIn("role", $filter)->latest()->get()
         ]);
     }
 
@@ -45,9 +46,6 @@ class AdminController extends Controller
 
     public function updateUser(User $user)
     {
-
-
- 
         $clean_data = request()->validate([
             "name" => ["required"],
             "username" => ["required"],
@@ -56,7 +54,16 @@ class AdminController extends Controller
             "ggcoin" => ["required"],
             "phoneNumber" => ["required"]
         ]);
+
+
+        if ($user->role === 0 && $clean_data["role"] == 2) {
+            $user->role = 2;
+
+            AuthorProfile::create(["name" => $user->name, "id" => $user->id, "user_id" => $user->id, "about" => $user->reader->about, "experience" => 0]);
+        }
+
         $user->update($clean_data);
+
 
         return back()->with("success", "Successfully Edited Chief🪲 ✅.");
     }
@@ -94,7 +101,7 @@ class AdminController extends Controller
 
         $requser->update();
         $requser->user->update();
-        AuthorProfile::create(["name" => $requser->user->name, "id" => $requser->user->id, "user_id" =>  $requser->user->id, "about" => $requser->about, "experience" => $requser->exp]);
+        AuthorProfile::create(["name" => $requser->user->name, "id" => $requser->user->id, "user_id" => $requser->user->id, "about" => $requser->about, "experience" => $requser->exp]);
 
         return redirect("/admin/authors/request"); // cheange redirect back later
     }
@@ -117,12 +124,21 @@ class AdminController extends Controller
         ]);
     }
 
+    public function coinsSell()
+    {
+
+        return view("admin.coin-sell", [
+            "sells" => Sells::all()
+        ]);
+    }
+
     public function coinsConfirm(Transfer $transfer)
     {
         $transfer->user->ggcoin += $transfer->ggcoin;
         $transfer->user->update();
         $transfer->delete();
-        return back()->with("success", "Successfully transfered Chief🪲 ✅.");;
+        return back()->with("success", "Successfully transfered Chief🪲 ✅.");
+        ;
     }
 
 
@@ -143,7 +159,8 @@ class AdminController extends Controller
             "name" => request("name"),
             "slug" => fake()->slug()
         ]);
-        return back()->with("success", "New Genres Successfully Added Chief🪲 ✅.");;
+        return back()->with("success", "New Genres Successfully Added Chief🪲 ✅.");
+        ;
     }
 
     public function editGenres(Genres $genres)
@@ -170,6 +187,30 @@ class AdminController extends Controller
         Tag::create([
             "name" => request("name"),
         ]);
-        return back()->with("success", "New Genres Successfully Added Chief🪲 ✅.");;
+        return back()->with("success", "New Genres Successfully Added Chief🪲 ✅.");
+        ;
+    }
+
+
+    public function books()
+    {
+        // $ROLE = ["free" => [0], "author" => [2], "all" => [0, 2], "" => [0, 2]];
+
+
+
+        $book = Book::with(["user"])->filter(request(["status", "search", "author", "price"]));
+
+        $bookQuery = $book->orderBy("created_at", "DESC");
+        $bookQuery = $bookQuery->latest()->paginate(10)->withQueryString();
+        // if ($filter !== "all" && $filter !== "") {
+        //     $book = $book::where("status", $filter);
+        // }
+
+        // if ($filter === "free") {
+        //     $book = $book->where("ggcoin", 1000);
+        //     // dd($book);
+        // }
+
+        return view("admin.books", ["books" => $book->get()]);
     }
 }

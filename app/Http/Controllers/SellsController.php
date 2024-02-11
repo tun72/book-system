@@ -22,9 +22,14 @@ class SellsController extends Controller
     {
         $clean_data = $request->validated();
 
+
+
+        $clean_data["qrcode"] = "/storage/" . request("qrcode")->store("/qrcodes");
+
+
+
         $sell = Sells::where("user_id", $clean_data["user_id"])->first();
         if ($sell) {
-           
             $sell->ggcoin += $clean_data["ggcoin"];
             $sell->update();
 
@@ -39,5 +44,27 @@ class SellsController extends Controller
         $user->update();
 
         return redirect("/success");
+    }
+
+    public function confirm(Sells $sell)
+    {
+        $sell->status = "success";
+        $sell->save();
+
+       
+        return back()->with("success", "Successfully transfered Chief🪲 ✅.");
+
+
+
+    }
+
+    public function delete(Sells $sell)
+    {
+
+        $sell->delete();
+        return back()->with("success", "Successfully deleted Chief🪲 ✅.");
+
+
+
     }
 }

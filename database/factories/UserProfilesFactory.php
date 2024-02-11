@@ -20,6 +20,7 @@ class UserProfilesFactory extends Factory
         $user = User::factory()->create(["role" => 0]);
         return [
             //
+            "id" => $user->id,
             "user_id" => $user->id,
             "about" => fake()->paragraph(),
             "genres" => "1,2,3",
