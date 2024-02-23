@@ -1,286 +1,69 @@
 @php
     $reviews = $book->latest()->paginate(4);
     $index = 0;
-
     $random = ['warning', 'danger', 'info', 'success', 'secondary'];
 @endphp
 
 <x-home-layout>
-    {{-- <section class="container mx-auto p-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:items-center">
-            <!-- Course Image -->
-            <div class="flex gap-10 justify-center ">
-                <div class="lg:flex flex-col gap-5  hidden">
-                    <div class="">
-                        <a href="#" class="block border border-blue-300 hover:border-blue-300">
-                            <img src="{{ $book->image }}" alt="" class="object-cover w-full lg:h-20">
-                        </a>
-                    </div>
-                    <div class="">
-                        <a href="#" class="block border border-transparent hover:border-blue-300">
-                            <img src="{{ $book->image }}" alt="" class="object-cover w-full lg:h-20">
-                        </a>
-                    </div>
-                    <div class="">
-                        <a href="#" class="block border border-transparent hover:border-blue-300">
-                            <img src="{{ $book->image }}" alt="" class="object-cover w-full lg:h-20">
-                        </a>
-                    </div>
-                </div>
-                <div class="w-[50%]">
-                    <img src="{{ $book->image }}" alt="Course Image" class="w-full h-full rounded-lg object-cover">
-                </div>
-            </div>
-            <!-- Course Information -->
-            <div>
-                <h2 class="text-sm title-font text-gray-400 tracking-widest">BOOK NAME</h2>
-                <h2 class="text-3xl font-semibold mb-4">{{ $book->title }}</h2>
-                <p class="text-gray-600 mb-4">{{ $book->body }}</p>
-
-                <div class="flex items-center mb-4">
-
-                    <a href="/books/{{ $book->slug }}/review">
-                        <span class="text-green-500 font-semibold">⭐</span>
-                        <span class="ml-2">{{ number_format($book->rating, 2, '.', ',') }} (1,234 ratings)</span>
-                    </a>
-                </div>
-
-                <div class="flex items-center mb-4">
-                    <span class="text-gray-600">Created by <a
-                            href="/author/{{ $book->user->username }}/profile">{{ $book->user->name }}</a> </span>
-                    <span class="ml-4">Last updated {{ $book->created_at->diffForHumans() }}</span>
-                </div>
-
-                <div class="flex items-center mb-4">
-                    <span class="text-xl font-semibold text-blue-500"><i
-                            class="fa-brands fa-gg-circle text-primary"></i> {{ $book->ggcoin }}</span>
-                    <span class="ml-4 line-through text-gray-500"><i class="fa-brands fa-gg-circle text-primary"></i>
-                        2000</span>
-                    <span class="ml-4 text-green-500">50% off</span>
-                </div>
-
-                <div class="flex items-center gap-3">
-                    @if (!auth()->user()
-        ?->isBought($book))
-                        <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                            class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600">Buy Now</button>
-                    @else
-                        <form action="/book/chapter/{{ $book->chapters[0]->slug }}/read" method="GET">
-                            <button type="submit"
-                                class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600">
-                                read
-                            </button>
-                        </form>
-                    @endif
-
-                    <form action="/books/{{ $book->slug }}/favourite" method="POST">
-                        @csrf
-                        @if (auth()->user()
-        ?->isFavourited($book))
-                            <button type="submit" class="text-xl"><i
-                                    class="fa-solid fa-heart text-red-500"></i></button>
-                        @else
-                            <button type="submit" class="text-xl"><i
-                                    class="fa-regular fa-heart text-red-500 focus:outline-none focus:ring focus:ring-red-300 "></i></button>
-                        @endif
-                    </form>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-
-
-
-    <div class="container mx-auto mt-5 px-10">
-        <div class="flex flex-wrap items-start  gap-5 md:flex-col lg:flex-row">
-            <div class="py-8 px-8 lg:w-[50%] w-[100%] md:flex-auto bg-white rounded-lg">
-                <h4 class="mb-5">Chapters</h4>
-                <ul class="flex flex-col gap-8">
-                    @foreach ($book->chapters as $chapter)
-                        <li class="flex justify-between items-start">
-                            <a href="/book/chapter/{{ $chapter->slug }}/read">Chapter-{{ $chapter->chapter }}
-                                {{ $chapter->title }}</a>
-                            <span>{{ $chapter->created_at->diffForHumans() }}</span>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-
-            <div class="flex flex-col gap-5 lg:w-[40%]  flex-auto">
-                <div class="p-2 rounded-lg bg-white">
-                    <!-- Total Reader -->
-                    <div class="flex items-center mb-3">
-                        <div class="w-8 h-8  rounded-full flex items-center justify-center mr-2">
-                            <i class="fa-solid fa-eye text-blue-400"></i>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <p class="text-sm font-semibold">Reader</p>
-                            <p class="text-sm text-gray-600">2,500</p>
-                        </div>
-                    </div>
-
-
-                    <!-- Quantity of Selling -->
-                    <div class="flex items-center mb-3">
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center mr-2">
-                            <i class="fa-regular fa-star text-yellow-500"></i>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <p class="text-sm font-semibold">Votes</p>
-                            <p class="text-sm text-gray-600">2,500</p>
-                        </div>
-                    </div>
-
-
-                    <!-- Total View -->
-                    <div class="flex items-center">
-                        <a href="#" class="w-8 h-8  rounded-full flex items-center justify-center mr-2">
-                            <i class="fa-regular fa-flag text-red-400"></i>
-                        </a>
-
-                        <div class="flex gap-4 items-center">
-                            <p class="text-sm font-semibold">Report</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="p-6 bg-gray-50 border-r-4 border-blue-500 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4">Introduction</h2>
-                    <div class="flex items-center mb-4">
-
-                        <p class="mb-3 text-gray-500 dark:text-gray-400">Track work across the enterprise through an
-                            open,
-                            collaborative platform. Link issues across Jira and ingest data from other software
-                            development
-                            tools,
-                            so your IT support and operations teams have richer contextual information to rapidly
-                            respond to
-                            requests, incidents, and changes.</p>
-                    </div>
-                </div>
-
-
-                <div class="p-6 bg-gray-50 border-l-4 border-blue-500 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4">About the Author</h2>
-                    <div class="flex items-center mb-4">
-                        <img src="{{ $book->user->imageUrl }}" alt="Author Avatar" class="w-16 h-16 rounded-full mr-4">
-                        <div>
-                            <h3 class="text-xl font-semibold">{{ $book->user->name }}</h3>
-                            <p class="text-gray-600">Bestselling author with a passion for storytelling. Lorem ipsum
-                                dolor sit amet,
-                                consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-
-
-    @if (count($randomBooks) > 0)
-        <div class="w-full px-12 rounded">
-
-            <h2 class="text-2xl font-semibold mb-6">Related Books</h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                @foreach ($randomBooks as $randbook)
-                    <!-- Book Card 1 -->
-                    <div class="bg-gray-200 p-4 rounded-md transition transform hover:scale-105">
-                        <a href="/book-details/{{ $randbook->slug }}">
-                            <img src="{{ $randbook->image }}" alt="Book 1"
-                                class="w-full h-40 object-cover mb-4 rounded-md">
-                            <h3 class="text-lg font-semibold mb-2">{{ $randbook->title }}</h3>
-                            <p class="text-gray-600">Author-{{ $randbook->user->name }}</p>
-                            <a href="#" class="text-blue-500 hover:underline">Learn More</a>
-                        </a>
-                    </div>
-                @endforeach
-
-                <!-- Book Card 2 -->
-
-                <!-- Add more book cards as needed -->
-
-            </div>
-
-        </div>
-    @endif --}}
-
-    {{-- dd($book->title) --}}
 
     <x-price-model :book="$book" />
 
-    <!-- detail section start -->
-
     <section class="w-full overflow-y-hidden">
-        <div class="w-full grid grid-cols-12 gap-[2.5rem]">
+        <div class="w-full grid grid-cols-12 gap-[2rem]">
             <div class="col-span-3">
-                <div class="fixed top-[100px] z-10 flex flex-col items-center gap-5">
-                    <div class="w-[207px]  rounded-tr-xl rounded-br-xl overflow-hidden">
-                        <img src="{{ $book->image }}" alt="" class="w-full">
+                <div class="fixed top-[85px] z-10 flex flex-col items-center gap-5">
+                    <div class="w-[230px] h-[290px]  rounded-lg overflow-hidden">
+                        <img src="{{ $book->image }}" alt="" class="w-full h-full object-cover">
                     </div>
-
-                    @if (
-                        !auth()->user()
-                            ?->isBought($book))
-                        <div class="">
-
-                            <form action="/books/{{ $book->slug }}/favourite" method="POST">
-                                @csrf
-                                @if (auth()->user()
-                                        ?->isFavourited($book))
-                                    <button type="submit"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-[3.7rem] py-2 text-center me-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Unfavourited</button>
-                                @else
-                                    <button type="submit"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-[5.7rem] py-2 text-center me-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Want
-                                        to Read</button>
-                                @endif
+                    @auth
+                        @if (!auth()->user()?->isBought($book))
+                            {{-- <div class="">
+                                <form action="/books/{{ $book->slug }}/favourite" method="POST">
+                                    @csrf
+                                    @if (auth()->user()?->isFavourited($book))
+                                        <button type="submit"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-[3.7rem] py-2 text-center me-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Unfavourited</button>
+                                    @else
+                                        <button type="submit"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-[5.7rem] py-2 text-center me-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Want
+                                            to Read</button>
+                                    @endif
+                                </form>
+                            </div> --}}
+                            <div class="">
+                                <button type="button" data-modal-target="popup-modal-{{ $book->id }}"
+                                    data-modal-toggle="popup-modal-{{ $book->id }}"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-[5.7rem] py-2 text-center me-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy
+                                    Now</button>
+                            </div>
+                        @else
+                            <form action="/book/chapter/{{ $book->chapters[0]->slug }}/read" method="GET">
+                                <button type="submit"
+                                    class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600">
+                                    read
+                                </button>
                             </form>
+                        @endif
 
-
+                        <div class=" text-2xl text-gray-500 flex flex-col">
+                            <a class="flex gap-3 items-center" href="#" data-modal-target="report-modal"
+                                data-modal-toggle="report-modal">
+                                <i class="far fa-flag"></i>
+                                <div class="text-center text-xl text-gray-600 ">
+                                    <span class="text-sm">Report Now</span>
+                                </div>
+                            </a>
                         </div>
-                        <div class="">
-                            <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-[5.7rem] py-2 text-center me-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy
-                                Now</button>
-                        </div>
-                    @else
-                        <form action="/book/chapter/{{ $book->chapters[0]->slug }}/read" method="GET">
-                            <button type="submit"
-                                class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600">
-                                read
-                            </button>
-                        </form>
-                    @endif
+                    @endauth
 
 
-
-                    <div class=" text-2xl text-gray-500 flex flex-col">
-                        <div class="flex gap-3">
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                        <div class="text-center text-xl text-gray-600 ">
-                            <span class="text-sm">Rate this book</span>
-                        </div>
-                    </div>
 
                 </div>
             </div>
 
             <div class="flex flex-col gap-4 flex-auto col-span-9">
                 <div>
-                    <h1 class="text-xl text-gray-400 font-light">{{ $book->title }}</h1>
-                    <h1 class="text-4xl font-semibold">Earth Unaware</h1>
+                    <h1 class="text-3xl text-gray-700 font-semibold">{{ $book->title }}</h1>
                 </div>
 
                 <div class="flex text-xl font-light ">
@@ -289,24 +72,25 @@
                 </div>
 
                 <div class="flex items-center gap-5">
-                    <div class="flex gap-3 text-2xl ">
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
+                    <p class="star">
+                        @for ($i = 1; $i <= 5; $i++)
+                            @if ($i <= $book->rating)
+                                <i class="fas fa-star text-star-400"></i>
+                            @else
+                                <i class="far fa-star text-star-400"></i>
+                            @endif
+                        @endfor
+
+                    </p>
                     <div class="text-3xl flex justify-center items-center font-bold">
                         <h2>{{ number_format($book->rating, 2, '.', ',') }} </h2>
                     </div>
-                    <div class="text-gray-400">
-                        <h1>123,456 rating . 7318 reviews</h1>
-                    </div>
+
 
                 </div>
 
                 <p>
-                    {{ $book->body }}
+                    {{ $book->caption }}
                 </p>
                 <div class="flex gap-4 font-semibold underline-offset-8 decoration-green-400">
                     <a href="#" class="">Genere</a>
@@ -324,40 +108,13 @@
                 </div>
 
                 <div class="flex items-center font-semibold gap-2 text-lg arrow cursor-pointer">
-                    <p class="">Book Details and Editions</p><span class=""><i
-                            class="fa-solid fa-angle-right"></i></span>
+                    <p class="">Book Details and Editions</p>
                 </div>
 
-                <div class="hidden flex-col gap-4 detail">
+                <div class="flex flex-col gap-4 detail">
                     <div class="text-lg w-[80%]">
-                        <p>A high school girl has vanished from Erika's quiet suburban neighborhood. The police suspect
-                            the worst--murder. And Erika's teenage son, Liam, was the last person to see the girl alive.
+                        <p>{{ $book->body }}
                         </p>
-                    </div>
-
-
-
-                    <div class="font-semibold text-lg">
-                        <h1>This edition</h1>
-                    </div>
-
-                    <div class="flex w-[600px] text-gray-500">
-                        <div class="w-[20%]">
-                            <div>
-                                <h1>Format</h1>
-                            </div>
-                            <div>
-                                <h1>Published</h1>
-                            </div>
-                            <div>
-                                <h1>language</h1>
-                            </div>
-                        </div>
-                        <div class="w-[80%]">
-                            <h1>373 pages, Kindle Edition</h1>
-                            <h1>October 8, 2019 by Hollywood Upstairs Press</h1>
-                            <h1>English</h1>
-                        </div>
                     </div>
 
                 </div>
@@ -383,27 +140,21 @@
                     @endif
                 </div>
 
-                <div class="font-semibold">
-                    <a href="">More Information</a>
-                </div>
-                <!-- Followers          Start -->
                 <div class="h-[2px] w-[100%] bg-gray-300"></div>
                 <!-- peoples -->
-                <div class=" w-[100%] flex justify-between items-center mt-4">
-
+                <div class=" w-[100%] flex justify-between items-center mt-3">
                     <div class="flex  w-[50%] items-center gap-3">
                         <div class="flex">
-                            <div
-                                class="h-[30px] w-[30px] rounded-full bg-[url('https://darceyflowers.ae/wp-content/uploads/2023/01/Blue-daisy-1024x819.webp')] bg-cover bg-no-repeat bg-center]">
-                            </div>
-                            <div
-                                class="h-[30px] w-[30px] rounded-full bg-[url('https://darceyflowers.ae/wp-content/uploads/2023/01/Blue-daisy-1024x819.webp')] bg-cover bg-no-repeat bg-center]">
-                            </div>
-                            <div
-                                class="h-[30px] w-[30px] rounded-full bg-[url('https://darceyflowers.ae/wp-content/uploads/2023/01/Blue-daisy-1024x819.webp')] bg-cover bg-no-repeat bg-center]">
-                            </div>
+                            @php
+                                $index = 0;
+                            @endphp
+
+                            @foreach ($book->purchasers as $reader)
+                                <img src="{{ $reader->imageUrl }}" alt=""
+                                    class="w-[3rem] h-[3rem] rounded-full border-[3px] border-gray-300 {{ $index++ > 0 ? 'ml-[-15px]' : '' }} ">
+                            @endforeach
                         </div>
-                        <p class="">{{ count($book->readers) }} people are currently reading</p>
+                        <p class="">{{ count($book->purchasers) }} people are currently reading</p>
                     </div>
                 </div>
                 <!-- border line bottom -->
@@ -433,17 +184,19 @@
                             </div>
                         </div>
 
-                        <form action="/user/{{ $book->user->id }}/subscribe" method="POST">
-                            @csrf
-                            @if (auth()->user()->isSubscribed($book->user->author))
-                                <button type="submit"
-                                    class="py-3 px-5 bg-gray-700 text-white text-sm font-semibold text-center rounded-3xl ml-[-5px]">Subscribed</button>
-                            @else
-                                <button
-                                    class="py-3 px-5 bg-white text-black text-sm font-semibold text-center rounded-3xl ml-[-5px]">Subscribe</button>
-                            @endif
+                        @auth
+                            <form action="/user/{{ $book->user->id }}/subscribe" method="POST">
+                                @csrf
+                                @if (auth()->user()->isSubscribed($book->user->author))
+                                    <button type="submit"
+                                        class="py-3 px-5 bg-gray-700 text-white text-sm font-semibold text-center rounded-3xl ml-[-5px]">Subscribed</button>
+                                @else
+                                    <button
+                                        class="py-3 px-5 bg-white text-black text-sm font-semibold text-center rounded-3xl ml-[-5px]">Subscribe</button>
+                                @endif
 
-                        </form>
+                            </form>
+                        @endauth
 
 
                     </div>
@@ -469,12 +222,16 @@
                                         Chapter-{{ $chapter->chapter }} </h3>
                                     @if (!$chapter->isfree)
                                         <span class="text-sm text-gray-800"><i class="fas fa-lock"></i></span>
+                                    @else
+                                        <span class="text-sm text-gray-800"><i class="fas fa-lock-open"></i></span>
                                     @endif
                                     <a class="text-sm italic"
-                                        href="/book/chapter/{{ $chapter->slug }}/read">{{ $chapter->title }}</a>
+                                        href="{{ $chapter->isfree
+                                            ? '/book/chapter/' . $chapter->slug . '/read'
+                                            : '#' }} ">{{ $chapter->title }}</a>
 
                                 </div>
-                                <p class="mb-2">{{ $chapter->intro }} 😎</p>
+                                <p class="mb-2">{{ $chapter->intro }}</p>
                             </span>
                         </label>
                     @endforeach
@@ -486,8 +243,8 @@
 
                 <div class="mb-4 w-full">
                     <div class="flex items-center  mb-3">
-                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor" viewBox="0 0 22 20">
                             <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
@@ -700,9 +457,6 @@
                                         </form>
                                     @endauth
 
-
-
-
                                     <div class="flex items-center gap-1"
                                         aria-controls="dropdown-comment-{{ $review->id }}"
                                         data-collapse-toggle="dropdown-comment-{{ $review->id }}">
@@ -781,15 +535,7 @@
             </div>
 
         </div>
-
-
-
-
     </section>
-
-
-
-    <!-- Modal toggle -->
 
     <!-- Main modal -->
     <div id="comment-modal" tabindex="-1" aria-hidden="true"
@@ -865,50 +611,61 @@
         </div>
     </div>
 
+    @auth
+        <div id="report-modal" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-slate-200/20 backdrop-blur-sm">
+            <div class="relative p-4 w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                            Report
+                        </h3>
+                        <button type="button"
+                            class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-hide="report-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="px-4 md:px-5 pb-6">
+                        <form class="space-y-4" action="/book/{{ $book->slug }}/report" method="POST">
+                            @csrf
+                            <div>
+                                <label for="title"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                <input type="text" name="title" id="title"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="name@company.com" required>
+                            </div>
+                            <div>
+
+                                <input type="hidden" name="user_id" id="" value="{{ auth()->user()->id }}">
+                                <label for="message"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
+                                <textarea id="message" rows="4" name="about"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Write your thoughts here..."></textarea>
+
+                            </div>
+
+                            <button type="submit"
+                                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- detail section end -->
-
-
-
-
-
-
-
-
-
-
-
-
-    <script>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endauth
+    {{-- <script>
         let arrowBtn = document.querySelector('.arrow');
         let detail = document.querySelector('.detail');
         let arrowDiv = document.querySelector('.arrowDiv');
@@ -925,5 +682,5 @@
             none();
             flex();
         })
-    </script>
+    </script> --}}
 </x-home-layout>

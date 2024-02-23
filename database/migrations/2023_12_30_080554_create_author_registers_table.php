@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string("email");
             $table->longText("about");
             $table->string("phone");
-            $table->unsignedInteger("exp");
+            $table->longText("description");
             $table->boolean("confirm")->default(false);
+            $table->boolean("agree")->default(false);
             $table->string("status")->default("pending");
             $table->timestamps();
         });

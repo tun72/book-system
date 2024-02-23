@@ -23,13 +23,14 @@ class AuthorRequest extends FormRequest
     public function rules(): array
     {
         
-
         return [
             "name" => ["required", "min:3"],
-            "email" => ["required", "min:5", Rule::unique("users", "email")],
+            "username" => ["required"],
+            "email" => ["required", "min:5", Rule::unique("author_registers", "email")],
+            "about" => ["required", "min:3"],
             "description" => ["required", "min:3"],
-            "exp" => ["required"],
-            "phone" => ["required"]
+            "phone" => ["required"],
+            "agree" => ["required"]
         ];
     }
 }

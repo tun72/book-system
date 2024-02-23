@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Archive;
 use App\Models\AuthorProfile;
+use App\Models\Notification;
 use App\Models\ReadList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -16,6 +18,13 @@ class UserController extends Controller
         return view(
             "user.user-profile",
         );
+    }
+
+
+    public function showUser(User $user)
+    {
+        // dd($user);
+        return view("user.public-profile", ["user" => $user]);
     }
 
 
@@ -61,5 +70,51 @@ class UserController extends Controller
         $user->update();
 
         return redirect("/user-profile/" . $user->username);
+    }
+
+
+    public function following()
+    {
+        return view("user.following");
+    }
+
+    public function showFollowing(User $user)
+    {
+        return view("user.public-follow", ["user" => $user]);
+    }
+
+    public function notification()
+    {
+        $notifications = Notification::where("recipient_id",  auth()->id())->latest()->get();
+        return view("user.notification", ["notifications" => $notifications]);
+    }
+
+    public function library()
+    {
+        $books = auth()->user()->boughtBooks()->latest()->get();
+
+
+        return view("user.library", [
+            "books" => $books,
+            
+        ]);
+    }
+
+    public function archive()
+    {
+        $archives = Archive::where("user_id" , auth()->user()->id)->latest()->get();
+        // $archives = auth()->user()->archive()->latest()->get();
+
+
+        // dd($archives);
+        return view("user.archive", [
+            "archives" => $archives,
+        ]);
+    }
+
+    public function deleteArchive(Archive $archive)
+    {
+        $archive->delete();
+        return back()->with("success", "Successfully Archived Removed ✅");
     }
 }

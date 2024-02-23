@@ -43,8 +43,8 @@
                                 class="fas fa-money-check-alt text-lg"></i>
                             Earn</a>
                     </li>
-                    <li> <a href="/book/new-book" class="text-lg items-center"><i
-                                class="fas fa-feather-alt text-lg"></i>Readers</a></li>
+                    <li> <a href="/author/readers" class="text-lg items-center"><i
+                                class="fas fa-feather-alt text-lg"></i>Followers</a></li>
                     <li>
                         <a href="" class="text-lg items-center"><i class="fas fa-cogs text-lg"></i>Setting</a>
                     </li>

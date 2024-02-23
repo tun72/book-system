@@ -1,20 +1,19 @@
 <x-home-layout>
 
 
-    {{-- <div class="recommend">
-        <h3 class="fs-4 text-primary mb-2"><i class="fas fa-book"></i></i>Purchased Book</h3>
+    <div class="recommend">
+        <h3 class="fs-4 text-2xl mb-2"><i class="fas fa-book me-2"></i></i>Purchased Book</h3>
         <div class="recommend-books">
-            <ul class="recommend-list">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-7">
                 @foreach ($books as $book)
                     <li class="mb-3">
-                        <a href="/book-details/{{ $book->slug }}" class="recommend-book">
+                        <div  class="recommend-book" >
                             <div class="recommend-image">
                                 <img src="{{ $book->image }}" alt="">
                             </div>
                             <div class="recommend-artical">
                                 <div class="recommend-artical-1">
                                     <p class="star">
-
                                         @for ($i = 1; $i <= 5; $i++)
                                             @if ($i <= $book->rating)
                                                 <i class="fas fa-star"></i>
@@ -22,22 +21,21 @@
                                                 <i class="far fa-star"></i>
                                             @endif
                                         @endfor
-
                                     </p>
-                                    <span class="name">{{ $book->title }}</span>
+                                    <span class="text-green-500">{{ $book->title }}</span>
                                     <span>{{ $book->user->name }}</span>
                                 </div>
-                                <div class="recommend-artical-1">go</div>
+                                <a href="/book-details/{{ $book->slug }}" class="recommend-artical-1">read</a>
                             </div>
                         </a>
                     </li>
                 @endforeach
             </ul>
         </div>
-    </div> --}}
+    </div>
 
 
-    <div class="mx-auto">
+    {{-- <div class="mx-auto">
         <!-- Book Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
@@ -64,7 +62,7 @@
 
         </div>
 
-    </div>
+    </div> --}}
 
 
 

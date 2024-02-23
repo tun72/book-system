@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
+use App\Models\Archive;
 use Illuminate\Support\Facades\File;
 use App\Models\Book;
 use App\Models\Genres;
+use App\Models\Notification;
 use Exception;
 
 class BookController extends Controller
@@ -30,14 +32,14 @@ class BookController extends Controller
     public function trends()
     {
         return view("book.trend", [
-            "books" => Book::with(["user"])->orderBy("rating", "DESC")->latest()->limit(10)->get(),
+            "books" => Book::with(["user"])->orderBy("rating", "DESC")->latest()->paginate(8),
         ]);
     }
 
     public function populars()
     {
         return view("book.popular", [
-            "books" => Book::with(["user"])->orderBy("rating", "ASC")->latest()->limit(10)->get(),
+            "books" => Book::with(["user"])->orderBy("rating", "ASC")->latest()->paginate(8),
         ]);
     }
 
@@ -45,7 +47,7 @@ class BookController extends Controller
     public function books()
     {
 
-        $bookQuery = Book::with(["user"])->filter(request(["genres", "search", "author"]));
+        $bookQuery = Book::with(["user"])->filter(request(["genres", "search", "author", "ggcoin"]));
 
         // dd(request("sort") === "new");
         if (request("sort") === "new") {
@@ -55,7 +57,7 @@ class BookController extends Controller
         }
 
         $bookQuery = $bookQuery->latest()->paginate(10)->withQueryString();
-      
+
         $title = request("genres") ? Genres::where("slug", request("genres"))->first()?->name : "Result";
         return view("book.filter-books", [
             "books" => $bookQuery,
@@ -67,7 +69,6 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-
         $slugArray = [];
         foreach ($book->genres as $item) {
             $slugArray[] = $item['slug'];
@@ -117,7 +118,7 @@ class BookController extends Controller
     public function insert(BookRequest $request)
     {
 
-    
+
         $cleanData = $request->validated();
 
         $cleanData["user_id"] = auth()->id();
@@ -126,7 +127,11 @@ class BookController extends Controller
 
         $cleanData["isPublished"] = false;
         $cleanData["status"] = "ongoing";
+     
 
+        if (!auth()->user()->author->isVerified) {
+            $cleanData["ggcoin"] = 0;
+        }
 
         if ($cleanData["ggcoin"]) {
             $cleanData["isFree"] = 1;
@@ -134,8 +139,18 @@ class BookController extends Controller
             $cleanData["isFree"] = 0;
         }
 
+
         $book = Book::create($cleanData);
 
+        $subscribers = $book->user->author->subscribers;
+        foreach ($subscribers as $subscriber) {
+            Notification::create([
+                "about" => "create new book",
+                "book_id" => $book->id,
+                "user_id" => $book->user_id,
+                "recipient_id" => $subscriber->id
+            ]);
+        }
         // dd($book);
         $book->genres()->attach($cleanData["genres"]);
 
@@ -152,7 +167,17 @@ class BookController extends Controller
         $book->publish = $cleanData["publish"];
         $book->body = $cleanData["body"];
         $book->ggcoin = $cleanData["ggcoin"];
+        $book->caption = $cleanData["caption"];
+
+        if (!auth()->user()->author->isVerified) {
+            $book->ggcoin = 0;
+        }
+
         $book->isFree = $cleanData["ggcoin"] == 0 ? 0 : 1;
+        $book->discount =  request("discount") ?? 0;
+        $book->status = $cleanData["status"];
+
+        $book->isPublished = request("isPublished") ?? 0;
 
 
         if ($file = request("image")) {
@@ -185,15 +210,27 @@ class BookController extends Controller
     public function publish(Book $book)
     {
 
-        if ($book?->isPublished === 0) {
+        if ($book?->isPublished === 0 && count($book?->chapters) >= 10) {
             $book->isPublished = true;
             $book->update();
-            return back();
+            return back()->with("success", "Successfully Published!");
         }
-        return back();
+        return back()->with("error", "To Publish need to complete at least 10 Chapters!");
     }
 
-    public function welcome() {
+    public function welcome()
+    {
         return view("other.welcome");
+    }
+
+
+    public function archive(Book $book)
+    {
+        Archive::create([
+            "book_id" => $book->id,
+            "user_id" => auth()->user()->id
+        ]);
+
+        return back()->with("success", "Successfully Archived Book ✅");
     }
 }

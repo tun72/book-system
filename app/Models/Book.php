@@ -23,7 +23,8 @@ class Book extends Model
         "publish",
         "isPublished",
         "status",
-        "discount"
+        "discount",
+        "caption"
     ];
 
     public static function boot()
@@ -75,7 +76,7 @@ class Book extends Model
 
     public function getPurchasers()
     {
-        return $this->purchasers->filter(fn($user) => $user->id != auth()->user()->id);
+        return $this->purchasers->filter(fn ($user) => $user->id != auth()->user()->id);
     }
 
     public function scopeFilter($bookQuery, $filters)
@@ -119,6 +120,12 @@ class Book extends Model
                 } else if ($price === "paid") {
                     $query->where("ggcoin", ">", 0);
                 }
+            });
+        }
+
+        if ($ggcoin = $filters["ggcoin"] ?? null) {
+            $bookQuery->where(function ($query) use ($ggcoin) {
+                $query->where("ggcoin", '>=', $ggcoin);
             });
         }
     }

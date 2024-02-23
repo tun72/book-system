@@ -20,12 +20,11 @@ class AuthorProfileFactory extends Factory
         $user = User::factory()->create(["role" => 2]);
 
         return [
-            //
             "id" => $user->id,
             "user_id" => $user->id,
             "name" => $user->name,
             "about" => fake()->paragraph(3),
-            "experience" => fake()->numberBetween(0, 10)
+            "isVerified" => true
         ];
     }
 }

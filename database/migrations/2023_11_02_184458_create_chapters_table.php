@@ -22,6 +22,7 @@ return new class extends Migration
 
             $table->boolean("is_free");
             $table->longText("intro")->default("");
+            $table->boolean("is_finish")->default(0);
 
 
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');

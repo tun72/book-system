@@ -19,6 +19,8 @@ class GenresFactory extends Factory
         return [
             "name" => fake()->name(),
             "slug" => fake()->slug(),
+            "about" => fake()->paragraph(3),
+            "image" => "https://api.dicebear.com/7.x/bottts/svg?size=32"
         ];
     }
 }

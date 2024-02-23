@@ -13,7 +13,7 @@ class AuthorProfile extends Model
         "id",
         "user_id",
         "about",
-        "experience"
+        "isVerified"
     ];
 
     public function user()

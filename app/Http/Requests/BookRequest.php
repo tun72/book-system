@@ -35,7 +35,11 @@ class BookRequest extends FormRequest
             "ggcoin" => ["required", "max:5000"],
             "publish" => ["required"],
             "body" => ["required", "max:500"],
-            "image" => [$this->isupdate ? "required" : "", "image"]
+            "image" => [$this->isupdate ? "required" : "", "image"],
+            "discount" => [""],
+            "status" => [$this->isupdate ? "required" : ""],
+            "caption" => ["required"]
+
         ];
     }
 }

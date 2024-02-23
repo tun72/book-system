@@ -23,7 +23,7 @@ class NewBookComponent extends Component
     public function render(): View|Closure|string
     {
         return view('components.new-book-component', [
-            "books" => Book::with(["user"])->orderBy("created_at", "DESC")->latest()->limit(14)->get()
+            "books" => Book::with(["user"])->where("isPublished", 1)->orderBy("created_at", "DESC")->latest()->limit(14)->get()
         ]);
     }
 }

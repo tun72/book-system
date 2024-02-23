@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthorRequest;
 use App\Models\AuthorIncomes;
+use App\Models\AuthorProfile;
 use App\Models\AuthorRegister;
 use App\Models\Book;
 use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
+use NunoMaduro\Collision\Adapters\Phpunit\Subscribers\Subscriber;
 
 class AuthorController extends Controller
 {
@@ -48,12 +50,15 @@ class AuthorController extends Controller
     {
 
         $cleanData = $request->validated();
+
+        // dd($cleanData);
         $cleanData["user_id"] = auth()->id();
 
+        $cleanData["agree"] = true;
 
         $author = AuthorRegister::create($cleanData);
         $author->save();
-        return redirect("/user-profile/" . auth()->user()->username);
+        return redirect("/user-profile/" . auth()->user()->username)->with("success", "Successfully Archived Book ✅");
     }
 
     public function comments(Book $user)
@@ -76,7 +81,20 @@ class AuthorController extends Controller
     public function notification()
     {
         return view("author.notification", [
-            "notifications" => Notification::where("user_id", auth()->user()->id)->get()
+            "notifications" => Notification::where("recipient_id", auth()->user()->id)->get()
         ]);
+    }
+    public function reader()
+    {
+
+        $users = AuthorProfile::where("user_id", auth()->id())->first()->subscribers;
+        return view("author.reader", ["users" => $users]);
+    }
+
+    public function verify(User $user)
+    {
+        $user->author->isVerified = true;
+        $user->author->save();
+        return back()->with("success", "Successfully Verified ✅");
     }
 }

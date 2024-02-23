@@ -13,7 +13,7 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="bg-brand-50">
+<body class="bg-[#FFFFFF]">
 
 
 
@@ -75,6 +75,9 @@
             </button>
         </div>
     @endif
+    @error("error")
+            <x-access-denied />
+    @enderror
 
     {{-- <div class="progress"></div> --}}
 

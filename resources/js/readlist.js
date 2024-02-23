@@ -10,14 +10,15 @@ window.$ = jQuery;
 function addNewReadList({ title, id, index }) {
     $(`.readlists`).each(function () {
         let new_item = $(`<li>
-        <div class="flex items-center  rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-            <label for="checkbox-item-${id}-${index}"
-                class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"><i
-                    class="fas fa-clone mr-2"></i>${title}</label>
-            <input id="checkbox-item-${id}-${index}" type="checkbox" value="${id}" name="readlist[]"
-                class="checkbox-item-${index} w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-        </div>
-    </li>`);
+        <div class="flex items-center rounded hover:bg-gray-100 dark:hover:bg-gray-600 p-1">
+                            <label for="checkbox-item-{{ $readlist->id }}-{{ $index }}"
+                                class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"><i
+                                    class="fas fa-clone mr-2"></i>${title}}</label>
+                            <input id="checkbox-item-${id}-${index}" type="checkbox"
+                                value="${id}" name="readlist[]"
+                                class="checkbox-item-${index} w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                                 />
+                        </div> </li>`);
 
         $(this).append(new_item);
         new_item.fadeIn("slow");

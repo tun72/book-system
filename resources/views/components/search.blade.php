@@ -1,8 +1,5 @@
-<!-- Modal toggle -->
 
-
-<!-- Main modal -->
-<div id="crud-modal" tabindex="-1" aria-hidden="true"
+<div id="search-modal" tabindex="-1" aria-hidden="true"
     class="hidden fixed top-0 right-0 left-0 z-50 justify-center items-center h-full bg-slate-200/20 backdrop-blur-sm">
     <div class="p-4 w-full max-w-[40rem] h-[33rem]">
         <!-- Modal content -->

@@ -7,12 +7,12 @@ use App\Models\AuthorRegister;
 use App\Models\Book;
 use App\Models\Genres;
 use App\Models\Sells;
+use App\Models\Setting;
 use App\Models\Tag;
 use App\Models\Transfer;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use PharIo\Manifest\Author;
+use Illuminate\Support\Facades\File;
+
 
 class AdminController extends Controller
 {
@@ -101,7 +101,7 @@ class AdminController extends Controller
 
         $requser->update();
         $requser->user->update();
-        AuthorProfile::create(["name" => $requser->user->name, "id" => $requser->user->id, "user_id" => $requser->user->id, "about" => $requser->about, "experience" => $requser->exp]);
+        AuthorProfile::create(["name" => $requser->user->name, "id" => $requser->user->id, "user_id" => $requser->user->id, "about" => $requser->about, "description" => $requser->description]);
 
         return redirect("/admin/authors/request"); // cheange redirect back later
     }
@@ -109,11 +109,15 @@ class AdminController extends Controller
 
     public function denyRegAuthor(AuthorRegister $requser)
     {
+
         $requser->status = "denied";
         $requser->confirm = 0;
         $requser->user->role = 0;
         $requser->update();
         $requser->user->update();
+
+
+        $requser->user->author->delete();
         return redirect("/admin/authors/request"); // cheange redirect back later
     }
 
@@ -137,8 +141,7 @@ class AdminController extends Controller
         $transfer->user->ggcoin += $transfer->ggcoin;
         $transfer->user->update();
         $transfer->delete();
-        return back()->with("success", "Successfully transfered Chief🪲 ✅.");
-        ;
+        return back()->with("success", "Successfully transfered Chief🪲 ✅.");;
     }
 
 
@@ -155,19 +158,46 @@ class AdminController extends Controller
 
     public function postGenres()
     {
-        Genres::create([
-            "name" => request("name"),
-            "slug" => fake()->slug()
+        $clean_data = request()->validate([
+            "name" => ["required"],
+            "about" => ["required"],
+            "image" => ["required", "image"],
         ]);
-        return back()->with("success", "New Genres Successfully Added Chief🪲 ✅.");
-        ;
+        $clean_data["image"] = "/storage/" . request("image")->store("/genres");
+        Genres::create([
+            "name" => $clean_data["name"],
+            "about" => $clean_data["about"],
+            "image" => $clean_data["image"],
+            "slug" => fake()->slug()
+
+        ]);
+
+
+        return back()->with("success", "New Genres Successfully Added Chief🪲 ✅.");;
     }
 
     public function editGenres(Genres $genres)
     {
 
-        $genres->name = request("name");
+
+        $clean_data = request()->validate([
+            "name" => ["required"],
+            "about" => ["required"],
+            "image" => ["", "image"],
+        ]);
+
+        $genres->name = $clean_data["name"];
+        $genres->about = $clean_data["about"];
+
+        if ($file = request("image")) {
+            if ($path = public_path($genres->image)) {
+                File::delete($path);
+            }
+            $genres->image = '/storage/' . $file->store('/genres');
+        }
+
         $genres->update();
+
         return back()->with("success", "Genres Successfully Updated  Chief🪲 ✅.");
     }
 
@@ -188,7 +218,6 @@ class AdminController extends Controller
             "name" => request("name"),
         ]);
         return back()->with("success", "New Genres Successfully Added Chief🪲 ✅.");
-        ;
     }
 
 
@@ -212,5 +241,45 @@ class AdminController extends Controller
         // }
 
         return view("admin.books", ["books" => $book->get()]);
+    }
+
+    public function setting()
+    {
+        $setting = Setting::first();
+        return view("admin.setting", ["setting" => $setting]);
+    }
+
+    public function updateSetting()
+    {
+        $setting = Setting::where("id", 1)->first();
+        $clean_data = request()->validate([
+            "coin_price" => ["required"],
+            "limit_author" => ["required"],
+            "limit_coin" => ["required"],
+            "limit_rating" => ["required"]
+        ]);
+        $setting->update($clean_data);
+        return back()->with("success", "Successfully Updated Chief🪲 ✅.");
+    }
+
+    public function adminSetting()
+    {
+        return view("admin.adminSetting");
+    }
+    public function updateAdminSetting(User $admin)
+    {
+        $clean_data = request()->validate([
+            "email" => ["required", "min:3"],
+            "name" => ["required", "min:3"],
+            "username" => ["required"],
+            "password" => [""],
+        ]);
+
+        $admin->name = $clean_data["name"];
+        $admin->username = $clean_data["username"];
+        $admin->email = $clean_data["email"];
+        $admin->update();
+
+        return back()->with("success", "Successfully Updated Chief🪲 ✅.");
     }
 }

@@ -23,7 +23,7 @@ class TopRatedComponent extends Component
     public function render(): View|Closure|string
     {
         return view('components.top-rated-component', [
-            "books" =>  Book::with(["user"])->orderBy("rating", "DESC")->limit(5)->get()
+            "books" =>  Book::with(["user"])->where("isPublished", 1)->orderBy("rating", "DESC")->limit(5)->get()
         ]);
     }
 }

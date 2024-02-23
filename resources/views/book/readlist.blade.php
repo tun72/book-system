@@ -1,6 +1,5 @@
 <x-home-layout>
 
-
     @if (count($readlists) === 0)
         <p class="text-primary text-center mt-5 fs-3">No book found 😓</p>
     @else
@@ -8,9 +7,11 @@
             <div class="justify-center flex-1 max-w-6xl  mx-auto text-left">
                 <div class="text-start mb-3 flex items-center justify-between">
                     <h4 class="text-3xl font-bold capitalize dark:text-white">Read Lists</h4>
-                    <a href="#" data-modal-target="readlist-modal" data-modal-toggle="readlist-modal"
-                        class=" hover:bg-white transition-all  flex items-center justify-center rounded-lg hover:shadow-lg">New
+
+                    <a type="button" data-modal-target="readlist-modal" data-modal-toggle="readlist-modal"
+                        class="bg-gradient-to-r cursor-pointer  text-white from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">New
                         Read List +</a>
+
                 </div>
                 @foreach ($readlists as $readlist)
                     <div class=" bg-white dark:bg-gray-900  mb-6 flex items-center gap-4">
@@ -20,15 +21,22 @@
                         </div>
                         <div class="px-4 py-4 lg:px-0 flex-auto flex flex-col gap-2">
                             <a href="/readlist/{{ $readlist->id }}/show">
-                                <h2 class=" text-xl font-semibold text-gray-600 hover:text-blue-600 dark:text-gray-400">
-                                    {{ $readlist->title }}</h2>
+                                <h2
+                                    class=" text-xl font-semibold text-gray-600 hover:text-blue-600 dark:text-gray-400">
+                                    {{ $readlist->title }}
+                                    @if ($readlist->private)
+                                        <span class="text-sm"> <i class="fas fa-lock me-2"></i> Private</span>
+                                    @else
+                                        <span class="text-sm"> <i class="fas fa-lock-open me-2"></i>Public</span>
+                                    @endif
+                                </h2>
                             </a>
                             <p class="text-sm  dark:text-gray-400 text-blue-500">
                                 {{ count($readlist->books) }} Book
                             </p>
 
                             <span
-                                class="text-xs font-medium text-gray-700 dark:text-gray-400">{{ $readlist->created_at }}</span>
+                                class="text-xs font-medium text-gray-700 dark:text-gray-400">{{ $readlist->created_at->diffForHumans() }}</span>
                         </div>
                         <div class="mr-3"><button id="dropdownMenuIconHorizontalButton"
                                 data-dropdown-toggle="dropdownDotsHorizontal-{{ $readlist->id }}"
@@ -47,8 +55,11 @@
                                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                     aria-labelledby="dropdownMenuIconHorizontalButton">
                                     <li>
-                                        <a href="#"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Private</a>
+                                        <form action="/readlist/{{ $readlist->id }}/private" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $readlist->private ? 'Public' : 'Private' }}</button>
+                                        </form>
                                     </li>
                                 </ul>
                                 <form class="py-2" action="/readlist/{{ $readlist->id }}/delete" method="POST">

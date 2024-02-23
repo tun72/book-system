@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Review;
-use Illuminate\Http\Request;
+
 
 class ReviewController extends Controller
 {
@@ -15,18 +15,20 @@ class ReviewController extends Controller
             "rating" => ["required", "max:5", "min:0"]
         ]);
 
-
-        $totalReview = Book->review;
-
-        $book->rating += request("rating");
-
-        $book->rating = $book->rating / (5 * 5 ) * 100;
-
         $book->reviews()->create([
             "body" => request("body"),
             "rating" => request("rating"),
             "user_id" => auth()->id()
         ]);
+
+        $totalReview = count($book->reviews);
+        $totalRating = $book->reviews->sum("rating");
+
+        $book->rating = number_format($totalRating / ($totalReview * 5) * 5, 2);
+
+        $book->save();
+
+
 
         return back();
     }

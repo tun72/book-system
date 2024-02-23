@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean("is_seen")->default(0);
             $table->unsignedBigInteger("book_id")->default(0);
             $table->unsignedBigInteger("chapter_id")->default(0);
+            $table->unsignedBigInteger("comment_id")->default(0);
             $table->timestamps();
         });
     }

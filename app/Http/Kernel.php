@@ -2,7 +2,11 @@
 
 namespace App\Http;
 
+use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AuthorBookMiddleware;
+use App\Http\Middleware\AuthorMiddleware;
+use App\Http\Middleware\VerifyMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -41,7 +45,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -55,6 +59,9 @@ class Kernel extends HttpKernel
      */
     protected $middlewareAliases = [
         'checkbook' => AuthorBookMiddleware::class,
+        "isAuthor" => AuthorMiddleware::class,
+        "isAdmin" => AdminMiddleware::class,
+        "isVerify" => VerifyMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

@@ -34,7 +34,8 @@ class ReadListController extends Controller
 
         $readlist->books()->detach($readlist->books);
         $readlist->delete();
-        return back()->with("success", "Read list Successfully deleted ✅");
+
+        return redirect("/user/admin/readlist")->with("success", "Read list Successfully deleted ✅");
     }
 
     public function removeBook(Book $book)
@@ -53,6 +54,25 @@ class ReadListController extends Controller
         ]);
 
         $readlist->save();
-        return back()->with("success", "Read List Successfully created!✅");
+        return redirect("/readlist/" . $readlist->id . "/show")->with("success", "Read List Successfully created!✅");
+    }
+
+    public function update(ReadList $readlist)
+    {
+        $clean_data = request()->validate([
+            "title" => ["required"]
+        ]);
+        $readlist->title = $clean_data["title"];
+
+        $readlist->update();
+
+        return back()->with("success", "Read List Successfully updated!✅");
+    }
+
+    public function private(ReadList $readlist)
+    {
+        $readlist->private = !$readlist->private;
+        $readlist->update();
+        return back()->with("success", "Read List is Private!✅");
     }
 }

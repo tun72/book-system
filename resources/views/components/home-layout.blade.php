@@ -7,6 +7,6 @@
 
     {{-- <x-author-component /> --}}
     <x-favourite />
-    <x-browse />
+    {{-- <x-browse /> --}}
 
 </x-layout>

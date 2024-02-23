@@ -15,8 +15,8 @@ class Chapter extends Model
         "book_id",
         "slug",
         "chapter",
-        "is_free"
-
+        "is_free",
+        "is_finish"
     ];
 
     public static function boot()

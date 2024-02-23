@@ -1,6 +1,4 @@
 <x-layout>
-
-
     <section class="font-poppins ">
         <div class="hidden py-[4rem] text-center bg-gradient-to-r from-yellow-200 to-lime-200 dark:bg-gray-700 lg:block">
             <div class="max-w-6xl mx-auto mb-[7rem]">
@@ -104,9 +102,4 @@
             </div>
         </div>
     </section>
-
-
-
-
-
 </x-layout>

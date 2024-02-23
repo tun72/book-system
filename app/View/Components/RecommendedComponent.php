@@ -23,7 +23,7 @@ class RecommendedComponent extends Component
     public function render(): View|Closure|string
     {
         return view('components.recommended-component', [
-            "books" => Book::with(["user"])->orderBy("rating", "DESC")->limit(6)->get(),
+            "books" => Book::with(["user"])->where("isPublished", 1)->orderBy("rating", "DESC")->limit(6)->get(),
             "title" => "Recommended"
         ]);
     }

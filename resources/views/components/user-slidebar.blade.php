@@ -9,8 +9,8 @@
                     {{-- <li><a href="#" data-mdb-toggle="modal" data-mdb-target="#browse"><i
                                 class="fas fa-search"></i>Edit Profile</a>
                     </li> --}}
-                    <li><a href="#"><i class="fas fa-bell"></i>Notification</a></li>
-                    <li><a href="#"><i class="fas fa-history"></i>History </a></li>
+                    <li><a href="/user/notification"><i class="fas fa-bell"></i>Notification</a></li>
+                    <li><a href="/user/history"><i class="fas fa-history"></i>History </a></li>
                     <li><a href="#"><i class="fas fa-shield-alt"></i>Privacy and policy </a></li>
                 </ul>
 

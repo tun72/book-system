@@ -13,6 +13,14 @@ initFlowbite();
 
 window.$ = jQuery;
 
+
+$("#toggle-readlist").on("click", function () {
+    $("#toggle-readlist").toggleClass("hidden");
+    $("#edit-toggle").toggleClass("hidden");
+});
+
+
+
 ClassicEditor
     // Note that you do not have to specify the plugin and toolbar configuration — using defaults from the build.
     .create(document.querySelector("#editortext"))
@@ -55,7 +63,6 @@ $(".book-checkbox").each(function () {
         }
     });
 });
-
 
 let defaultTransform = 0;
 function goNext() {

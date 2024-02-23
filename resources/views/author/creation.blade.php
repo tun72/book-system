@@ -3,7 +3,7 @@
         .main {
             padding: 10px;
             padding-left: 20px;
-            padding-right: 20px 
+            padding-right: 20px
         }
     </style>
     @if (count($books))
@@ -60,16 +60,20 @@
                             Date
                         </th>
 
-
                         <th scope="col" class="px-6 py-3">
                             Status
                         </th>
+
                         <th scope="col" class="px-6 py-3">
                             Price
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Chapters
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            IsPublished
+                        </th>
+
                         <th scope="col" class="px-6 py-3"></th>
                     </tr>
                 </thead>
@@ -83,7 +87,7 @@
                                         class="book-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                         value="{{ $book->id }}">
                                     <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                             
+
                                 </div>
                             </td>
                             <th scope="row"
@@ -103,7 +107,7 @@
                             <td class="px-6 py-4">
 
                                 <span
-                                    class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{ $book->isPublished ? 'Published' : 'UnPublished' }}</span>
+                                    class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-blue-300">{{ $book->status }}</span>
 
                             </td>
                             <td class="px-6 py-4">
@@ -116,7 +120,12 @@
 
 
 
+                            <td class="px-6 py-4">
 
+                                <span
+                                    class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{ $book->isPublished ? 'Published' : 'UnPublished' }}</span>
+
+                            </td>
                             <td class="px-6 py-4">
                                 <!-- Modal toggle -->
                                 <a href="/book/{{ $book->id }}/book-update"

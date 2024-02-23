@@ -1,11 +1,17 @@
 <x-user-layout>
+
+    <style>
+        .main {
+            padding: 20px;
+        }
+    </style>
     @php
-        $coin = 10000;
+        $coins = [1000, 2000, 4000, 8000, 10000];
     @endphp
-    <form class="flex  justify-center items-start w-full h-full" action="/buy-coin" >
+    <form class="flex  justify-center items-start w-full " action="/buy-coin">
         @csrf
         <div
-            class="w-full max-w-lg payment-1 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+            class="w-full max-w-2xl payment-1 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
             <ol class="flex items-center w-full">
                 <li
                     class="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
@@ -41,59 +47,54 @@
                 </li>
             </ol>
 
+
+
             {{-- <div class="flex justify-between">
                 <h5>Select Coins</h5>
                 <p class="text-sm font-normal text-gray-500 dark:text-gray-400">1 coins = 1000 mmk</p>
             </div> --}}
-            <ul class="my-4 space-y-3">
-                <input type='hidden' name="coin" class=" payment-coin" />
+            {{-- <ul class="my-4 space-y-3">
+                <input type='hidden' name="coin" class="payment-coin" />
 
-                <li onclick="buycoin(event, {{ $coin }})">
-                    <a href="#"
-                        class="flex  [&.active]:bg-blue-400  items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                        1000
-                        <span class="flex-1 ms-3 whitespace-nowrap pointer-events-none">coins</span>
-                        <span
-                            class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400 pointer-events-none">10000
-                            mmk</span>
-                    </a>
-                </li>
-                <li onclick="buycoin(event, {{ 20000 }})">
-                    <a href="#"
-                        class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                        2000
-                        <span class="flex-1 ms-3 whitespace-nowrap">coins</span>
-                        <span
-                            class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">20000
-                            mmk</span>
-                    </a>
-                </li>
-                <li onclick="buycoin(event, {{ 40000 }})">
-                    <a href="#"
-                        class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                        4000
-                        <span class="flex-1 ms-3 whitespace-nowrap">coins</span>
-                        <span
-                            class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">40000
-                            mmk</span>
-                    </a>
-                </li>
+                @foreach ($coins as $coin)
+                    <li onclick="buycoin(event, {{ $coin }})">
+                        <a href="#"
+                            class="flex  [&.active]:bg-blue-400  items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                            {{ $coin }}
+                            <span class="flex-1 ms-3 whitespace-nowrap pointer-events-none">coins</span>
+                            <span
+                                class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400 pointer-events-none">{{ $coin * $setting->coin_price}}
+                                mmk</span>
+                        </a>
+                    </li>
+                @endforeach
 
-                <li onclick="buycoin(event, {{ 40000 }})">
-                    <a href="#"
-                        class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                        4000
-                        <span class="flex-1 ms-3 whitespace-nowrap">coins</span>
-                        <span
-                            class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">40000
-                            mmk</span>
-                    </a>
-                </li>
+            </ul> --}}
+
+
+            <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Which coin do you want to buy?
+            </h3>
+            <ul class="grid w-full gap-6 md:grid-cols-2 mb-3">
+
+
+                @foreach ($coins as $coin)
+                    <li>
+                        <input type="radio" id="hosting-big-{{ $coin }}" name="coin" value="{{$coin}}"
+                            class="hidden peer">
+                        <label for="hosting-big-{{ $coin }}"
+                            class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <div class="block">
+                                <div class="w-full text-lg font-semibold">{{ $coin }} coins</div>
+
+                            </div>
+                            <span
+                                class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400 pointer-events-none">{{ $coin * $setting->coin_price }}
+                                mmk</span>
+                        </label>
+                    </li>
+                @endforeach
 
             </ul>
-
-           
-
             <div class="mb-3">
                 <h4 class="text-base font-bold dark:text-white mb-3">Choose Payment Type</h4>
 
@@ -101,27 +102,25 @@
                     <input id="bordered-radio-1" type="radio" value="KPAY" name="payment"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="payment-1"
-                        class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">KBZ Pay</label>
+                        class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">KBZ
+                        Pay</label>
                 </div>
                 <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
                     <input checked id="payment-2" type="radio" value="WAVE" name="payment"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="payment-2"
-                        class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Wave Pay</label>
+                        class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Wave
+                        Pay</label>
                 </div>
 
             </div>
-
-
             <div class="flex justify-end items-center w-full">
                 <button type="submit"
                     class="payment-next text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Next</button>
             </div>
-
-
         </div>
-
     </form>
+
 
 
 

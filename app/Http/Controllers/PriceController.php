@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use App\Models\Transfer;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class PriceController extends Controller
 
     public function getPrice()
     {
-        return view("pricing.pricing-section");
+        $setting = Setting::where("id", 1)->first();
+        return view("pricing.pricing-section", ["setting" => $setting]);
     }
 
     public function coins()
@@ -37,6 +39,8 @@ class PriceController extends Controller
         $clean_data["user_id"] = auth()->id();
 
         Transfer::create($clean_data);
+
+        // dd("successs");
 
         return redirect("/success");
     }

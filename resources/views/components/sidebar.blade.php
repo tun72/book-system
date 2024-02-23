@@ -1,12 +1,12 @@
-<div class="slide-bar slide-bar-1  bg-brand-50  shadow-2xl h-full">
+<div class="slide-bar slide-bar-2   h-full">
     <aside class="side-nav flex flex-col">
         <div class="w-full mb-2 pl-3">
             <h4 class="text-brand-300 px-[1.3rem] py-4 text-sm">DISCOVER</h4>
             <ul>
                 <li><a href="/"><i class="fa-solid fa-house"></i>Home</a></li>
 
-                <li><a href="#"><i
-                            class="fas fa-search"></i>Browse</a>
+                <li><a href="#" data-modal-target="browse-modal" data-modal-toggle="browse-modal"><i
+                            class="fas fa-search browse"></i>Browse</a>
                 </li>
                 @auth
                     <li><a href="/user/{{ auth()->user()->username }}/purchased"><i class="fas fa-heart"></i>Purchased</a>
@@ -20,12 +20,17 @@
             <h4 class="text-brand-300 px-[1.3rem] py-4 text-base">LIBRARY</h4>
             <ul>
                 @auth
-                    <li><a href="/user/{{ auth()->user()->username }}/readlist"><i class="fas fa-list-alt"></i>Readlists</a>
+                    <li><a href="/user/{{ auth()->user()->username }}/readlist"><svg class="w-5 h-5 text-gray-900"
+                                fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
+                                </path>
+                            </svg>Readlists</a>
                     </li>
                 @endauth
 
-                <li><a href="#" data-mdb-toggle="modal" data-mdb-target="#author"><i
-                            class="fas fa-book-reader"></i>Current Read</a></li>
+                <li><a href="/user/library" data-mdb-toggle="modal" data-mdb-target="#author"><i
+                            class="fas fa-book-reader"></i>Library</a></li>
                 </li>
 
 
@@ -106,7 +111,7 @@
 
 
 
-<div class="slide-bar slide-bar-2 slide-bar-active slide-bar-hide bg-brand-50 mt-1">
+<div class="slide-bar slide-bar-1 slide-bar-active  slide-bar-hide  mt-1">
     <div class="side-nav flex flex-col">
 
         <ul class="px-1">
@@ -122,3 +127,5 @@
 
     </div>
 </div>
+
+<x-browse-component />

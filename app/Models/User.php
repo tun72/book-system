@@ -24,7 +24,9 @@ class User extends Authenticatable
         'password',
         'imageUrl',
         'user_plan',
-        "phoneNumber"
+        "phoneNumber",
+        "otp",
+        "otp_expires_at"
     ];
 
     public static function boot()
@@ -35,8 +37,6 @@ class User extends Authenticatable
             if ($userQuery->role === 0) {
 
                 $userQuery->reader->delete();
-
-
             } else if ($userQuery->role === 2) {
                 $userQuery->author->delete();
             }
@@ -92,12 +92,12 @@ class User extends Authenticatable
 
     public function author()
     {
-        return $this->belongsTo(AuthorProfile::class, "id");
+        return $this->belongsTo(AuthorProfile::class, "id", "user_id");
     }
 
     public function reader()
     {
-        return $this->belongsTo(UserProfiles::class, "id");
+        return $this->belongsTo(UserProfiles::class, "id", "user_id");
     }
 
     public function isFollowed($book)
@@ -121,9 +121,19 @@ class User extends Authenticatable
         return $this->belongsToMany(AuthorProfile::class, "author_user");
     }
 
+    // public function archive()
+    // {
+    //     return $this->belongsTo(Archive::class, "user_id", "id");
+    // }
+
     public function isSubscribed($author)
     {
         return $this->subscribe->contains("user_id", $author->user_id);
+    }
+
+    public function isAuthorBook($book)
+    {
+        return $this->books->contains("id", $book->id);
     }
 
     public function notifications()
@@ -140,5 +150,10 @@ class User extends Authenticatable
     public function readLists()
     {
         return $this->hasMany(ReadList::class);
+    }
+
+    public function register_author() {
+        // dd("hello");
+        return  $this->belongsTo(AuthorRegister::class, "id", "user_id");
     }
 }

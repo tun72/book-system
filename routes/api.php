@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AddReadListController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\OTPController;
 use App\Http\Controllers\ReadListController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
@@ -29,5 +31,7 @@ Route::get("/book/search/{query}", [BookController::class, "searchBookApi"]);
 Route::post("/readlist/add", [AddReadListController::class, "addReadList"]);
 
 Route::post("/readlist/new", [ReadListController::class, "store"]);
+
+Route::post("/otpcode/restart", [OTPController::class, "restart"]);
 
 

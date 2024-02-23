@@ -18,14 +18,17 @@ document.querySelector(".slide-btn")?.addEventListener("click", function () {
     //     ?.forEach((book) => book.classList.toggle("trend-book-six"));
 });
 
-function buycoin(e, amount) {
-    console.log(e.target, amount);
-    e.target.classList.add("active");
-    document.querySelector(".payment-coin").value = amount;
+// function buycoin(e, amount) {
+//     console.log(e.target, amount);
+//     e.target.classList.toggle("active");
 
-    // document.querySelector(".checkout").textContent = `Pay ${amount} mmk`;
-    // document.getElementById("coin-amount").value = amount;s
-}
+//     if (e.target.classList.contain("active")) {
+//         document.querySelector(".payment-coin").value = amount;
+//     }
+
+//     // document.querySelector(".checkout").textContent = `Pay ${amount} mmk`;
+//     // document.getElementById("coin-amount").value = amount;s
+// }
 
 const dropzone = document.getElementById("dropzone");
 const fileInput = document.getElementById("fileInput");

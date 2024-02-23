@@ -32,6 +32,7 @@ class BookFactory extends Factory
             "publish" => fake()->year(),
             "rating" => rand(1, 5),
             "isFree" => $isFree,
+            "caption" => fake()->paragraph(),
             "ggcoin" => $isFree != 0 ? 1000 : 0,
             "isPublished" => true,
             "status" => "complete",

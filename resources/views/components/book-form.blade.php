@@ -16,46 +16,9 @@
                 <div>
                     <div class="flex gap-2">
                         <div class="flex gap-4 lg:justify-center md:justify-center justify-between w-full">
-                            <div>
-                                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                                    class="text-brand-600 bg-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                    type="button">English<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 1 4 4 4-4" />
-                                    </svg>
-                                </button>
 
-
-                                <div id="dropdown"
-                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                        aria-labelledby="dropdownDefaultButton">
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                                                out</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="flex gap-4">
-                                <div>
-                                    <button type="button"
-                                        class="py-2.5 px-5 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Preview</button>
-                                </div>
+
                                 <div>
                                     <button type="submit"
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save</button>
@@ -252,7 +215,7 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="inline-block mb-2">Caption</label>
-                                    <input type="text" placeholder="Title" name="caption"
+                                    <input type="text" placeholder="Title" name="caption" value="{{ old('caption', $book?->caption) }}"
                                         class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
                                     <x-error name="caption" />
                                 </div>
@@ -332,8 +295,13 @@
 
                         <div>
                             <label class="inline-block mb-2">Coins</label>
+
+                            @if (!auth()->user()->author->isVerified)
+                                <input type="hidden" value="0" name="ggcoin">
+                            @endif
+
                             <input type="number" placeholder="coins" name="ggcoin"
-                                value="{{ old('ggcoin', $book?->ggcoin) }}"
+                                value="{{ old('ggcoin', $book?->ggcoin) }}" @disabled(!auth()->user()->author->isVerified)
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                             <x-error name="ggcoin" />
                         </div>
@@ -350,7 +318,7 @@
                         <div id="dropdownSearch"
                             class="z-10 hidden  bg-white rounded-lg shadow  dark:bg-gray-700 mt-5">
                             <ul id="checkboxList"
-                                class="max-h-[10rem] w-[30rem] px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
+                                class="max-h-[10rem] w-[27rem] px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200"
                                 aria-labelledby="dropdownSearchButton">
                                 @foreach ($genres as $gen)
                                     <li>
@@ -369,21 +337,43 @@
                                 @endforeach
 
                             </ul>
-                            <x-error name="genres[]" />
+
                         </div>
-                    </div>
-
-                    <div class="relative mt-3 mb-4">
-
+                        <x-error name="genres" />
                     </div>
 
                     @if ($type !== 'create')
+                        <div class="relative">
+                            <div>
+                                <label class="inline-block mb-2">Discount</label>
+                                <input type="text" placeholder="Discount" name="discount"
+                                    value="{{ old('discount', $book?->discount) }}" @disabled(!auth()->user()->author->isVerified)
+                                    class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                <x-error name="discount" />
+                            </div>
+                        </div>
+
+
+                        <div class="relative mt-3">
+                            <div>
+                                <label class="inline-block mb-2">Status</label>
+                                @if (count($book->chapters) < 10)
+                                    <input type="hidden" value="ongoing" name="status">
+                                @endif
+                                <input type="text" placeholder="status" name="status"
+                                    value="{{ old('status', $book?->status) }}" @disabled(count($book->chapters) < 10)
+                                    class="disabled:bg-slate-100 w-full disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out  text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
+                                <x-error name="status" />
+                            </div>
+                        </div>
+
                         <div class="mt-3">
-                            <h1 class="font-semibold text-gray-500">Published</h1>
+                            <h1 class="font-semibold text-gray-500 mb-3">Published</h1>
                             <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" value="" class="sr-only peer" name="">
+                                <input type="checkbox" value="1" class="sr-only peer" name="isPublished"
+                                    @disabled(count($book->chapters) < 5) {{ $book->isPublished ? 'checked' : '' }}>
                                 <div
-                                    class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                    class="w-11  h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                                 </div>
 
                             </label>

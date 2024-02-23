@@ -16,20 +16,21 @@ class CommentsController extends Controller
     public function store(Chapter $chapter)
     {
 
-        $chapter->comments()->create([
+        $comment = $chapter->comments()->create([
             "body" => request("body"),
             "user_id" => auth()->id()
         ]);
 
 
+
         $users = $chapter->book->getPurchasers();
         foreach ($users as $user) {
             $noti = Notification::create([
-                "about" => "comment",
+                "about" => "comment on your purchased book",
                 "user_id" => auth()->user()->id,
                 "recipient_id" => $user->id,
                 "chapter_id" => $chapter->id,
-                "book_id" => $chapter->book->id
+                "comment_id" => $comment->id
             ]);
             $noti->save();
         }

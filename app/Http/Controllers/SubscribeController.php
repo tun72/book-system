@@ -20,8 +20,8 @@ class SubscribeController extends Controller
             $user->subscribe()->attach($author->id);
             $notification = Notification::create([
                 "about" => "followed you",
-                "user_id" => $author->id,
-                "recipient_id" => $user->id,
+                "user_id" => $user->id,
+                "recipient_id" => $author->id,
             ]);
         }
         return back();

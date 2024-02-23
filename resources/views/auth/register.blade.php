@@ -98,7 +98,7 @@
         </section>
     </div> --}}
 
-   
+
 
     {{-- <!-- nav  -->
     <div class="">
@@ -121,15 +121,15 @@
 
     <section class="font-poppins ">
         <div class="hidden py-[4rem] text-center bg-gradient-to-r from-yellow-200 to-lime-200 dark:bg-gray-700 lg:block">
-            <div class="max-w-6xl mx-auto mb-[7rem]">
+            <div class="max-w-6xl mx-auto mb-[6.6rem]">
                 <span class="inline-block text-lg font-medium text-yellow-600 dark:text-blue-300">Welcome From Book
                     Store,</span>
-                <h2 class="mb-6 font-semibold text-gray-800 text-6xl dark:text-gray-300">Sign up</h2>
+                <h2 class="mb-5 font-semibold text-gray-800 text-6xl dark:text-gray-300">Sign up</h2>
             </div>
         </div>
         <div class="max-w-xl mx-auto ">
             <div class="w-full shadow-lg bg-gray-50 dark:bg-gray-800 mt-11 lg:-mt-36 lg:full p-7 rounded-3xl">
-                <span class="flex items-center justify-end gap-5 mb-8">
+                <span class="flex items-center justify-end gap-5 mb-6">
                     @error('error')
                         <div class="bg-red-100 rounded-lg px-3 py-3 text-red-400" role="alert">
                             {{ $message }}
@@ -143,28 +143,30 @@
                 <div class="">
                     <form class="p-0 m-0" action="/register" method="POST">
                         @csrf
-                        <div class="mb-7">
+
+                        <div class="mb-5">
+                            <input type="text" name="name" value="{{ old('name') }}"
+                                class="w-full px-2 py-2 bg-gray-200 rounded-lg dark:bg-gray-700 lg:py-5 dark:text-gray-300 "
+                                placeholder="Name">
+                            @error('name')
+                                <p class="text-red-500 mb-2 text-sm">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-5">
                             <input type="email" name="email" value="{{ old('email') }}"
-                                class="w-full px-4 py-4 bg-gray-200 rounded-lg dark:bg-gray-700 lg:py-5 dark:text-gray-300 "
+                                class="w-full px-2 py-2 bg-gray-200 rounded-lg dark:bg-gray-700 lg:py-5 dark:text-gray-300 "
                                 placeholder="Email">
                             @error('email')
                                 <p class="text-red-500 mb-2 text-sm">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <div class="mb-7">
-                            <input type="text" name="username" value="{{ old('username') }}"
-                                class="w-full px-4 py-4 bg-gray-200 rounded-lg dark:bg-gray-700 lg:py-5 dark:text-gray-300 "
-                                placeholder="Username">
-                            @error('username')
-                                <p class="text-red-500 mb-2 text-sm">{{ $message }}</p>
-                            @enderror
-                        </div>
 
-                        <div class="mb-6">
+                        <div class="mb-3">
                             <div class="relative flex items-center">
                                 <input type="password"
-                                    class="w-full px-4 py-4 bg-gray-200 rounded-lg lg:py-5 dark:text-gray-300 dark:bg-gray-700 "
+                                    class="w-full px-2 py-2 bg-gray-200 rounded-lg lg:py-5 dark:text-gray-300 dark:bg-gray-700 "
                                     name="password" placeholder="Password">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     class="absolute right-0 mr-3 dark:text-gray-300" fill="currentColor"
@@ -187,7 +189,7 @@
                         </div>
 
                         <button
-                            class="w-full px-4 py-4 mt-6 font-medium text-gray-200 bg-blue-700 rounded-lg dark:bg-blue-500 hover:text-blue-200 "
+                            class="w-full px-2 py-2 mt-4 font-medium text-gray-200 bg-blue-700 rounded-lg dark:bg-blue-500 hover:text-blue-200 "
                             type="submit">SIGNUP</button>
                         <div class="py-5 text-base text-center text-gray-600 dark:text-gray-400">Or login with</div>
                         <div class="flex justify-center">

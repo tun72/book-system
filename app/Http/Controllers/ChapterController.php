@@ -13,9 +13,21 @@ class ChapterController extends Controller
     public function show(Chapter $chapter)
     {
         // $text = Pdf::getText(public_path($chapter->file), 'C:\Program Files\Git\mingw64\bin\pdftotext.exe');
+        $book = $chapter->book;
+
+        $nextChapter = $book->chapters()->where("chapter", $chapter->chapter + 1)->first();
+        $prevChapter = $book->chapters()->where("chapter", $chapter->chapter - 1)->first();
+
+        if($prevChapter) {
+            $prevChapter->is_finish = 1;
+            $prevChapter->save();
+        }
+
         return view("book.read-book", [
             "chapter" => $chapter,
-            "book" => $chapter->book
+            "book" => $book,
+            "nextChapter" => $nextChapter,
+            "prevChapter" => $prevChapter
         ]);
     }
 
@@ -29,7 +41,7 @@ class ChapterController extends Controller
         $cleanData = request()->validate([
             "story" => ["required", "min:10"],
             "title" => ["required", "min:3"],
-        
+
         ]);
         $chapter = Chapter::create([
             "title" => $cleanData["title"],
@@ -40,7 +52,7 @@ class ChapterController extends Controller
             "book_id" => $book->id
         ]);
         $chapter->save();
-        
+
         return redirect("/author/book/" . $book->id . "/detail");
     }
 

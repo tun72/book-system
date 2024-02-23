@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AuthorIncomes;
 use App\Models\User;
 use App\Models\Book;
+use App\Models\History;
 use App\Models\Notification;
 
 class BuyBookController extends Controller
@@ -43,12 +44,19 @@ class BuyBookController extends Controller
 
             $notification = Notification::create([
                 "about" => "buy a book",
-                "user_id" => $book->user_id,
-                "recipient_id" => $user->id,
+                "user_id" => $user->id,
+                "recipient_id" => $book->user_id,
+            ]);
+
+            $history = History::create([
+                "title" => "Buy new book",
+                "about" => "You Buy a new book " . $book->title,
+                "user_id" => auth()->user()->id
             ]);
 
 
             $notification->save();
+            $history->save();
             $authorIncome->save();
             $user->boughtBooks()->attach($book->id);
         }

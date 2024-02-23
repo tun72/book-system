@@ -11,13 +11,19 @@ class AuthorRegister extends Model
     protected $fillable = [
         'name',
         'email',
-        "exp",
         "phone",
         "user_id",
+        "about",
         "description",
+
     ];
 
     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function isRegistered()
     {
         return $this->belongsTo(User::class);
     }

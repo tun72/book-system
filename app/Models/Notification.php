@@ -14,15 +14,33 @@ class Notification extends Model
         "recipient_id",
         "is_seen",
         "book_id",
-        "chapter_id"
+        "chapter_id",
+        "comment_id"
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, "recipient_id");
+        return $this->belongsTo(User::class);
     }
+
+    public function reciper()
+    {
+        return $this->belongsTo(User::class, "recipient_id", "id");
+    }
+
     public function book()
     {
         return $this->belongsTo(Book::class);
     }
+
+    public function chapter()
+    {
+        return $this->belongsTo(Chapter::class);
+    }
+    public function comment()
+    {
+        return $this->belongsTo(Comments::class);
+    }
+
+    // public function 
 }

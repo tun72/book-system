@@ -18,8 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->boolean("isVerified")->default(false);
             $table->longText("about");
-
-            $table->unsignedBigInteger("experience");
             $table->timestamps();
         });
     }

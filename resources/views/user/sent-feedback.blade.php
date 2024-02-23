@@ -1,6 +1,6 @@
 <x-home-layout>
     <div class="mt-5 flex items-center justify-center">
-        <div class="max-w-md w-full bg-white p-8 rounded shadow-md">
+        <div class="max-w-md w-full  p-8 shadow-xl bg-blue-50 rounded-xl">
             <h2 class="text-2xl font-bold mb-6">Send Feedback</h2>
 
             <!-- Feedback form -->
