@@ -9,6 +9,7 @@ use App\Models\ReadList;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -39,10 +40,33 @@ class UserController extends Controller
             "name" => ["required", "max:20"],
             "username" => ["required", "max:20", auth()->user()->username == request("username") ? "" : Rule::unique("users", "username")],
             "email" => ["required", "max:20", auth()->user()->email == request("email") ? "" : Rule::unique("users", "email")],
-            "phoneNumber" => ["required", "max:20"]
+            "phoneNumber" => ["required", "max:20"],
+            "about" => ["required"]
         ]);
+
+
+
+        if ($user->role === 0) {
+            $user->reader->about = $cleanData["about"];
+            $user->reader->update();
+        } else {
+            $user->author->about = $cleanData["about"];
+            $user->reader->update();
+        }
         $user->update($cleanData);
         return redirect("/user-profile/" . $user->username)->with("success", "Successfully Updated !");
+    }
+
+    public function changeBackground(User $user)
+    {
+        if ($file = request("image")) {
+            if ($path = public_path($user->background)) {
+                File::delete($path);
+            }
+            $user->background = '/storage/' . $file->store('/backgrounds');
+        }
+        $user->save();
+        return back()->with("success", "Successfully Updated !");
     }
 
     public function purchased(User $user)
@@ -96,13 +120,13 @@ class UserController extends Controller
 
         return view("user.library", [
             "books" => $books,
-            
+
         ]);
     }
 
     public function archive()
     {
-        $archives = Archive::where("user_id" , auth()->user()->id)->latest()->get();
+        $archives = Archive::where("user_id", auth()->user()->id)->latest()->get();
         // $archives = auth()->user()->archive()->latest()->get();
 
 
@@ -115,6 +139,11 @@ class UserController extends Controller
     public function deleteArchive(Archive $archive)
     {
         $archive->delete();
+        $archive->book->isArchive = true;
+        $archive->book->update();
+        // $book->archive = true;
+        // $book->update();
+
         return back()->with("success", "Successfully Archived Removed ✅");
     }
 }

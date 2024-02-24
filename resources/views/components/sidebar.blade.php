@@ -1,15 +1,19 @@
-<div class="slide-bar slide-bar-2   h-full">
+<div class="slide-bar slide-bar-2   h-full border-r-1 border-gray-100">
     <aside class="side-nav flex flex-col">
         <div class="w-full mb-2 pl-3">
             <h4 class="text-brand-300 px-[1.3rem] py-4 text-sm">DISCOVER</h4>
+
             <ul>
-                <li><a href="/"><i class="fa-solid fa-house"></i>Home</a></li>
+                <li class="{{ request()->routeIs('home') ? 'bg-[#9b9b9b7a]' : '' }}"><a href="/"><i
+                            class="fa-solid fa-house"></i>Home</a></li>
 
                 <li><a href="#" data-modal-target="browse-modal" data-modal-toggle="browse-modal"><i
                             class="fas fa-search browse"></i>Browse</a>
                 </li>
                 @auth
-                    <li><a href="/user/{{ auth()->user()->username }}/purchased"><i class="fas fa-heart"></i>Purchased</a>
+                    <li class="{{ request()->routeIs('purchased') ? 'bg-[#9b9b9b7a]' : '' }}"><a
+                            href="/user/{{ auth()->user()->username }}/purchased">
+                            <i class="fas fa-heart"></i>Purchased</a>
                     @endauth
                 </li>
             </ul>
@@ -20,7 +24,7 @@
             <h4 class="text-brand-300 px-[1.3rem] py-4 text-base">LIBRARY</h4>
             <ul>
                 @auth
-                    <li><a href="/user/{{ auth()->user()->username }}/readlist"><svg class="w-5 h-5 text-gray-900"
+                    <li class="{{ request()->routeIs('readlist') ? 'bg-[#9b9b9b7a]' : '' }}"><a href="/user/{{ auth()->user()->username }}/readlist"><svg class="w-5 h-5 text-gray-900"
                                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
@@ -86,21 +90,6 @@
                 </li>
             </ul>
         </div>
-
-
-
-
-        @auth
-            @if (auth()->user()->role === 2)
-                <div class="pl-2 py-2 border-b-2 w-full items-center">
-                    {{-- <a href="/book/new-book" class="pl-[1.3rem]">New Book</a> --}}
-                    <a type="button" href="/book/new-book"
-                        class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">New
-                        Book</a>
-                </div>
-            @endif
-        @endauth
-
 
         {{-- <div class="footer pl-2">
                     <a href="#" class="small pl-[1.3rem]">Copyright © 2023 ttm</a>

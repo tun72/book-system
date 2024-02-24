@@ -127,7 +127,7 @@ class BookController extends Controller
 
         $cleanData["isPublished"] = false;
         $cleanData["status"] = "ongoing";
-     
+
 
         if (!auth()->user()->author->isVerified) {
             $cleanData["ggcoin"] = 0;
@@ -183,8 +183,8 @@ class BookController extends Controller
         if ($file = request("image")) {
             if ($path = public_path($book->image)) {
                 File::delete($path);
-                $book->image = '/storage/' . $file->store('/books');
             }
+            $book->image = '/storage/' . $file->store('/books');
         }
         $book->genres()->detach($book->genres);
         $book->genres()->attach($cleanData["genres"]);
@@ -230,6 +230,9 @@ class BookController extends Controller
             "book_id" => $book->id,
             "user_id" => auth()->user()->id
         ]);
+
+        $book->isArchive = true;
+        $book->update();
 
         return back()->with("success", "Successfully Archived Book ✅");
     }

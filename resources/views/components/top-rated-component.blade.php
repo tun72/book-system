@@ -13,7 +13,7 @@
                             <img src="{{ $book->image }}" alt="">
                             <div class="about-book">
                                 <span class="small">{{ $book->title }}</span>
-                                <span class="small">{{ $book->user->name }}</span>
+                                <span class="small">{{ $book->user?->name }}</span>
                             </div>
                         </div>
                         <div class="rated-2">

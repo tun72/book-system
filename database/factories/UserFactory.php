@@ -23,6 +23,7 @@ class UserFactory extends Factory
             'username' => fake()->userName(),
             'imageUrl' => 'https://i.pravatar.cc/480?u=' . rand(10000, 40000),
             "phoneNumber" => fake()->phoneNumber(),
+            "background" => "https://wallpapers.com/images/hd/beautiful-background-9eitvbn5p15z5rlu.jpg",
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             "verify" => 1

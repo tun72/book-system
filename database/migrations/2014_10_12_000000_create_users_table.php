@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("imageUrl");
             $table->integer("ggcoin")->default(0);
             $table->string("phoneNumber");
+            $table->string("background");
             $table->rememberToken();
             $table->timestamps();
         });

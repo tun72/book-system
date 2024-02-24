@@ -12,13 +12,15 @@
 
 
     <!-- Upper part     Starts -->
-    <div
-        class="w-[100%] bg-cover bg-center bg-no-repeat bg-[url('https://wallpapers.com/images/hd/beautiful-background-9eitvbn5p15z5rlu.jpg')] bg-gray-700 bg-blend-multiply">
+
+    <div data-popover-target="popover-default" style="background-image: url('{{ asset(auth()->user()->background) }}')"
+        class="relative w-[100%] bg-cover bg-center bg-no-repeat bg-gray-700 bg-blend-multiply">
         <!-- circles and infos        Start-->
-        <div class="w-[100%] h-[350px] flex justify-center items-center flex-col">
+        <div class="w-[100%] h-[360px] flex justify-center items-center flex-col">
+            <img src="" alt="">
             <!-- circle -->
             <div
-                class="h-[100px] w-[100px] rounded-full outline-white overflow-hidden border border-[#2a685d] flex justify-center items-center mb-[20px] mt-[80px]">
+                class="h-[100px] w-[100px] rounded-full outline-white overflow-hidden border border-[#2a685d] flex justify-center items-center mb-[20px] mt-[56px]">
                 <img src="{{ auth()->user()->imageUrl }}" alt="">
             </div>
             <h1 class="text-white font-semibold text-xl">{{ auth()->user()->name }}</h1>
@@ -40,7 +42,76 @@
                 </div>
             </div>
         </div>
+
+
+
+        <form id="background-form" enctype="multipart/form-data" method="POST"
+            action="/user/update-background/{{ auth()->user()->username }}"
+            class="absolute  top-[10px] right-[10px] inline-block rounded-full text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200  shadow-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+            @method('PATCH')
+            @csrf
+            <div class="px-3 py-2" id="image">
+                <label for="background-img" class="cursor-pointer"><i class="fa-solid fa-pen"></i></label>
+            </div>
+            <input type="file" name="image" id="background-img" class="hidden" />
+        </form>
+
+        <script>
+            document.getElementById("background-img").onchange = function() {
+                document.getElementById("background-form").submit();
+            };
+        </script>
+
+
     </div>
+
+
+    {{-- <div class="relative">
+        <img src="{{ asset(auth()->user()->background) }}" alt=""
+            class="w-full  h-[350px] object-cover z-20">
+        <div class="w-full h-full bg-gray-400 absolute"></div>
+        <div class="absolute top-[3rem] left-[50%] flex flex-col items-center translate-x-[-50%]   h-fit">
+            <div
+                class="h-[100px] w-[100px] rounded-full outline-white overflow-hidden border border-[#2a685d] flex justify-center items-center">
+                <img src="{{ auth()->user()->imageUrl }}" alt="">
+            </div>
+            <h1 class="text-white font-semibold text-xl">{{ auth()->user()->name }}</h1>
+            <span class="text-white font-md">@ {{ auth()->user()->username }}
+                ({{ auth()->user()->role !== 1 ? (auth()->user()->role === 2 ? 'author' : 'user') : '' }})</span>
+            <!-- infos -->
+            <div class="flex justify-center items-center gap-[30px] mt-[10px]">
+                <div class="text-center">
+                    <p class="text-white">{{ count(auth()->user()->books) }}</p>
+                    <span class="text-white">Books</span>
+                </div>
+                <div class="text-center" style="cursor: pointer">
+                    <p class="text-white">{{ count(auth()->user()->readLists) }}</p>
+                    <span class="text-white">Reading List</span>
+                </div>
+                <div class="text-center">
+                    <p class="text-white">0</p>
+                    <span class="text-white">Followers</span>
+                </div>
+            </div>
+
+            <form id="background-form" enctype="multipart/form-data" method="POST"
+                action="/user/update-background/{{ auth()->user()->username }}"
+                class="absolute  top-[10px] right-[10px] inline-block rounded-full text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200  shadow-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                @method('PATCH')
+                @csrf
+                <div class="px-3 py-2" id="image">
+                    <label for="background-img" class="cursor-pointer"><i class="fa-solid fa-pen"></i></label>
+                </div>
+                <input type="file" name="image" id="background-img" class="hidden" />
+            </form>
+
+            <script>
+                document.getElementById("background-img").onchange = function() {
+                    document.getElementById("background-form").submit();
+                };
+            </script>
+        </div>
+    </div> --}}
 
     <!-- Nav -->
     <div class="px-[100px] w-[100%] mt-4 flex justify-between items-center mb-5">

@@ -47,7 +47,7 @@
         <div class="">
             <ul class="flex justify-normal gap-[30px] items-center">
                 <li class="font-semibold text-xl" style="cursor: pointer">
-                    <a href="/user-profile/{{$user->username}}">About</a>
+                    <a href="/user-public/{{ $user->username }}">About</a>
                 </li>
                 <li class="font-semibold text-xl" style="cursor: pointer">
                     <a href="/user/following">Following</a>
@@ -96,7 +96,7 @@
                                     </svg>
                                     <p>Followed</p>
                                 </button>
-                            @else
+                            @elseif(auth()->user()->id === $author->id)
                                 <button
                                     class="text-white flex justify-center items-center bg-[#00b2b2] py-2 px-10 ml-[30px] mr-[30px] translate-y-[-45px] rounded-xl">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -107,10 +107,9 @@
                                             <path d="M4.5 12.5h-4V11A4.51 4.51 0 0 1 7 7m3.5.5v6m-3-3h6" />
                                         </g>
                                     </svg>
-                                    <p>Follow</p>
+                                    <p>Followed-You</p>
                                 </button>
                             @endif
-
                         </form>
 
 

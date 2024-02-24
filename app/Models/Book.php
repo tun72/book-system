@@ -31,6 +31,9 @@ class Book extends Model
     {
         parent::boot();
         static::deleted(function ($bookQuery) {
+            if($bookQuery->archive) {
+                $bookQuery->archive->delete();
+            }
             if (File::exists($file = public_path($bookQuery->image))) {
                 File::delete($file);
             }
@@ -40,6 +43,11 @@ class Book extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function archive()
+    {
+        return $this->belongsTo(Archive::class, "id", "book_id");
     }
 
     public function genres()

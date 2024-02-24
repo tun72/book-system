@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<header class="header">
+<header class="header border-b-1 border-gray-100">
     <nav class="nav px-5 pb-1">
         <div class="flex items-center justify-center">
             <button
@@ -9,10 +9,10 @@
 
             <div class="flex items-center gap-3">
                 <button type="button"
-                    class="flex text-sm  bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                class="flex text-sm  bg-gray-100 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                     <span class="sr-only">Open user menu</span>
-                    <img src="./img/logo-3.jpg" alt="" class="w-10 h-10 rounded-full">
+                    <img src="{{ asset('/img/logo.svg')}}" alt="" class="w-12 h-12">
                 </button>
                 <h3 class="font-semibold text-xl">Literary L<span class="text-primary text-2xl text-button-800">⚯</span>m</h3>
             </div>

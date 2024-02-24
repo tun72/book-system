@@ -56,8 +56,8 @@ Route::middleware(["auth", "isVerify"])->group(function () {
     Route::get('/user/notification', [UserController::class, "notification"]);
     Route::get('/user/library', [UserController::class, "library"]);
     Route::get('/user/update-user', [UserController::class, "getUpdate"]);
-    Route::get('/user/{user:username}/purchased', [UserController::class, "purchased"]);
-    Route::get('/user/{user:username}/readlist', [UserController::class, "readlist"]);
+    Route::get('/user/{user:username}/purchased', [UserController::class, "purchased"])->name("purchased");
+    Route::get('/user/{user:username}/readlist', [UserController::class, "readlist"])->name("readlist");
     Route::get("/user/following", [UserController::class, "following"]);
     Route::get("/user-public/{user:username}", [UserController::class, "showUser"]);
     Route::get("/user-public/{user:username}/following", [UserController::class, "showFollowing"]);
@@ -69,6 +69,7 @@ Route::middleware(["auth", "isVerify"])->group(function () {
 
     #update user
     Route::patch('/user/update-user/{user:username}', [UserController::class, "update"]);
+    Route::patch('/user/update-background/{user:username}', [UserController::class, "changeBackground"]);
 
     #feedback
     Route::get('/user/feedback', [SentFeedBackController::class, "index"]);
@@ -189,7 +190,8 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
 
     #books
     Route::get("/admin/books", [AdminController::class, "books"]);
-
+    Route::delete("/admin/book/{book:id}/delete", [AdminController::class, "deleteBook"]);
+ 
     #setting
     Route::get("/admin/setting", [AdminController::class, "setting"]);
     Route::patch("/admin/setting", [AdminController::class, "updateSetting"]);
@@ -206,7 +208,7 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
 
 
 // book
-Route::get('/', [BookController::class, "index"]);
+Route::get('/', [BookController::class, "index"])->name("home");
 Route::get('/search-books', [BookController::class, "books"]);
 Route::get("/book-details/{book:slug}", [BookController::class, "show"]);
 Route::get("/book/trends", [BookController::class, "trends"]);

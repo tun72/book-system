@@ -86,8 +86,8 @@ class AuthorController extends Controller
     }
     public function reader()
     {
-
         $users = AuthorProfile::where("user_id", auth()->id())->first()->subscribers;
+
         return view("author.reader", ["users" => $users]);
     }
 

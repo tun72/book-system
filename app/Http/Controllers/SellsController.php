@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SellRequest;
+use App\Models\AdminHistory;
 use App\Models\Sells;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,6 +43,12 @@ class SellsController extends Controller
         $user->ggcoin -= $sell->ggcoin;
 
         $user->update();
+
+        AdminHistory::create([
+            "user_id" => $user->id,
+            "status" => "Outcome",
+            "ggcoin" => $sell->ggcoin,
+        ]);
 
         return redirect("/success");
     }

@@ -42,12 +42,12 @@ class AuthController extends Controller
         ]);
 
         $cleanData["username"] = $cleanData["name"];
-        $cleanData = array_merge($cleanData, ["imageUrl" => 'https://i.pravatar.cc/480?u=' . rand(10000, 40000), "phoneNumber" => "NULL"]);
+        $cleanData = array_merge($cleanData, ["imageUrl" => 'https://i.pravatar.cc/480?u=' . rand(10000, 40000), "phoneNumber" => "NULL", "background" => ""]);
         $user = User::create($cleanData);
         Session::put('user_data', json_encode($cleanData));
         auth()->login($user);
         $otp = rand(100000, 999999);
-        // auth()->login($user);
+
 
         $user->update([
             'otp' => $otp,
@@ -100,21 +100,31 @@ class AuthController extends Controller
 
     public function firstComplete()
     {
-        // dd(request()->all());
+
         $cleanData = request()->validate([
             "username" => ["required", "min:3", Rule::unique("users", "username")],
             "about" => ["required"],
             "address" => ["required"],
+            "photo" => ["required", "image"]
         ]);
 
-        // dd($cleanData);
-
         if ($file = request("photo")) {
-
             $cleanData["photo"] = "/storage/" . $file->store("/users");
         }
 
-        Session::put('user_data', json_encode($cleanData));
+        // Session::put('user_data', json_encode($cleanData));
+        $user = User::find(auth()->id());
+
+        $user->imageUrl = $cleanData["photo"];
+        $user->username = $cleanData["username"];
+        $user->update();
+
+        UserProfiles::create([
+            "user_id" => $user->id,
+            "genres" => "",
+            "address" => $cleanData["address"],
+            "about" => $cleanData["about"]
+        ]);
 
 
         return redirect("/complete-your-profile/2");
@@ -122,31 +132,21 @@ class AuthController extends Controller
 
     public function secondComplete()
     {
-        $storedResponse = json_decode(Session::get('user_data'), true);
+        // $storedResponse = json_decode(Session::get('user_data'), true);
 
         $cleanData = request()->validate([
             "genres" => ["required"],
         ]);
 
 
+        $user = User::find(auth()->id());
         $genres = implode(",", $cleanData["genres"]);
 
 
-        $user = User::find(auth()->id());
 
-
-        $user->imageUrl = $storedResponse["photo"];
-        $user->username = $storedResponse["username"];
-
-        $user->update();
-
-        UserProfiles::create([
-            "user_id" => $user->id,
-            "genres" => $genres,
-            "address" => $storedResponse["address"],
-            "about" => $storedResponse["about"]
-        ]);
-
+        $userprofile =  UserProfiles::where("user_id", auth()->id())->first();
+        $userprofile->genres = $genres;
+        $userprofile->update();
         return redirect("/")->with("success", "Register Success. Welcome " . $user->name . " 🎉");
     }
 

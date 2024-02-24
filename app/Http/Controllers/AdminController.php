@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookDeleteMail;
+use App\Models\AdminHistory;
 use App\Models\AuthorProfile;
 use App\Models\AuthorRegister;
 use App\Models\Book;
@@ -12,7 +14,7 @@ use App\Models\Tag;
 use App\Models\Transfer;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -20,8 +22,12 @@ class AdminController extends Controller
     public function index()
     {
         return view("admin.index", [
-            "users" => User::whereIn("role", [0, 2])->get(),
-            "books" => Book::all()
+            "users" => User::whereIn("role", [0, 2])->latest()->limit(10)->get(),
+            "books" => Book::all(),
+            "histories" => AdminHistory::get(),
+            "incomes" => AdminHistory::where('status', 'income')->sum('ggcoin'),
+            "outcomes" => AdminHistory::where('status', 'outcome')->sum('ggcoin'),
+            "requsers" => AuthorRegister::where("status", "pending")->get()
         ]);
     }
 
@@ -31,7 +37,7 @@ class AdminController extends Controller
         $ROLE = ["user" => [0], "author" => [2], "all" => [0, 2], "" => [0, 2]];
         $filter = $ROLE[request("filter")];
         return view("admin.users", [
-            "users" => User::whereIn("role", $filter)->latest()->get()
+            "users" => User::whereIn("role", $filter)->latest()->paginate(10)
         ]);
     }
 
@@ -40,7 +46,7 @@ class AdminController extends Controller
 
         return view("admin.profile", [
             "user" => $user,
-            "genres" => Genres::whereIn("id", explode(",", $user->reader->genres))->get()
+            "genres" => Genres::whereIn("id", explode(",", $user->reader?->genres))->get()
         ]);
     }
 
@@ -140,6 +146,11 @@ class AdminController extends Controller
     {
         $transfer->user->ggcoin += $transfer->ggcoin;
         $transfer->user->update();
+        AdminHistory::create([
+            "user_id" => $transfer->user->id,
+            "ggcoin" => $transfer->ggcoin,
+            "status" => "Income"
+        ]);
         $transfer->delete();
         return back()->with("success", "Successfully transfered Chief🪲 ✅.");;
     }
@@ -203,6 +214,7 @@ class AdminController extends Controller
 
     public function deleteGenres(Genres $genres)
     {
+        dd($genres);
         $genres->delete();
         return back()->with("success", "Genres Successfully Deleted  Chief🪲 ✅.");
     }
@@ -241,6 +253,16 @@ class AdminController extends Controller
         // }
 
         return view("admin.books", ["books" => $book->get()]);
+    }
+
+    public function deleteBook(Book $book)
+    {
+
+       $delete =  $book->delete();
+       if($delete) 
+          Mail::to("shinesilwin@gmail.com")->queue(new BookDeleteMail($book->title, $book->user->name));
+       
+        return back()->with("success", "Successfully Deleted Chief🪲 ✅.");
     }
 
     public function setting()

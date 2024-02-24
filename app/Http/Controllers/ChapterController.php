@@ -18,7 +18,7 @@ class ChapterController extends Controller
         $nextChapter = $book->chapters()->where("chapter", $chapter->chapter + 1)->first();
         $prevChapter = $book->chapters()->where("chapter", $chapter->chapter - 1)->first();
 
-        if($prevChapter) {
+        if ($prevChapter && request("complete") === "true") {
             $prevChapter->is_finish = 1;
             $prevChapter->save();
         }

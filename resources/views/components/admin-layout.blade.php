@@ -6,19 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite('resources/css/dashboard.css')
     @vite('resources/js/dashboard.js')
 </head>
 
-<body class="overflow-hidden">
+<body class="overflow-hidden ">
 
     @if (session()->has('success'))
-        {{-- <div id="toast-top-right"
-            class="fixed flex items-center w-full z-50 max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x rtl:divide-x-reverse divide-gray-200 rounded-lg shadow top-5 right-5 dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800"
-            role="alert">
-            <div class="text-sm font-normal">Top right positioning.</div>
-        </div> --}}
         <div id="toast-success"
             class="fixed top-5 right-10 z-[100] justify-center items-center w-full  flex  max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
             role="alert">
@@ -73,7 +70,7 @@
     @endif
 
     <div class="grid grid-cols-[14rem_1fr] grid-rows-[auto_1fr] ">
-        <nav class="bg-white flex justify-end p-[0.5rem_3.8rem] items-center">
+        <nav class="bg-white flex justify-end p-[0.5rem_3.8rem] items-center border-b-1 border-gray-800 ">
             <!-- Notifications -->
             <button type="button" data-dropdown-toggle="notification-dropdown"
                 class="p-2 mr-1 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
@@ -87,7 +84,7 @@
                 </svg>
             </button>
             <!-- Dropdown menu -->
-            <div class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl"
+            <div class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white  divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700 rounded-xl"
                 id="notification-dropdown">
                 <div
                     class="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-600 dark:text-gray-300">
@@ -467,8 +464,8 @@
                 </ul>
             </div>
         </nav>
-        <aside class="row-[1/-1] flex flex-col gap-[0.75rem] p-[3.2rem 4.8rem]" aria-label="Sidenav"
-            id="drawer-navigation">
+        <aside class="row-[1/-1] flex flex-col gap-[0.75rem] p-[3.2rem 4.8rem] border-r-1 border-gray-800 "
+            aria-label="Sidenav" id="drawer-navigation">
             <div class="flex flex-col gap-[0.25rem] items-center w-full">
                 <img src="/img/logo.svg" alt="" class="w-[6rem] h-[6rem]">
                 <h3 class="font-bold text-xl">THE BOOK STORE</h3>
@@ -644,7 +641,7 @@
             </div>
 
         </aside>
-        <main class="p-[1.4rem_2.8rem_4.4rem]  bg-brand-50 overflow-x-hidden overflow-y-scroll h-[100vh]">
+        <main class="p-[1.4rem_2.8rem_4.4rem]  bg-gray-100 overflow-x-hidden overflow-y-scroll h-[100vh]">
             {{ $slot }}
         </main>
     </div>

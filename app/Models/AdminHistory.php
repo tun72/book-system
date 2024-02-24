@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AdminHistory extends Model
 {
     use HasFactory;
-    
+    protected $guarded = [];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

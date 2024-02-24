@@ -16,7 +16,7 @@
                     <div>
                         <a href="/search-books/?genres={{ $genre->slug }} {{ request('author') ? '&author=' . request('author') : '' }} {{ request('search') ? '&search=' . request('search') : '' }}"
                             class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 hover:bg-button-800 hover:text-white transition-all">
-                            helloworld</a>
+                            {{ $genre->name }}</a>
                     </div>
                 @endforeach
 

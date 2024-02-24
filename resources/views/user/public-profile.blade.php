@@ -53,42 +53,31 @@
                 <li class="font-semibold text-xl" style="cursor: pointer">
                     <a href="/user-public/{{ $user->username }}/following">Following</a>
                 </li>
-                @if ($user->role === 0)
-                    <li class="font-semibold text-xl" style="cursor: pointer">
-                        <a href="/author/register">Become Author</a>
-                    </li>
-                @endif
             </ul>
         </div>
         <!-- tools -->
+
         <div class="flex justify-normal items-center gap-3">
-            <!-- 1st item -->
 
-            @if ($user->role !== 1)
-                <div class="rounded-3xl flex border border-[black] items-center justify-normal relative"
-                    style="cursor: pointer">
-                    <!-- coin -->
-                    {{-- <img class="h-[60px] w-[80px] translate-x-[-20px]" src="./imgs/coin (2).png" alt="" /> --}}
-                    <i class="fa-brands fa-gg-circle text-primary text-[2.5rem] text-yellow-500 translate-x-[-1px]"></i>
-                    <p class="mr-[30px] text-xl font-semibold">-</p>
+            <form action="/user/{{ $user->id }}/subscribe" method="POST">
+                @csrf
+                @if (auth()->user()->isSubscribed($user))
+                    <button
+                        class="flex gap-[5px]  w-[150px] justify-center items-center border border-[#eeeeee] rounded-xl"
+                        style="cursor: pointer">
+                        <i class="fas fa-user-plus me-1"></i>
+                        <a href="/user/update-user">Followed</a>
+                    </button>
+                @else
+                    <button
+                        class="flex gap-[5px]  w-[150px] justify-center items-center border border-[#eeeeee] rounded-xl"
+                        style="cursor: pointer">
+                        <i class="fas fa-user-plus me-1"></i>
+                        <a href="/user/update-user">Followed</a>
+                    </button>
+                @endif
 
-                    <a href="/pricing-section"><svg style="border-left: 1px solid black"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M11 13H6q-.425 0-.712-.288T5 12q0-.425.288-.712T6 11h5V6q0-.425.288-.712T12 5q.425 0 .713.288T13 6v5h5q.425 0 .713.288T19 12q0 .425-.288.713T18 13h-5v5q0 .425-.288.713T12 19q-.425 0-.712-.288T11 18z" />
-                        </svg>
-                    </a>
-
-                </div>
-            @endif
-
-
-            <!-- 2nd item -->
-            <div class="flex gap-[5px]  w-[150px] justify-center items-center border border-[#eeeeee] rounded-xl"
-                style="cursor: pointer">
-                <i class="fas fa-user-plus me-1"></i>
-                <a href="/user/update-user">Follow</a>
-            </div>
+            </form>
 
 
         </div>
@@ -103,11 +92,11 @@
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
                   0 1px 2px rgba(0, 0, 0, 0.24);
               ">
-            @if (auth()->user()->role !== 1)
-                {{-- @dd(auth()->user()->role); --}}
-                @if (auth()->user()->role === 0)
+            @if ($user->role !== 1)
+                {{-- @dd($user->role); --}}
+                @if ($user->role === 0)
 
-                    @if (auth()->user()->reader->about === '')
+                    @if ($user->reader->about === '')
                         <p class="w-[100%] text-sm text-center pt-[10px] font-bold">
                             Help people get to know you
                         </p>
@@ -118,11 +107,11 @@
                         </a>
                     @else
                         <p class="w-[100%] text-md px-[10px] pt-[10px]">
-                            {{ auth()->user()->reader->about }}
+                            {{ $user->reader->about }}
                         </p>
                     @endif
                 @else
-                    @if (auth()->user()->author->about === '')
+                    @if ($user->author->about === '')
                         <p class="w-[100%] text-sm text-center pt-[10px] font-bold">
                             Help people get to know you
                         </p>
@@ -133,7 +122,7 @@
                         </a>
                     @else
                         <p class="w-[100%] text-md px-[10px] pt-[10px]">
-                            {{ auth()->user()->author->about }}
+                            {{ $user->author->about }}
                         </p>
                     @endif
 
@@ -141,25 +130,21 @@
 
             @endif
             <div class="mt-[10px] px-[10px]">
-                <span class="font-sm font-semibold">Joined</span><span class="font-sm text-light"> 4 minutes
-                    ago</span>
+                <span class="font-sm font-semibold">Joined</span><span
+                    class="font-sm text-light">{{ $user->created_at->diffForHumans() }}</span>
             </div>
             <!-- middle part -->
             <div class="h-[1px] bg-gray-300 w-[100%] mt-[10px] mb-[10px]"></div>
             <div class="px-[10px]">
                 <span>Following</span>
-
                 @if (count($user->subscribe))
                     <div class="flex gap-[10px] mt-[10px]">
-
                         @foreach ($user->subscribe as $author)
                             <a href="/author/{{ $author->user->username }}/profile"
                                 class="h-[40px] w-[40px] rounded-full bg-[yellow] bg-center bg-cover bg-no-repeat overflow-hidden">
                                 <img src="{{ $author->user->imageUrl }}" alt="" class="w-full h-full">
                             </a>
                         @endforeach
-
-
                     </div>
                 @else
                     <p>Not Yet!</p>
@@ -235,7 +220,6 @@
                                 d="M10.125 22q-.375 0-.65-.25t-.325-.625l-.3-2.325q-.325-.125-.612-.3t-.563-.375l-2.175.9q-.35.15-.7.038t-.55-.438L2.4 15.4q-.2-.325-.125-.7t.375-.6l1.875-1.425Q4.5 12.5 4.5 12.338v-.675q0-.163.025-.338L2.65 9.9q-.3-.225-.375-.6t.125-.7l1.85-3.225q.2-.325.55-.437t.7.037l2.175.9q.275-.2.575-.375t.6-.3l.3-2.325q.05-.375.325-.625t.65-.25h3.75q.375 0 .65.25t.325.625l.3 2.325q.325.125.613.3t.562.375l2.175-.9q.35-.15.7-.038t.55.438L21.6 8.6q.2.325.125.7t-.375.6l-1.875 1.425q.025.175.025.338v.674q0 .163-.05.338l1.875 1.425q.3.225.375.6t-.125.7l-1.85 3.2q-.2.325-.562.45t-.713-.025l-2.125-.9q-.275.2-.575.375t-.6.3l-.3 2.325q-.05.375-.325.625t-.65.25zm1.925-6.5q1.45 0 2.475-1.025T15.55 12q0-1.45-1.025-2.475T12.05 8.5q-1.475 0-2.488 1.025T8.55 12q0 1.45 1.013 2.475T12.05 15.5" />
                         </svg>
                     </a> --}}
-
                 </div>
             </div>
             <div class="h-[1px] w-[100%] bg-gray-300 mt-[10px] mb-[10px] px-[10px]"></div>

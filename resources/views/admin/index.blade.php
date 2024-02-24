@@ -17,9 +17,9 @@
                             </span>
                         </div>
                         <div>
-                            <p class="mb-2 text-gray-700 dark:text-gray-400">MMK</p>
+                            <p class="mb-2 text-gray-700 dark:text-gray-400">Income</p>
                             <h2 class="text-2xl font-bold text-gray-700 dark:text-gray-400">
-                                1000</h2>
+                                {{ $incomes }}</h2>
                         </div>
                     </div>
                     <div class="flex items-center p-4 rounded-md shadow dark:bg-gray-900 bg-gray-50">
@@ -37,7 +37,7 @@
                         <div>
                             <p class="mb-2 text-gray-700 dark:text-gray-400">Users</p>
                             <h2 class="text-2xl font-bold text-gray-700 dark:text-gray-400">
-                               {{ count($users)}}</h2>
+                                {{ count($users) }}</h2>
                         </div>
                     </div>
 
@@ -78,9 +78,9 @@
                             </span>
                         </div>
                         <div>
-                            <p class="mb-2 text-gray-700 dark:text-gray-400">Coin Request</p>
+                            <p class="mb-2 text-gray-700 dark:text-gray-400">Outcomes</p>
                             <h2 class="text-2xl font-bold text-gray-700 dark:text-gray-400">
-                                10000</h2>
+                                {{ $outcomes }}</h2>
                         </div>
                     </div>
                 </div>
@@ -114,129 +114,42 @@
                                     </th>
                                     <th
                                         class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                                        Actions
+                                        status
                                     </th>
                                     <th
                                         class="px-6 bg-blueGray-50 text-blueGray-700 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">
+                                        ggcoin
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                                        Facebook
-                                    </th>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                                        1,480
-                                    </td>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2">60%</span>
-                                            <div class="relative w-full">
-                                                <div class="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                                                    <div style="width: 60%"
-                                                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                                        Facebook
-                                    </th>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        5,480
-                                    </td>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2">50%</span>
-                                            <div class="relative w-full">
-                                                <div class="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
-                                                    <div style="width: 50%"
-                                                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                                        Google
-                                    </th>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        4,807
-                                    </td>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2">60%</span>
-                                            <div class="relative w-full">
-                                                <div class="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
-                                                    <div style="width: 60%"
-                                                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                                        Instagram
-                                    </th>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        3,678
-                                    </td>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2">85%</span>
-                                            <div class="relative w-full">
-                                                <div class="overflow-hidden h-2 text-xs flex rounded bg-lightBlue-200">
-                                                    <div style="width: 85%"
-                                                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-lightBlue-500">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                                        twitter
-                                    </th>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        2,645
-                                    </td>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2">60%</span>
-                                            <div class="relative w-full">
-                                                <div class="overflow-hidden h-2 text-xs flex rounded bg-orange-200">
-                                                    <div style="width: 60%"
-                                                        class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+
+                                {{-- @dd($histories->all()) --}}
+                                @foreach ($histories as $history)
+                                    <tr>
+                                        <th
+                                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                            {{ $history->user->name }}
+                                        </th>
+                                        <td
+                                            class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                                            {{ $history->status }}
+                                        </td>
+                                        @if ($history->status === 'Income')
+                                            <td
+                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 ">
+                                                <span
+                                                    class="bg-green-300 rounded-lg shadow-md px-3 py-1 text-green-500">
+                                                    {{ $history->ggcoin }}</span>
+                                            </td>
+                                        @else
+                                            <td
+                                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 ">
+                                                <span class="bg-red-300"> {{ $history->ggcoin }}</span>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -244,198 +157,85 @@
 
                 <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                     <div
-                        class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
-                        <table class="min-w-full">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Name</th>
-                                    <th
-                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Title</th>
-                                    <th
-                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Status</th>
-                                    <th
-                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Role</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-                                </tr>
-                            </thead>
+                        class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg bg-white">
 
-                            <tbody class="bg-white">
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-10 h-10">
-                                                <img class="w-10 h-10 rounded-full"
-                                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                                                    alt="">
-                                            </div>
+                        @if (!count($requsers))
+                            <p class="px-2 py-2">No Requested users for today</p>
+                        @else
+                            <table class="min-w-full">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                            Name</th>
+                                        <th
+                                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                            date</th>
+                                        <th
+                                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                            Status</th>
 
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium leading-5 text-gray-900">
-                                                    John Doe
+                                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody class="bg-white">
+
+                                    @foreach ($requsers as $user)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 w-10 h-10">
+                                                        <img class="w-10 h-10 rounded-full"
+                                                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                                            alt="">
+                                                    </div>
+
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium leading-5 text-gray-900">
+                                                            {{ $user->name }}
+                                                        </div>
+                                                        <div class="text-sm leading-5 text-gray-500">
+                                                            {{ $user->email }}</div>
+                                                    </div>
                                                 </div>
-                                                <div class="text-sm leading-5 text-gray-500">
-                                                    john@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
+                                            </td>
 
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <div class="text-sm leading-5 text-gray-900">Software Engineer
-                                        </div>
-                                        <div class="text-sm leading-5 text-gray-500">Web dev</div>
-                                    </td>
+                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                <span
+                                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800  rounded-full">{{ $user->created_at->diffForHumans() }}</span>
+                                            </td>
 
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <span
-                                            class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                    </td>
+                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                <span
+                                                    class="inline-flex px-2 text-xs font-semibold leading-5  bg-yellow-100  text-yellow-500 rounded-full">{{ $user->status }}</span>
+                                            </td>
 
-                                    <td
-                                        class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                        Owner</td>
+                                            <td
+                                                class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
+                                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                                    <td
-                                        class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
-                                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-10 h-10">
-                                                <img class="w-10 h-10 rounded-full"
-                                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                                                    alt="">
-                                            </div>
+                                </tbody>
+                            </table>
+                        @endif
 
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium leading-5 text-gray-900">
-                                                    John Doe
-                                                </div>
-                                                <div class="text-sm leading-5 text-gray-500">
-                                                    john@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <div class="text-sm leading-5 text-gray-900">Software Engineer
-                                        </div>
-                                        <div class="text-sm leading-5 text-gray-500">Web dev</div>
-                                    </td>
-
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <span
-                                            class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                    </td>
-
-                                    <td
-                                        class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                        Owner</td>
-
-                                    <td
-                                        class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
-                                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-10 h-10">
-                                                <img class="w-10 h-10 rounded-full"
-                                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                                                    alt="">
-                                            </div>
-
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium leading-5 text-gray-900">
-                                                    John Doe
-                                                </div>
-                                                <div class="text-sm leading-5 text-gray-500">
-                                                    john@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <div class="text-sm leading-5 text-gray-900">Software Engineer
-                                        </div>
-                                        <div class="text-sm leading-5 text-gray-500">Web dev</div>
-                                    </td>
-
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <span
-                                            class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                    </td>
-
-                                    <td
-                                        class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                        Owner</td>
-
-                                    <td
-                                        class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
-                                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-10 h-10">
-                                                <img class="w-10 h-10 rounded-full"
-                                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                                                    alt="">
-                                            </div>
-
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium leading-5 text-gray-900">
-                                                    John Doe
-                                                </div>
-                                                <div class="text-sm leading-5 text-gray-500">
-                                                    john@example.com</div>
-                                            </div>
-                                        </div>
-                                    </td>
-
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <div class="text-sm leading-5 text-gray-900">Software Engineer
-                                        </div>
-                                        <div class="text-sm leading-5 text-gray-500">Web dev</div>
-                                    </td>
-
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <span
-                                            class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                    </td>
-
-                                    <td
-                                        class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                        Owner</td>
-
-                                    <td
-                                        class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap border-b border-gray-200">
-                                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
+
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-                <div class="flex justify-between">
+                <div class="flex justify-between mb-5">
                     <div>
-                        <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+                        <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">$12,423</h5>
+                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">Sales this week</p>
                     </div>
                     <div
                         class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-                        12%
+                        23%
                         <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 10 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -443,9 +243,9 @@
                         </svg>
                     </div>
                 </div>
-                <div id="area-chart"></div>
+                <div id="tooltip-chart"></div>
                 <div
-                    class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+                    class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between mt-5">
                     <div class="flex justify-between items-center pt-5">
                         <!-- Button -->
                         <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
@@ -491,7 +291,7 @@
                         </div>
                         <a href="#"
                             class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                            Users Report
+                            Sales Report
                             <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -501,6 +301,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
 
@@ -511,80 +312,95 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <script>
-        // ApexCharts options and config
-        window.addEventListener("load", function() {
-            let options = {
-                chart: {
-                    height: "100%",
-                    maxWidth: "100%",
-                    type: "area",
-                    fontFamily: "Inter, sans-serif",
-                    dropShadow: {
-                        enabled: false,
-                    },
-                    toolbar: {
-                        show: false,
-                    },
+        const options = {
+            // set this option to enable the tooltip for the chart, learn more here: https://apexcharts.com/docs/tooltip/
+            tooltip: {
+                enabled: true,
+                x: {
+                    show: true,
                 },
-                tooltip: {
-                    enabled: true,
-                    x: {
-                        show: false,
-                    },
+                y: {
+                    show: true,
                 },
-                fill: {
-                    type: "gradient",
-                    gradient: {
-                        opacityFrom: 0.55,
-                        opacityTo: 0,
-                        shade: "#1C64F2",
-                        gradientToColors: ["#1C64F2"],
-                    },
+            },
+            grid: {
+                show: false,
+                strokeDashArray: 4,
+                padding: {
+                    left: 2,
+                    right: 2,
+                    top: -26
                 },
-                dataLabels: {
+            },
+            series: [{
+                    name: "Developer Edition",
+                    data: [1500, 1418, 1456, 1526, 1356, 1256],
+                    color: "#1A56DB",
+                },
+                {
+                    name: "Designer Edition",
+                    data: [643, 413, 765, 412, 1423, 1731],
+                    color: "#7E3BF2",
+                },
+            ],
+            chart: {
+                height: "100%",
+                maxWidth: "100%",
+                type: "area",
+                fontFamily: "Inter, sans-serif",
+                dropShadow: {
                     enabled: false,
                 },
-                stroke: {
-                    width: 6,
-                },
-                grid: {
-                    show: false,
-                    strokeDashArray: 4,
-                    padding: {
-                        left: 2,
-                        right: 2,
-                        top: 0
-                    },
-                },
-                series: [{
-                    name: "New users",
-                    data: [6500, 6418, 6456, 6526, 6356, 6456],
-                    color: "#1A56DB",
-                }, ],
-                xaxis: {
-                    categories: ['01 February', '02 February', '03 February', '04 February', '05 February',
-                        '06 February', '07 February'
-                    ],
-                    labels: {
-                        show: false,
-                    },
-                    axisBorder: {
-                        show: false,
-                    },
-                    axisTicks: {
-                        show: false,
-                    },
-                },
-                yaxis: {
+                toolbar: {
                     show: false,
                 },
-            }
+            },
+            legend: {
+                show: true
+            },
+            fill: {
+                type: "gradient",
+                gradient: {
+                    opacityFrom: 0.55,
+                    opacityTo: 0,
+                    shade: "#1C64F2",
+                    gradientToColors: ["#1C64F2"],
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                width: 6,
+            },
+            xaxis: {
+                categories: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February',
+                    '07 February'
+                ],
+                labels: {
+                    show: false,
+                },
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false,
+                },
+            },
+            yaxis: {
+                show: false,
+                labels: {
+                    formatter: function(value) {
+                        return '$' + value;
+                    }
+                }
+            },
+        }
 
-            if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
-                const chart = new ApexCharts(document.getElementById("area-chart"), options);
-                chart.render();
-            }
-        });
+        if (document.getElementById("tooltip-chart") && typeof ApexCharts !== 'undefined') {
+            const chart = new ApexCharts(document.getElementById("tooltip-chart"), options);
+            chart.render();
+        }
     </script>
 
 </x-admin-layout>

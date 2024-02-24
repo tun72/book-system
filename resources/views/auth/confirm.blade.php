@@ -32,7 +32,7 @@
                             <div class="otp-countdown hidden bg-gray-400 text-gray-200 w-fit px-3 py-1 rounded-xl"
                                 id="timer-countdown"></div>
 
-                            <button type="button" id="resend" class="bg-yellow-400">restart</button>
+                            <button type="button" id="resend" class="bg-yellow-400 px-3 py-1 rounded-lg text-white">restart</button>
                         </div>
                         <button
                             class="w-full px-4 py-4 mt-6 font-medium text-gray-200 bg-blue-700 rounded-lg dark:bg-blue-500 hover:text-blue-200 "

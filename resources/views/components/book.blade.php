@@ -25,7 +25,7 @@
 
                 </p>
                 <h3 class="text-lg text-brand-700 text-bold ">{{ Str::of($book->title)->limit(12) }}</h3>
-                <span>{{ Str::of($book->user->name)->limit(18) }}</span>
+                <span>{{ Str::of($book->user?->name)->limit(18) }}</span>
             </div>
             @auth
                 @if (auth()->user()->isBought($book))

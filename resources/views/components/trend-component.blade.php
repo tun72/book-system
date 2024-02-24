@@ -29,7 +29,7 @@
                                     @endfor
                                 </p>
                                 <p class="name line-clamp-1 text-white">{{ $book->title }}</p>
-                                <span class="line-clamp-1 text-white">{{ $book->user->name }}</span>
+                                <span class="line-clamp-1 text-white">{{ $book->user?->name }}</span>
                             </div>
                             @auth
                                 @if (auth()->user()->isBought($book))

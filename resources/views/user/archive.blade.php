@@ -30,13 +30,16 @@
         <div class="grid grid-cols-5 gap-12">
             @foreach ($archives as $arch)
                 <div class="">
-                  
+                   
                     @php
-                       $book = $arch->book;
+                        $book = $arch->book;
                         $chapters = count($book->chapters);
+
+                        
                         $finish = $book->chapters->filter(function ($chapter) {
                             return $chapter['is_finish'];
                         });
+                        
 
                         $current = $book->chapters->where('is_finish', false)->first();
                     @endphp
@@ -47,17 +50,12 @@
                             class="opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-white font-semibold bg-slate-200/20 backdrop-blur-sm">
 
                             <ul class="flex items-center flex-col gap-5">
-                                <li class="border border-gray-200 w-full flex justify-center px-2">
-                                    <form action="/book/{{ $book->id }}/archive" method="POST">
-                                        @csrf
-                                        <button type="submit">Archive</button>
-                                    </form>
-                                </li>
+
 
                                 <li class="border border-gray-200 w-full flex justify-center px-2">
                                     <form action="/archive/{{ $arch->id }}/remove" method="POST">
                                         @csrf
-                                        @method("DELETE")
+                                        @method('DELETE')
                                         <button type="submit">Remove</button>
                                     </form>
                                 </li>

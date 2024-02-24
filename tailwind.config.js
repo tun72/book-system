@@ -31,7 +31,7 @@ export default {
                 },
             },
             fontFamily: {
-                sans: "Poppins",
+                sans: "Roboto Mono, monospace",
             },
         },
     },

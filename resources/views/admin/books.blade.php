@@ -1,5 +1,6 @@
 <x-admin-layout>
-    <div class="w-full px-4 lg:px-12">
+    <h1 class="text-4xl  font-bold mb-4">Books</h1>
+    <div class="w-full">
         <!-- Start coding here -->
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -106,7 +107,7 @@
                             <tr class="border-b dark:border-gray-700">
                                 <th class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
                                     <img src="{{ $book->image }}" alt=""
-                                        class="max-w-[60px] max-h-[60px]  rounded-full">
+                                        class="max-w-[70px] max-h-[80px]  rounded-lg">
                                 </th>
                                 <td class="px-4 py-3">{{ $book->title }}</td>
                                 <td class="px-4 py-3">{{ $book->created_at }}</td>
@@ -128,15 +129,10 @@
                                         class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-27-dropdown-button">
-                                            <li>
-
-                                            </li>
-                                            <li>
-                                                <div type="button"
-                                                    data-modal-target="updateProductModal-{{ $book->id }}"
-                                                    data-modal-toggle="updateProductModal-{{ $book->id }}"
-                                                    class="py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">
-                                                    Detail</div>
+                                            <li class="hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ">
+                                                <a type="button" href="/book-details/{{ $book->slug }}"
+                                                    class="py-2 px-4 w-full cursor-pointer">
+                                                    Detail</a>
                                             </li>
                                         </ul>
                                         <div class="py-1">
@@ -147,6 +143,32 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            <div id="delete-modal-{{ $book->id }}" tabindex="-1" aria-hidden="true"
+                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-slate-200/20 backdrop-blur-sm">
+                                <div class="relative p-4 w-full max-w-md max-h-full">
+                                    <!-- Modal content -->
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                        <div class="p-4 md:p-5">
+                                            <h3 class="text-2xl text-center">Are U Sure?</h3>
+                                            <form action="/admin/book/{{ $book->id }}/delete" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <!-- Modal footer -->
+                                                <div
+                                                    class="flex items-center mt-6 space-x-2 rtl:space-x-reverse justify-center">
+                                                    <button type="submit"
+                                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Yes</button>
+                                                    <button data-modal-hide="progress-modal-{{ $book->id }}"
+                                                        type="button"
+                                                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Not</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
 
                     </tbody>

@@ -8,4 +8,12 @@
     </div>
     <x-new-book-component />
 
+    @auth
+
+        @if (auth()->user()->role === 0)
+            <x-user-choise />
+        @endif
+
+    @endauth
+
 </x-home-layout>

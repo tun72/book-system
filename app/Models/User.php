@@ -25,6 +25,7 @@ class User extends Authenticatable
         'imageUrl',
         'user_plan',
         "phoneNumber",
+        "background",
         "otp",
         "otp_expires_at"
     ];
@@ -34,11 +35,14 @@ class User extends Authenticatable
         parent::boot();
         static::deleted(function ($userQuery) {
 
+            
             if ($userQuery->role === 0) {
-
                 $userQuery->reader->delete();
             } else if ($userQuery->role === 2) {
                 $userQuery->author->delete();
+                foreach($userQuery->books as $book) {
+                    $book->delete();
+                }
             }
         });
     }
