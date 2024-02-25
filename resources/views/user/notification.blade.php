@@ -1,12 +1,8 @@
 <x-user-layout>
-    <style>
-        .main {
-            padding: 20px
-        }
-    </style>
+
     <section class="">
         <h1 class="text-2xl font-semibold text-gray-500 py-1 w-fit mb-4">Notification</h1>
-        <div class="w-full flex gap-10">
+        <div class="w-full flex gap-10 items-start">
             <div class="w-[60%] flex flex-col gap-5">
                 @foreach ($notifications as $noti)
                     <div class="w-full shadow-md flex gap-4 px-[20px] py-2 bg-white">
@@ -28,7 +24,7 @@
                                     <span><i class="fas fa-clock"></i></span>
                                     <p>{{ $noti->created_at->diffForHumans() }}</p>
                                 </div>
-                                <p class=""> {{ $noti->comment->body }}</p>
+                                <p class=""> {{ $noti->comment?->body }}</p>
                             </div>
                         </a>
                     </div>
@@ -42,12 +38,15 @@
                         <img src="https://png.pngtree.com/png-clipart/20230816/original/pngtree-cute-character-envelope-letter-paper-picture-image_7991250.png"
                             alt="" class="w-full h-full">
                     </div>
-                    <div class="flex gap-2 w-full px-2 justify-center items-center">
-                        <input type="text" placeholder="Email address" class="py-1 pl-3 w-[70%] rounded-sm">
-                        <div class="bg-orange-400 px-4 py-1 flex justify-center items-center rounded-md">
-                            <a href="#">Invite</a>
+                    <form class="flex gap-2 w-full px-2 justify-center items-center"
+                        action="/user/{{ auth()->user()->username }}/invite-mail" method="POST">
+                        @csrf
+                        <input type="email" placeholder="Email address" class="py-1 pl-3 w-[70%] rounded-sm"
+                            name="email">
+                        <div class="bg-gray-400 text-gray-50 px-4 py-1 flex justify-center items-center rounded-md">
+                            <button href="#">Invite</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="flex justify-between mb-2 items-center">
                     <div class="flex gap-3 items-center">

@@ -214,7 +214,6 @@ class AdminController extends Controller
 
     public function deleteGenres(Genres $genres)
     {
-        dd($genres);
         $genres->delete();
         return back()->with("success", "Genres Successfully Deleted  Chief🪲 ✅.");
     }

@@ -11,7 +11,7 @@
                     </li> --}}
                     <li><a href="/user/notification"><i class="fas fa-bell"></i>Notification</a></li>
                     <li><a href="/user/history"><i class="fas fa-history"></i>History </a></li>
-                    <li><a href="#"><i class="fas fa-shield-alt"></i>Privacy and policy </a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i>Privacy</a></li>
                 </ul>
 
             </div>

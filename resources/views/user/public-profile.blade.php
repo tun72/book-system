@@ -1,14 +1,6 @@
 <x-home-layout>
     @vite('resources/js/readlist.js')
-    <style>
-        .header {
-            padding-bottom: 10px;
-        }
 
-        .main {
-            padding: 0;
-        }
-    </style>
 
 
     <!-- Upper part     Starts -->

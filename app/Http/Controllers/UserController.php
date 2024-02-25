@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InviteMail;
 use App\Models\Archive;
 use App\Models\AuthorProfile;
 use App\Models\Notification;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -145,5 +147,15 @@ class UserController extends Controller
         // $book->update();
 
         return back()->with("success", "Successfully Archived Removed ✅");
+    }
+
+    public function invite(User $user) {
+        $cleanData= request()->validate([
+            "email" => ["required"]
+        ]);
+
+        Mail::to($cleanData["email"])->queue(new InviteMail($user->name));
+
+        return back()->with("success", "Successfully sent ✅");
     }
 }

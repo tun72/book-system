@@ -34,7 +34,7 @@
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row"
                             class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                            <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
+                            <img class="w-10 h-10 rounded-full" src="{{ $review->user->imageUrl}}"
                                 alt="Jese image">
                             <div class="ps-3">
                                 <div class="text-base font-semibold">{{ $review->user->name }}</div>
@@ -55,7 +55,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <!-- Modal toggle -->
-                            <a href="/books/{{ $review->book->slug}}/review" type="button"
+                            <a href="/book-details/{{ $review->book->slug}}" type="button"
                                 data-modal-target="editUserModal" data-modal-show="editUserModal"
                                 class="font-medium text-blue-600 dark:text-blue-500">Detail</a>
                             <a href="#" data-modal-target="progress-modal-{{ $review->id }}"

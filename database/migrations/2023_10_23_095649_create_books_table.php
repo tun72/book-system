@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->boolean("isPublished");
             $table->string("status");
-            $table->string("caption");
+            $table->longText("caption");
             $table->boolean("isArchive")->default(0);
             $table->bigInteger("discount")->default(0);
             $table->timestamps();

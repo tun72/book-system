@@ -22,7 +22,7 @@ class BookFactory extends Factory
     {
         $isFree = rand(0, 1);
 
-        $user = AuthorProfile::factory()->create();
+        // $user = AuthorProfile::factory()->create();
         // dd($user->id);
         return [
             "title" => fake()->name(),
@@ -36,7 +36,7 @@ class BookFactory extends Factory
             "ggcoin" => $isFree != 0 ? 1000 : 0,
             "isPublished" => true,
             "status" => "complete",
-            "user_id" => $user->user_id,
+            "user_id" => AuthorProfile::factory(),
         ];
     }
 }

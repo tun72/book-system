@@ -1,13 +1,14 @@
 <x-author-layout>
     <!-- component -->
-    <section class="text-gray-700 body-font overflow-hidden bg-white">
-        <div class="container px-5 py-10 mx-auto">
-            <div class="lg:w-4/5 mx-auto flex flex-wrap bg-brand-100">
-                <img alt="ecommerce"
-                    class="lg:w-1/2 w-full h-[26rem] object-cover object-center rounded border border-gray-200"
-                    src="{{ $book->image }}">
-                <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                    <h2 class="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
+    <section class="text-gray-700 body-font overflow-hidden bg-white p-10 ">
+        <div class="container mb-10">
+            <div class="flex items-center gap-10">
+                <div class="w-[300px] h-[400px] overflow-hidden">
+                    <img alt="ecommerce" class="w-full h-full object-cover object-center rounded border border-gray-200"
+                        src="{{ $book->image }}">
+                </div>
+                <div class="flex-1">
+                    <h2 class="text-sm title-font text-gray-500 tracking-widest">Book NAME</h2>
                     <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ $book->title }}</h1>
 
                     <div class="flex mb-4">
@@ -95,30 +96,34 @@
                 </div>
             </div>
         </div>
-        <div class="container px-5 py-10 mx-auto">
-            <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                <div class="p-3 lg:w-1/2 shadow-lg">
-                    <h4 class="mb-5">Chapter</h4>
-                    <ul class="flex flex-col gap-8">
-                        @foreach ($book->chapters as $chapter)
-                            <li class="flex justify-between items-start">
-                                <a href="/book/chapter/{{ $book->chapters[$loop->index]->slug }}/read">Chapter-{{ $loop->index + 1 }}
-                                    {{ $chapter->title }}</a>
-                                <span>{{ $chapter->created_at->diffForHumans() }}</span>
-                                <div class="flex gap-2">
-                                    <a href="/chapter/{{ $chapter->slug }}/edit">Edit</a>
-                                    <form action="/chapter/{{ $chapter->slug }}/delete" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit">delete</button>
-                                    </form>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+        <div class="container">
+            <h2 class="text-2xl font-semibold mb-3">Table of contents</h2>
+            <div class="p-3 w-[70%] shadow-xl bg-gray-100">
+                <ul class="flex flex-col gap-8">
+                    @foreach ($book->chapters as $chapter)
+                        <li class="flex justify-between items-start px-3">
 
-                <div class="lg:w-1/2 px-10 py-5">
+                            <div class="flex flex-col gap-2">
+                                <a
+                                    href="/book/chapter/{{ $book->chapters[$loop->index]->slug }}/read"><span>#{{ $chapter->chapter }}</span>{{ $chapter->title }}</a>
+                                <span class="text-xs">{{ $chapter->created_at->diffForHumans() }}</span>
+                            </div>
+
+
+                            <div class="flex gap-2">
+                                <a href="/chapter/{{ $chapter->slug }}/edit">Edit</a>
+                                <form action="/chapter/{{ $chapter->slug }}/delete" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">delete</button>
+                                </form>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            {{-- <div class="lg:w-1/2 px-10 py-5">
 
                     <div class="flex flex-wrap gap-3 items-center">
                         <a type="button" href="#" data-modal-target="crud-modal" data-modal-toggle="crud-modal"
@@ -127,7 +132,7 @@
                             New Chapter
                         </a>
 
-                        <a type="button" href="/book/{{ $book->id }}/publish"
+                        <a type="button" 
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <i class="fas fa-plus"></i>
                             Publish
@@ -151,10 +156,7 @@
                         </form>
 
                     </div>
-                </div>
-
-
-            </div>
+                </div> --}}
         </div>
 
 
@@ -162,6 +164,74 @@
         </div>
 
     </section>
+
+
+
+    <div data-dial-init class="fixed end-[4rem] bottom-[4rem] group">
+        <div id="speed-dial-menu-bottom-right" class="flex flex-col items-center hidden mb-4 space-y-2">
+
+            <form action="/book/book-delete" method="POST" class="py-2">
+                @csrf
+                @method("DELETE")
+                <button type="submit" data-tooltip-target="tooltip-copy" data-tooltip-placement="left"
+                    class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 dark:hover:text-white shadow-sm dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                    <i class="fas fa-trash-alt"></i>
+                    <span class="sr-only">Copy</span>
+                </button>
+            </form>
+
+            <div id="tooltip-copy" role="tooltip"
+                class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                Delete
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+
+            <a type="button" data-tooltip-target="tooltip-print" data-tooltip-placement="left"
+                href="/book/{{ $book->id }}/publish"
+                class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                <i class="fas fa-external-link-square-alt"></i>
+                <span class="sr-only">Print</span>
+            </a>
+            <div id="tooltip-print" role="tooltip"
+                class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                Publish
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            <a type="button" data-tooltip-target="tooltip-download" data-tooltip-placement="left"
+                href="/book/{{ $book->id }}/book-update"
+                class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                <i class="fas fa-cog"></i>
+                <span class="sr-only">Update</span>
+            </a>
+            <div id="tooltip-download" role="tooltip"
+                class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                 Update
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button"
+                data-tooltip-target="tooltip-share" data-tooltip-placement="left"
+                class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+                <i class="fas fa-plus"></i>
+                <span class="sr-only">New-Chapter</span>
+            </button>
+            <div id="tooltip-share" role="tooltip"
+                class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                New-Chapter
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+        </div>
+        <button type="button" data-dial-toggle="speed-dial-menu-bottom-right"
+            aria-controls="speed-dial-menu-bottom-right" aria-expanded="false"
+            class="flex items-center justify-center text-white bg-button-800 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+            <svg class="w-5 h-5 transition-transform group-hover:rotate-45" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 1v16M1 9h16" />
+            </svg>
+            <span class="sr-only">Open actions menu</span>
+        </button>
+    </div>
+
 
 
 

@@ -4,6 +4,270 @@
     $random = ['warning', 'danger', 'info', 'success', 'secondary'];
 @endphp
 
+
+{{-- <style>
+    @import url("https://fonts.googleapis.com/css?family=Poppins:900i");
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .cta {
+        display: flex;
+        padding: 10px 45px;
+        text-decoration: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 40px;
+        color: white;
+        background: #6225e6;
+        transition: 1s;
+        box-shadow: 6px 6px 0 black;
+        transform: skewX(-15deg);
+    }
+
+    .cta:focus {
+        outline: none;
+    }
+
+    .cta:hover {
+        transition: 0.5s;
+        box-shadow: 10px 10px 0 #fbc638;
+    }
+
+    .cta span:nth-child(2) {
+        transition: 0.5s;
+        margin-right: 0px;
+    }
+
+    .cta:hover span:nth-child(2) {
+        transition: 0.5s;
+        margin-right: 45px;
+    }
+
+    span {
+        transform: skewX(15deg);
+    }
+
+    span:nth-child(2) {
+        width: 20px;
+        margin-left: 30px;
+        position: relative;
+        top: 12%;
+    }
+
+    /**************SVG****************/
+
+    path.one {
+        transition: 0.4s;
+        transform: translateX(-60%);
+    }
+
+    path.two {
+        transition: 0.5s;
+        transform: translateX(-30%);
+    }
+
+    .cta:hover path.three {
+        animation: color_anim 1s infinite 0.2s;
+    }
+
+    .cta:hover path.one {
+        transform: translateX(0%);
+        animation: color_anim 1s infinite 0.6s;
+    }
+
+    .cta:hover path.two {
+        transform: translateX(0%);
+        animation: color_anim 1s infinite 0.4s;
+    }
+
+    /* SVG animations */
+
+    @keyframes color_anim {
+        0% {
+            fill: white;
+        }
+
+        50% {
+            fill: #fbc638;
+        }
+
+        100% {
+            fill: white;
+        }
+    }
+</style> --}}
+
+<!-- designed by me... enjoy! -->
+
+
+
+{{-- <style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    .wrap {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .button {
+        min-width: 300px;
+        min-height: 60px;
+        font-family: 'Nunito', sans-serif;
+        font-size: 22px;
+        text-transform: uppercase;
+        letter-spacing: 1.3px;
+        font-weight: 700;
+        color: #313133;
+        background: #4FD1C5;
+        background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
+        border: none;
+        border-radius: 1000px;
+        box-shadow: 12px 12px 24px rgba(79, 209, 197, .64);
+        transition: all 0.3s ease-in-out 0s;
+        cursor: pointer;
+        outline: none;
+        position: relative;
+        padding: 10px;
+    }
+
+    button::before {
+        content: '';
+        border-radius: 1000px;
+        min-width: calc(300px + 12px);
+        min-height: calc(60px + 12px);
+        border: 6px solid #00FFCB;
+        box-shadow: 0 0 60px rgba(0, 255, 203, .64);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: all .3s ease-in-out 0s;
+    }
+
+    .button:hover,
+    .button:focus {
+        color: #313133;
+        transform: translateY(-6px);
+    }
+
+    button:hover::before,
+    button:focus::before {
+        opacity: 1;
+    }
+
+    button::after {
+        content: '';
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        border: 6px solid #00FFCB;
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: ring 1.5s infinite;
+    }
+
+    button:hover::after,
+    button:focus::after {
+        animation: none;
+        display: none;
+    }
+
+    @keyframes ring {
+        0% {
+            width: 30px;
+            height: 30px;
+            opacity: 1;
+        }
+
+        100% {
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+        }
+    }
+</style> --}}
+
+<style>
+    .wrapper {}
+
+    .link_wrapper {
+        position: relative;
+    }
+
+    .link_wrapper a {
+        display: block;
+        width: 200px;
+        height: 50px;
+        line-height: 50px;
+        font-weight: bold;
+        text-decoration: none;
+        background: #2993FF;
+        text-align: center;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: 3px solid #2993FF;
+        transition: all .35s;
+        border-radius: 20px
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+        border: 3px solid transparent;
+        position: absolute;
+        transform: rotate(45deg);
+        right: 0;
+        top: 0;
+        z-index: -1;
+        transition: all .35s;
+    }
+
+    .icon svg {
+        width: 30px;
+        position: absolute;
+        top: calc(50% - 15px);
+        left: calc(50% - 15px);
+        transform: rotate(-45deg);
+        fill: #2ecc71;
+        transition: all .35s;
+    }
+
+    .link_wrapper a:hover {
+        width: 190px;
+        border: 3px solid #2ecc71;
+        background: transparent;
+        color: #2ecc71;
+    }
+
+    a:hover+.icon {
+        border: 3px solid #2ecc71;
+        right: -25%;
+    }
+</style>
+
 <x-home-layout>
 
     <x-price-model :book="$book" />
@@ -12,7 +276,7 @@
         <div class="w-full grid grid-cols-12 gap-[2rem]">
             <div class="col-span-3">
                 <div class="fixed top-[85px] z-10 flex flex-col items-center gap-5">
-                    <div class="w-[230px] h-[290px]  rounded-lg overflow-hidden">
+                    <div class="w-[230px] h-[350px]  rounded-lg overflow-hidden">
                         <img src="{{ $book->image }}" alt="" class="w-full h-full object-cover">
                     </div>
                     @auth
@@ -30,19 +294,41 @@
                                     @endif
                                 </form>
                             </div> --}}
-                            <div class="">
-                                <button type="button" data-modal-target="popup-modal-{{ $book->id }}"
-                                    data-modal-toggle="popup-modal-{{ $book->id }}"
+                            <div>
+                                {{-- <button type="button" data-modal-target="popup-modal-{{ $book->id }}"
+                                    
                                     class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-[5.7rem] py-2 text-center me-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy
-                                    Now</button>
+                                    Now</button> --}}
+                                {{-- <div class="wrap">
+                                    <button class="button">Submit</button>
+                                </div> --}}
+
+                                <div class="wrapper">
+                                    <div class="link_wrapper" data-modal-target="popup-modal-{{ $book->id }}"
+                                        data-modal-toggle="popup-modal-{{ $book->id }}">
+                                        <a href="#">Buy Now</a>
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                                                <path
+                                                    d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         @else
-                            <form action="/book/chapter/{{ $book->chapters[0]->slug }}/read" method="GET">
-                                <button type="submit"
-                                    class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600">
-                                    read
-                                </button>
-                            </form>
+                            <div class="wrapper">
+                                <div class="link_wrapper">
+                                    <a href="/book/chapter/{{ $book->chapters[0]->slug }}/read">Read Now</a>
+                                    <div class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                                            <path
+                                                d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
 
                         <div class=" text-2xl text-gray-500 flex flex-col">
@@ -50,7 +336,7 @@
                                 data-modal-toggle="report-modal">
                                 <i class="far fa-flag"></i>
                                 <div class="text-center text-xl text-gray-600 ">
-                                    <span class="text-sm">Report Now</span>
+                                    <span class="text-sm">Report</span>
                                 </div>
                             </a>
                         </div>
@@ -67,7 +353,7 @@
                 </div>
 
                 <div class="flex text-xl font-light ">
-                    <h1 class=""> <a
+                    <h1 class="font-semibold text-button-800"> <a
                             href="/author/{{ $book->user->username }}/profile">{{ $book->user->name }}</a></h1>
                 </div>
 
@@ -95,9 +381,14 @@
                 <div class="flex gap-4 font-semibold underline-offset-8 decoration-green-400">
                     <a href="#" class="">Genere</a>
                     @foreach ($book->genres as $gen)
-                        <a href="#" class="">{{ $gen->name }}</a>
+                        <a href="#" class=""><span
+                                class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ $gen->name }}</span></a>
                     @endforeach
                 </div>
+
+
+
+
 
                 <div class="text-gray-500">
                     <p>{{ count($book->chapters) }} chapters, Kindle Edition</p>
@@ -108,7 +399,7 @@
                 </div>
 
                 <div class="flex items-center font-semibold gap-2 text-lg arrow cursor-pointer">
-                    <p class="">Book Details and Editions</p>
+                    <h2 class="font-semibold text-button-800">Book Details</h2>
                 </div>
 
                 <div class="flex flex-col gap-4 detail">
@@ -120,29 +411,31 @@
                 </div>
 
                 <div class="text-lg font-semibold mt-4">
-                    <h1>Related Books</h1>
+                    <h1 class="font-semibold text-button-800">Related Books</h1>
                 </div>
-
                 <div class="flex gap-6">
                     @if (count($randomBooks) > 0)
                         @foreach ($randomBooks as $randbook)
                             <!-- Book Card 1 -->
-                            <div class="w-[180px]">
-                                <a href="/book-details/{{ $randbook->slug }}"> <img src="{{ $randbook->image }}"
-                                        alt="">
 
-                                    <div class="text-lg text-gray-500 mt-2">
-                                        <h1>{{ $randbook->title }}</h1>
-                                    </div>
+                            <div class="">
+                                <a href="/book-details/{{ $randbook->slug }}"> <img src="{{ $randbook->image }}"
+                                        alt="" class="w-[180px] max-h-[260px] object-cover rounded-lg" />
                                 </a>
+
+                                <div class="text-lg text-gray-500 mt-2 text-center">
+                                    <h1 class="font-semibold text-button-800">{{ $randbook->title }}</h1>
+                                </div>
                             </div>
                         @endforeach
                     @endif
                 </div>
 
-                <div class="h-[2px] w-[100%] bg-gray-300"></div>
+
+                <div class="h-[2px] w-[100%] bg-[#e8e7e6]"></div>
+
                 <!-- peoples -->
-                <div class=" w-[100%] flex justify-between items-center mt-3">
+                <div class=" w-[100%] flex justify-between items-center">
                     <div class="flex  w-[50%] items-center gap-3">
                         <div class="flex">
                             @php
@@ -160,8 +453,8 @@
                 <!-- border line bottom -->
                 <div class="h-[2px] w-[100%] bg-[#e8e7e6]"></div>
 
-                <div class="w-[100%] mb-5">
-                    <h1 class="text-2xl font-semibold mb-4">
+                <div class="w-[100%] mb-4">
+                    <h1 class="text-2xl font-semibold mb-3 text-gray-800">
                         About the author
                     </h1>
                     <!-- the row -->
@@ -176,8 +469,9 @@
                             </div>
                             <!-- Profile name & followers -->
                             <div>
-                                <p class="text-xl font-semibold">{{ $book->user->name }}</p>
-                                <span class="font-light text-sm">{{ count($book->user->books) }} books</span>
+                                <p class="text-xl font-semibold  text-button-800">{{ $book->user->name }}</p>
+                                <span class="font-light text-sm text-gray-700">{{ count($book->user->books) }}
+                                    books</span>
                                 <span class="font-light text-sm"> . </span>
                                 <span class="font-light text-sm">{{ count($book->user->author->subscribers) }}
                                     followers</span>
@@ -185,17 +479,21 @@
                         </div>
 
                         @auth
-                            <form action="/user/{{ $book->user->id }}/subscribe" method="POST">
-                                @csrf
-                                @if (auth()->user()->isSubscribed($book->user->author))
-                                    <button type="submit"
-                                        class="py-3 px-5 bg-gray-700 text-white text-sm font-semibold text-center rounded-3xl ml-[-5px]">Subscribed</button>
-                                @else
-                                    <button
-                                        class="py-3 px-5 bg-white text-black text-sm font-semibold text-center rounded-3xl ml-[-5px]">Subscribe</button>
-                                @endif
+                            @if (auth()->user()->id !== $book->user->author->id)
+                                <form action="/user/{{ $book->user->id }}/subscribe" method="POST">
+                                    @csrf
+                                    @if (auth()->user()->isSubscribed($book->user->author))
+                                        <button type="submit"
+                                            class="px-2.5 py-2 bg-green-400 text-green-100 text-sm font-semibold text-center rounded-3xl ml-[-5px]">following
+                                            &check;</button>
+                                    @else
+                                        <button
+                                            class="px-2.5 py-2 bg-green-400 text-green-100 text-base font-semibold text-center rounded-3xl ml-[-7px] mt-[-4px]">+
+                                            follow</button>
+                                    @endif
 
-                            </form>
+                                </form>
+                            @endif
                         @endauth
 
 
@@ -208,28 +506,25 @@
                 <div class="h-[2px] w-[100%] bg-[#e8e7e6]"></div>
 
                 <div class="w-[100%] mt-4 mb-6">
-                    <h1 class="text-2xl font-semibold mb-5">
-                        Chapters
+                    <h1 class="text-2xl font-semibold mb-5 text-gray-700">
+                        Table of contents
                     </h1>
 
                     @foreach ($book->chapters as $chapter)
-                        <label>
+                        <label class="rounded-lg">
                             <input class="peer/showLabel absolute scale-0" type="checkbox" />
                             <span
-                                class="block max-h-14 w-full overflow-hidden  bg-emerald-100 px-4 py-0 text-cyan-800 shadow-lg transition-all duration-300 peer-checked/showLabel:max-h-52">
+                                class="block max-h-14 w-full overflow-hidden  bg-gray-50  px-4 py-0 text-stone-700 shadow-lg transition-all duration-300 peer-checked/showLabel:max-h-52">
                                 <div class="flex items-center  w-full gap-4">
+                                    <span>#{{ $chapter->chapter }}</span>
                                     <h3 class="flex h-14 cursor-pointer items-center font-bold">
-                                        Chapter-{{ $chapter->chapter }} </h3>
+                                        {{ $chapter->title }} </h3>
                                     @if (!$chapter->isfree)
-                                        <span class="text-sm text-gray-800"><i class="fas fa-lock"></i></span>
+                                        <a href="{{ $chapter->isfree ? '/book/chapter/' . $chapter->slug . '/read' : '#' }}"
+                                            class="text-sm text-gray-800"><i class="fas fa-lock"></i></a>
                                     @else
                                         <span class="text-sm text-gray-800"><i class="fas fa-lock-open"></i></span>
                                     @endif
-                                    <a class="text-sm italic"
-                                        href="{{ $chapter->isfree
-                                            ? '/book/chapter/' . $chapter->slug . '/read'
-                                            : '#' }} ">{{ $chapter->title }}</a>
-
                                 </div>
                                 <p class="mb-2">{{ $chapter->intro }}</p>
                             </span>
@@ -239,12 +534,10 @@
                 </div>
                 <div class="h-[2px] w-[100%] bg-gray-300 "></div>
 
-
-
                 <div class="mb-4 w-full">
                     <div class="flex items-center  mb-3">
-                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="currentColor" viewBox="0 0 22 20">
+                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                             <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
@@ -272,8 +565,9 @@
                         <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">out of</p>
                         <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">5</p>
                     </div>
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">1,745 global ratings</p>
-                    <div class="flex items-center mt-4">
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">1,745 global
+                        ratings</p>
+                    <div class="flex items-center mt-4 w-full">
                         <a href="#"
                             class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">5
                             star</a>
@@ -329,7 +623,7 @@
                 <div class="w-[100%] mb-5">
                     <!-- Head -->
                     <div class="">
-                        <h1 class="text-4xl font-semibold">Rating & Reviews</h1>
+                        <h1 class="text-2xl font-semibold">Rating & Reviews</h1>
                     </div>
                     <!-- body -->
                     <div class="flex justify-center items-center flex-col gap-[30px] mt-[30px]">
@@ -343,7 +637,7 @@
                                     d="M14 9.9V8.2q.825-.35 1.688-.525T17.5 7.5q.65 0 1.275.1T20 7.85v1.6q-.6-.225-1.213-.337T17.5 9q-.95 0-1.825.238T14 9.9m0 5.5v-1.7q.825-.35 1.688-.525T17.5 13q.65 0 1.275.1t1.225.25v1.6q-.6-.225-1.213-.338T17.5 14.5q-.95 0-1.825.225T14 15.4m0-2.75v-1.7q.825-.35 1.688-.525t1.812-.175q.65 0 1.275.1T20 10.6v1.6q-.6-.225-1.213-.338T17.5 11.75q-.95 0-1.825.238T14 12.65M6.5 16q1.175 0 2.288.263T11 17.05V7.2q-1.025-.6-2.175-.9T6.5 6q-.9 0-1.788.175T3 6.7v9.9q.875-.3 1.738-.45T6.5 16m6.5 1.05q1.1-.525 2.213-.787T17.5 16q.9 0 1.763.15T21 16.6V6.7q-.825-.35-1.713-.525T17.5 6q-1.175 0-2.325.3T13 7.2zM12 20q-1.2-.95-2.6-1.475T6.5 18q-1.05 0-2.062.275T2.5 19.05q-.525.275-1.012-.025T1 18.15V6.1q0-.275.138-.525T1.55 5.2q1.15-.6 2.4-.9T6.5 4q1.45 0 2.838.375T12 5.5q1.275-.75 2.663-1.125T17.5 4q1.3 0 2.55.3t2.4.9q.275.125.413.375T23 6.1v12.05q0 .575-.487.875t-1.013.025q-.925-.5-1.937-.775T17.5 18q-1.5 0-2.9.525T12 20m-5-8.35" />
                             </svg>
                         </div>
-                        <h1 class="text-4xl font-bold">What do you think?</h1>
+                        <h1 class="text-4xl font-bold text-stone-700">What do you think?</h1>
                         <!-- Stars and button -->
                         <div class="flex w-[40%] justify-evenly items-center">
                             <!-- star -->
@@ -378,7 +672,7 @@
                                 <span class="pl-[30px]">Rate this Book</span>
                             </div>
                             <!-- button -->
-                            <div class="h-[50px] w-[150px] bg-[#1e1915] flex justify-center items-center rounded-3xl">
+                            <div class="h-[50px] w-[150px] bg-button-800 flex justify-center items-center rounded-3xl">
                                 <button class="text-white text-center" data-modal-target="comment-modal"
                                     data-modal-toggle="comment-modal">Write a review</button>
                             </div>
@@ -396,7 +690,7 @@
                 <div class="w-[100%] ">
                     <!-- Head -->
                     <div class="mb-3">
-                        <span>Displaying top 1-10 reviews</span>
+                        <span>Displaying latest reviews</span>
                     </div>
                     <!-- body -->
                     @foreach ($book->reviews as $review)
@@ -405,10 +699,11 @@
                             <div class="flex flex-col col-span-2">
                                 <!-- circle -->
                                 <div class="h-[60px] w-[60px] rounded-full overflow-hidden">
-                                    <img src="{{ $review->user->imageUrl }}" alt="">
+                                    <img src="{{ $review->user->imageUrl }}" alt=""
+                                        class="w-full h-full object-cover">
                                 </div>
-                                <h1 class="font-bold py-[5px] text-xl">{{ $review->user->name }}</h1>
-                                <span>48 reviews</span>
+                                <h1 class="font-bold py-[5px] text-lg">{{ $review->user->name }}</h1>
+                                {{-- <span>{{count($review->user->reivews)}} reviews</span> --}}
 
                             </div>
 
@@ -422,9 +717,15 @@
                                     {{ $review->body }}
                                 </p>
 
-                                <span
-                                    class="text-sm  text-gray-600 font-bold cursor-pointer">{{ count($review->likes) }}
-                                    likes</span>
+                                <div class="flex gap-5 items-center">
+                                    <span
+                                        class="text-sm  text-gray-600 font-bold cursor-pointer">{{ count($review->likes) }}
+                                        likes</span>
+
+                                    <span
+                                        class="text-sm  text-gray-600 font-bold cursor-pointer">{{ count($review->comments) }}
+                                        comments</span>
+                                </div>
 
                                 <!-- like comment and see more -->
                                 <div class="flex  justify-start  gap-5" style="cursor: pointer">
@@ -471,7 +772,7 @@
 
 
                                     <!-- see more -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24">
                                         <g fill="none">
                                             <path
@@ -479,7 +780,8 @@
                                             <path fill="currentColor"
                                                 d="M5 10a2 2 0 1 1 0 4a2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4a2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4a2 2 0 0 1 0-4" />
                                         </g>
-                                    </svg>
+                                    </svg> --}}
+
                                 </div>
 
                                 <div id="dropdown-comment-{{ $review->id }}" class="hidden">
@@ -506,11 +808,13 @@
                                         @foreach ($review->comments as $comment)
                                             <div class=" mb-3 flex items-start gap-4">
                                                 <div class="w-[3rem] h-[3rem] rounded-full overflow-hidden">
-                                                    <img src="{{ $comment->user->imageUrl }}" alt="">
+                                                    <img src="{{ $comment->user->imageUrl }}" alt=""
+                                                        class="w-full h-full">
                                                 </div>
                                                 <div class="flex flex-col gap-2">
                                                     <div class="flex gap-4 items-center">
-                                                        <h1 class="font-bold text-base">{{ $comment->user->name }}
+                                                        <h1 class="font-bold text-base">
+                                                            {{ $comment->user->name }}
                                                         </h1>
                                                         <span
                                                             class="text-sm">{{ $comment->created_at->diffForHumans() }}</span>
@@ -657,7 +961,6 @@
 
                             <button type="submit"
                                 class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-
 
                         </form>
                     </div>

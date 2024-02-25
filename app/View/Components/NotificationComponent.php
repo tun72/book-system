@@ -23,7 +23,7 @@ class NotificationComponent extends Component
     public function render(): View|Closure|string
     {
         return view('components.notification-component', [
-            "notifications" => Notification::where("recipient_id",  auth()->id())->latest()->get()
+            "notifications" => Notification::where("recipient_id",  auth()->id())->latest()->limit(8)->get()
         ]);
     }
 }

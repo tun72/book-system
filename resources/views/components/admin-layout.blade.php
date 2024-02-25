@@ -466,7 +466,7 @@
         </nav>
         <aside class="row-[1/-1] flex flex-col gap-[0.75rem] p-[3.2rem 4.8rem] border-r-1 border-gray-800 "
             aria-label="Sidenav" id="drawer-navigation">
-            <div class="flex flex-col gap-[0.25rem] items-center w-full">
+            <div class="flex flex-col gap-[0.25rem] items-center w-full mt-[4rem]">
                 <img src="/img/logo.svg" alt="" class="w-[6rem] h-[6rem]">
                 <h3 class="font-bold text-xl">THE BOOK STORE</h3>
             </div>

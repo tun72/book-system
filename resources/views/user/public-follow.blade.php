@@ -1,16 +1,5 @@
 <x-user-layout>
     @vite('resources/js/readlist.js')
-    <style>
-        .header {
-            padding-bottom: 10px;
-        }
-
-        .main {
-            padding: 0;
-        }
-    </style>
-
-
     <!-- Upper part     Starts -->
     <div
         class="w-[100%] bg-cover bg-center bg-no-repeat bg-[url('https://wallpapers.com/images/hd/beautiful-background-9eitvbn5p15z5rlu.jpg')] bg-gray-700 bg-blend-multiply">

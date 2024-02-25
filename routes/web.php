@@ -97,6 +97,12 @@ Route::middleware(["auth", "isVerify"])->group(function () {
     Route::post("/confirm-payment", [PriceController::class, "confirm"]);
     Route::post('/pricing-section', [PriceController::class, "store"]);
 
+    #invite mail
+    Route::post("/user/{user:username}/invite-mail", [UserController::class, "invite"]);
+
+    #report
+    Route::post("/book/{book:slug}/report", [ReportController::class, "store"]);
+
 
 
     //////////////////////////////////////////////// AUTHOR //////////////////////////////////////////////////
@@ -145,6 +151,8 @@ Route::middleware(["auth", "isVerify"])->group(function () {
 
     #verify
     Route::post("/author/{user:username}/verify", [AuthorController::class, "verify"])->middleware(["isAuthor"]);
+
+    
 });
 
 
@@ -197,7 +205,7 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
     Route::patch("/admin/setting", [AdminController::class, "updateSetting"]);
 
     #report
-    Route::post("/book/{book:slug}/report", [ReportController::class, "store"]);
+    
     Route::get("/admin/books/reports", [ReportController::class, "index"]);
 
     #history

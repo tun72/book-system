@@ -50,8 +50,7 @@
                     </li>
 
                     <li>
-                        <a href="" class="text-lg items-center"><i class="fas fa-comment-alt text-lg"></i>Sent
-                            Feedback</a>
+                        <a href="" class="text-lg items-center"><i class="fas fa-comment-alt text-lg"></i>Feedback</a>
                     </li>
 
 

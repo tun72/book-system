@@ -402,13 +402,20 @@
 
 
         @php
-            $coins = [];
-            $date = [];
+           
+            $arr = [];
             foreach ($earns as $earn) {
-                # code...
-                array_push($coins, $earn->ggcoin);
-                array_push($date, $earn->created_at);
+                $date = $earn->created_at->format('Y-m-d');
+                if (array_key_exists($date, $arr)) {
+                    $arr[$date] += $earn->ggcoin;
+                } else {
+                    $arr[$date] = $earn->ggcoin;
+                }
             }
+
+
+            $date = array_keys($arr);
+            $coins = array_values($arr);
 
             $coins = implode(',', $coins);
             $date = implode(',', $date);

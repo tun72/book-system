@@ -8,16 +8,31 @@ function clear(element) {
     $(element).removeClass("justify-between");
 }
 
+let arr = [];
+
 $("#checkboxList input[type=checkbox]").change(function () {
     if (flag) {
         clear($("#drop-down-section button")[0]);
     }
     flag = false;
 
+    let title = $(this).data("title");
+
+    if (arr.includes(title)) {
+        arr = arr.filter((item) => item !== title);
+        $(`.${title}`).fadeOut()
+        if (arr.length === 0) {
+            $("#drop-down-section button")[0].innerHTML = `Choose Genres`;
+            flag = true;
+        }
+        
+
+        return console.log("yes");
+    }
+    arr.push($(this).data("title"));
+
     $("#drop-down-section button")[0].insertAdjacentHTML(
         "beforeend",
-        `<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">${$(
-            this
-        ).data("title")}</span>`
+        `<span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 ${title}">${title}</span>`
     );
 });

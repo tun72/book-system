@@ -214,6 +214,11 @@ class BookController extends Controller
             $book->isPublished = true;
             $book->update();
             return back()->with("success", "Successfully Published!");
+        } else if ($book?->isPublished === 1) {
+            $book->isPublished = false;
+            $book->update();
+
+            return back()->with("error", "Successfully unPublished!");
         }
         return back()->with("error", "To Publish need to complete at least 10 Chapters!");
     }

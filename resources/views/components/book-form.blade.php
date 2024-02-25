@@ -2,6 +2,8 @@
 
 @vite('resources/js/image.js')
 @vite('resources/js/select.js')
+
+
 <section class="w-full">
     <form class="w-full" action="{{ $type == 'create' ? '/book/new-book' : '/book/' . $book->id . '/book-update' }}"
         method="POST" enctype="multipart/form-data">
@@ -41,7 +43,7 @@
             <div class="lg:w-[60%] w-full">
                 <div class="w-full ">
 
-                    <input type="text" placeholder="Title" name="title" value="{{ old('title', $book?->title) }}"
+                    <input type="text" placeholder="Book Title" name="title" value="{{ old('title', $book?->title) }}"
                         class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 px-4 py-3 pr-10 intro-y !box" />
 
                     <x-error name="title" />
@@ -59,9 +61,9 @@
 
                         <div class="p-5">
                             <div class="p-5 border rounded-md border-slate-200/60 dark:border-darkmode-400 mb-10">
-                                <div class="flex gap-2"><span><i
+                                <div class="flex gap-2 items-center"><span><i
                                             class="fa-solid fa-angle-down text-gray-500"></i></span>
-                                    <h1 class="font-semibold text-gray-500">Text Content</h1>
+                                    <h1 class="font-semibold text-gray-500">Book Intro</h1>
                                 </div>
                                 <div class="border-b border-slate-200/60 dark:border-darkmode-400 mb-5">
                                 </div>
@@ -215,7 +217,7 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="inline-block mb-2">Caption</label>
-                                    <input type="text" placeholder="Title" name="caption" value="{{ old('caption', $book?->caption) }}"
+                                    <input type="text" placeholder="Book Caption" name="caption" value="{{ old('caption', $book?->caption) }}"
                                         class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
                                     <x-error name="caption" />
                                 </div>
@@ -300,7 +302,7 @@
                                 <input type="hidden" value="0" name="ggcoin">
                             @endif
 
-                            <input type="number" placeholder="coins" name="ggcoin"
+                            <input type="number" placeholder="coins" name="ggcoin" min="0" max="10000"
                                 value="{{ old('ggcoin', $book?->ggcoin) }}" @disabled(!auth()->user()->author->isVerified)
                                 class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                             <x-error name="ggcoin" />

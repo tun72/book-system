@@ -32,20 +32,10 @@ class DatabaseSeeder extends Seeder
             'ggcoin' => 99999
         ]);
 
-        Book::factory(10)->has(Chapter::factory()->count(10))->create();
+        // Book::factory(10)->has(Chapter::factory()->count(10))->create();
         Genres::factory(20)->create();
         UserProfiles::factory(20)->create();
+        AuthorProfile::factory(20)->create();
         Setting::factory(1)->create();
-
-
-        // ReadList::factory()->create([
-        //     "title" => "My Library",
-        //     "private" => true
-        // ]);
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

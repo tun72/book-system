@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Book;
+use App\Models\Chapter;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,7 +19,7 @@ class AuthorProfileFactory extends Factory
      */
     public function definition(): array
     {
-        $user = User::factory()->create(["role" => 2]);
+        $user = User::factory()->has(Book::factory()->count(20)->has(Chapter::factory()->count(10)))->create(["role" => 2]);
 
         return [
             "id" => $user->id,

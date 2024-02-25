@@ -11,7 +11,7 @@
 
 
     <section class="">
-        <div class="pt-4 bg-white rounded shadow dark:text-gray-100 dark:bg-gray-900">
+        <div class="pt-4 rounded  dark:text-gray-100 dark:bg-gray-900">
             <div class="flex px-6 pb-4 border-b dark:border-gray-700 justify-between">
                 <h2 class="text-xl font-bold dark:text-gray-400">Incomes</h2>
                 <div>
@@ -19,7 +19,7 @@
                         class="bg-green-100 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{ auth()->user()->ggcoin }}
                         coins</span>
                     <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots"
-                        class="inline-flex  items-center p-2 text-xs font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        class="inline-flex  items-center p-2 text-xs font-medium text-center text-gray-900  rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         type="button">
                         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 4 15">
@@ -29,7 +29,7 @@
                     </button>
                 </div>
             </div>
-            <div class="p-4 overflow-x-auto">
+            <div class="p-4 overflow-x-auto  bg-white">
                 <table class="w-full table-auto">
                     <thead>
                         <tr class="text-xs text-left text-gray-500 dark:text-gray-400">

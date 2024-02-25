@@ -91,7 +91,7 @@
                         <div class="flex flex-wrap items-center">
                             <div class="relative w-full px-4 max-w-full flex-grow flex-1">
                                 <h3 class="font-semibold text-base text-blueGray-700">
-                                    Today Incomes
+                                    Today 
                                 </h3>
                             </div>
                             <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
@@ -145,7 +145,8 @@
                                         @else
                                             <td
                                                 class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 ">
-                                                <span class="bg-red-300"> {{ $history->ggcoin }}</span>
+                                                <span class="bg-red-300 rounded-lg shadow-md px-3 py-1 text-red-500 ">
+                                                    {{ $history->ggcoin }}</span>
                                             </td>
                                         @endif
                                     </tr>

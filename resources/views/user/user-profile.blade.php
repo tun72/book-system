@@ -1,14 +1,5 @@
 <x-user-layout>
     @vite('resources/js/readlist.js')
-    <style>
-        .header {
-            padding-bottom: 10px;
-        }
-
-        .main {
-            padding: 0;
-        }
-    </style>
 
 
     <!-- Upper part     Starts -->
@@ -347,7 +338,7 @@
                         $index = 0;
                     @endphp
                     <!-- List begin -->
-                    <div class="w-[100%] px-[2rem] mt-[10px]  pb-[2rem] flex items-center gap-10">
+                    <div class="w-[100%] px-[2rem] mt-[10px]  pb-[2rem] flex items-center flex-wrap gap-10">
                         @foreach ($readlist->books as $book)
                             <!-- first list  -->
 
