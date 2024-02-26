@@ -146,7 +146,7 @@
 
             <div class="px-4 py-3">
                 {{ $users->links('pagination::tailwind') }}
-              </div>
+            </div>
 
         </div>
     </div>

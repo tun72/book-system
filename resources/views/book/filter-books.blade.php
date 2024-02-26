@@ -87,9 +87,9 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <p>{{ $book->body }}</p>
+                                    <p class="line-clamp-2">{{ $book->body }}</p>
                                 </div>
-                                <div class="flex gap-2 items-center">
+                                <div class="flex gap-2 items-center flex-wrap">
                                     <span
                                         class="w-fit px-2 py-1 bg-lime-600 text-sm font-semibold text-white rounded-md">
                                         {{ $book->status }}
@@ -111,6 +111,7 @@
 
             </section>
 
+           
 
             <!-- blog section end -->
 

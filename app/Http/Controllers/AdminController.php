@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\BookDeleteMail;
+use App\Mail\CoinConfirm;
+use App\Mail\ConfirmAuthorMail;
 use App\Models\AdminHistory;
 use App\Models\AuthorProfile;
 use App\Models\AuthorRegister;
@@ -109,6 +111,7 @@ class AdminController extends Controller
         $requser->user->update();
         AuthorProfile::create(["name" => $requser->user->name, "id" => $requser->user->id, "user_id" => $requser->user->id, "about" => $requser->about, "description" => $requser->description]);
 
+        Mail::to($requser->user->email)->queue(new ConfirmAuthorMail($requser->user->name));
         return redirect("/admin/authors/request"); // cheange redirect back later
     }
 
@@ -152,6 +155,7 @@ class AdminController extends Controller
             "status" => "Income"
         ]);
         $transfer->delete();
+        Mail::to($transfer->user->email)->queue(new CoinConfirm($transfer->user->name, $transfer->user->ggcoin));
         return back()->with("success", "Successfully transfered Chief🪲 ✅.");;
     }
 
@@ -235,10 +239,7 @@ class AdminController extends Controller
     public function books()
     {
         // $ROLE = ["free" => [0], "author" => [2], "all" => [0, 2], "" => [0, 2]];
-
-
-
-        $book = Book::with(["user"])->filter(request(["status", "search", "author", "price"]));
+        $book = Book::with(["user"])->filter(request(["status", "search", "author", "price", "id"]));
 
         $bookQuery = $book->orderBy("created_at", "DESC");
         $bookQuery = $bookQuery->latest()->paginate(10)->withQueryString();
@@ -251,16 +252,16 @@ class AdminController extends Controller
         //     // dd($book);
         // }
 
-        return view("admin.books", ["books" => $book->get()]);
+        return view("admin.books", ["books" => $bookQuery]);
     }
 
     public function deleteBook(Book $book)
     {
 
-       $delete =  $book->delete();
-       if($delete) 
-          Mail::to("shinesilwin@gmail.com")->queue(new BookDeleteMail($book->title, $book->user->name));
-       
+        $delete =  $book->delete();
+        if ($delete)
+            Mail::to("shinesilwin@gmail.com")->queue(new BookDeleteMail($book->title, $book->user->name));
+
         return back()->with("success", "Successfully Deleted Chief🪲 ✅.");
     }
 

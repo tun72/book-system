@@ -31,7 +31,7 @@ class Book extends Model
     {
         parent::boot();
         static::deleted(function ($bookQuery) {
-            if($bookQuery->archive) {
+            if ($bookQuery->archive) {
                 $bookQuery->archive->delete();
             }
             if (File::exists($file = public_path($bookQuery->image))) {
@@ -134,6 +134,12 @@ class Book extends Model
         if ($ggcoin = $filters["ggcoin"] ?? null) {
             $bookQuery->where(function ($query) use ($ggcoin) {
                 $query->where("ggcoin", '>=', $ggcoin);
+            });
+        }
+
+        if ($id = $filters["id"] ?? null) {
+            $bookQuery->where(function ($query) use ($id) {
+                $query->where("id", $id);
             });
         }
     }

@@ -1,14 +1,6 @@
 <x-author-layout>
-    <style>
-        .main {
-            padding: 10px;
-            padding-left: 20px;
-            padding-right: 20px
-        }
-    </style>
     @if (count($books))
-
-        <div class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 mb-5">
+        <div class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 mb-5 ">
             <h3 class="text-3xl font-bold dark:text-white">All Books</h3>
 
             <div>
@@ -40,7 +32,7 @@
         </div>
 
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white mb-3">
 
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -156,132 +148,6 @@
     @endif
     <!-- table section start -->
 
-    {{-- <section class="w-full ">
-        <h3 class="text-3xl font-bold dark:text-white">All Books</h3>
-        <div class="py-8">
-            <div
-                class="pl-6 text-lg font-semibold underline-offset-[9px] decoration-[3px] decoration-blue-500 text-blue-500 ">
-                <h1 class="">Videos</h1>
-            </div>
-            <div class="w-full h-[1px] bg-gray-300 mt-1"></div>
-
-            <div class="w-full flex items-center pl-6 mt-3 gap-4">
-                <span class=" text-lg"><i class="fa-solid fa-arrow-down-wide-short"></i></span>
-                <div
-                    class="w-fit px-3 py-1 bg-gray-400 rounded-2xl flex justify-center items-center gap-2 text-gray-300">
-                    <p>ShineSiLwin</p><span><i class="fa-solid fa-xmark"></i></span>
-                </div>
-                <div class="w-[80%]">
-                    <input type="text" class="w-full outline-none  caret-blue-500 text-lg" placeholder="Filter">
-                </div>
-
-
-
-            </div>
-            <div class="w-full h-[1px] bg-gray-300 mt-3"></div>
-
-
-
-
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <div
-                    class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
-
-
-                </div>
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="p-4">
-                                <div class="flex items-center">
-                                    <input id="checkbox-all-search" type="checkbox"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                                </div>
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Videos
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Visibility
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Restrictions
-                            </th>
-
-                            <th scope="col" class="px-6 py-3">
-                                Data
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Views
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Comments
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Likes vs Dislike
-                            </th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="w-4 p-4">
-                                <div class="flex items-center">
-                                    <input id="checkbox-table-search-1" type="checkbox"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                                </div>
-                            </td>
-                            <th scope="row"
-                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                <img class="w-[150px]" src="https://i.ytimg.com/vi/w0MMz0Of3qI/maxresdefault.jpg"
-                                    alt="Jese image">
-                                <div class="ps-3">
-                                    <div class="text-base font-semibold">Neil Sims</div>
-                                    <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
-                                </div>
-                            </th>
-                            <td class="px-6 py-4">
-                                <div class="flex gap-2">
-
-                                    <span><i class="fa-solid fa-earth-americas"></i></span>
-                                    <h1>Public</h1>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <h1>Make for kids</h1>
-                            </td>
-                            <td class="px-6 py-4">
-
-                                <h1>4 january 2024,</h1>
-                                <h1>Pulished</h1>
-
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                <h1>4</h1>
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                <h1>0</h1>
-                            </td>
-                            <td class="px-6 py-4 text-center">
-                                <h1>-</h1>
-                            </td>
-                        </tr>
-
-
-
-
-                    </tbody>
-                </table>
-            </div>
-
-
-        </div>
-
-
-        </div>
-    </section> --}}
+    {{ $books->links('pagination::tailwind') }}
 
 </x-author-layout>

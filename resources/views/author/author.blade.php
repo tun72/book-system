@@ -35,29 +35,26 @@
         }
 
         .heading {
-            font-size: 20px;
+            font-size: 30px;
             font-weight: 600;
             margin-top: 10px;
         }
 
         .first_para,
-        .second_para {
-            font-size: 30px;
+        .second_para,
+        .third_para {
+            font-size: 25px;
             margin-top: 20px;
         }
 
-        .second_para span {
-            color: gold;
+        .third_para p {
+            display: inline-block;
+
         }
 
-        .btn {
-            width: fit-content;
-            border: 1px solid blue;
-            padding: 10px 25px;
-            margin-top: 20px;
-            border-radius: 10px;
-            font-size: 18px;
-
+        .third_para a {
+            color: blue;
+            text-decoration: underline;
         }
     </style>
 
@@ -76,13 +73,14 @@
                 <p>Hi {{ $name }},</p>
             </div>
             <div class="first_para">
-                <p>You requested coin is confirmed.</p>
+                <p>Congratulations, You have become author.</p>
             </div>
             <div class="second_para">
-                <p>Your coin - <span>{{ $coin }}</span></p>
+                <p>Now you can upload your books.</p>
             </div>
-            <div class="btn">
-                <a href="#">Click it</a>
+            <div class="third_para">
+                <p>To become official author, You need to upload 3 finished books.</p>
+                <a href="#">Click here</a>
             </div>
 
         </div>

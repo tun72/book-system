@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotificationMail;
 use App\Models\Chapter;
 use App\Models\Comments;
 use App\Models\Notification;
 use App\Models\User;
 use Egulias\EmailValidator\Parser\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CommentsController extends Controller
 {
@@ -21,8 +23,6 @@ class CommentsController extends Controller
             "user_id" => auth()->id()
         ]);
 
-
-
         $users = $chapter->book->getPurchasers();
         foreach ($users as $user) {
             $noti = Notification::create([
@@ -33,6 +33,8 @@ class CommentsController extends Controller
                 "comment_id" => $comment->id
             ]);
             $noti->save();
+
+            Mail::to("tunt72553@gmail.com")->queue(new NotificationMail(auth()->user()->id, "comment on your purchased book", $comment->body));
         }
 
         return back();

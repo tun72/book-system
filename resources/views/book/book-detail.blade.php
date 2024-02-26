@@ -276,24 +276,28 @@
         <div class="w-full grid grid-cols-12 gap-[2rem]">
             <div class="col-span-3">
                 <div class="fixed top-[85px] z-10 flex flex-col items-center gap-5">
-                    <div class="w-[230px] h-[350px]  rounded-lg overflow-hidden">
+                    <div class="w-[230px] h-[350px]  rounded-lg overflow-hidden relative">
                         <img src="{{ $book->image }}" alt="" class="w-full h-full object-cover">
+
+                        <div class="">
+                            <form action="/books/{{ $book->slug }}/favourite" method="POST">
+                                @csrf
+                                @if (auth()->user()?->isFavourited($book))
+                                    <button type="submit"
+                                        class="absolute top-[5px] right-[5px] z-50 bg-white px-1 py-1 rounded-full text-xl shadow-md flex items-center justify-center cursor-pointer"><i
+                                            class="fas fa-heart text-red-400"></i></button>
+                                @else
+                                    <button type="submit"
+                                        class="absolute top-[5px] right-[5px] z-50 bg-white px-1 py-1 rounded-full text-xl shadow-md flex items-center justify-center cursor-pointer"><i
+                                            class="far fa-heart text-red-400"></i></button>
+                                @endif
+                            </form>
+                        </div>
+
+
                     </div>
                     @auth
                         @if (!auth()->user()?->isBought($book))
-                            {{-- <div class="">
-                                <form action="/books/{{ $book->slug }}/favourite" method="POST">
-                                    @csrf
-                                    @if (auth()->user()?->isFavourited($book))
-                                        <button type="submit"
-                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-[3.7rem] py-2 text-center me-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Unfavourited</button>
-                                    @else
-                                        <button type="submit"
-                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-[5.7rem] py-2 text-center me-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Want
-                                            to Read</button>
-                                    @endif
-                                </form>
-                            </div> --}}
                             <div>
                                 {{-- <button type="button" data-modal-target="popup-modal-{{ $book->id }}"
                                     

@@ -24,7 +24,8 @@ class AuthorProfileController extends Controller
         }
 
         return view("author.social-profile", [
-            "author" => $author
+            "author" => $author,
+            "books" => $author->user->books()->where("isPublished", 1)->orderBy("created_at", "DESC")->latest()->limit(9)->get()
         ]);
     }
 
@@ -40,7 +41,8 @@ class AuthorProfileController extends Controller
         }
 
         return view("author.books", [
-            "author" => $author
+            "author" => $author,
+            "books" => $author->user->books()->where("isPublished", 1)->orderBy("created_at", "DESC")->latest()->paginate(9)
         ]);
     }
 

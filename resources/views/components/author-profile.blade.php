@@ -1,14 +1,13 @@
 <x-home-layout>
     <section class="px-5">
-        <div >
+        <div>
             <div class="w-full h-44 rounded-xl overflow-hidden">
                 <img src="{{ $author->user->imageUrl }}" alt="" class="w-full h-full object-cover object-center">
             </div>
 
             <div class="w-full mt-5 flex gap-5">
                 <div class="w-[11.5rem] h-[11.5rem] rounded-full overflow-hidden">
-                    <img src="{{ $author->user->imageUrl }}"
-                        alt="" class="w-full h-full">
+                    <img src="{{ $author->user->imageUrl }}" alt="" class="w-full h-full">
                 </div>
                 <div class="md:px-10 px-1 flex flex-col gap-3 items-start">
                     <div class="flex items-center gap-3">
@@ -53,10 +52,6 @@
                     <li>
                         <a href="/author/{{ $author->user->username }}/books"
                             class="hover:underline underline-offset-4 decoration-gray-600 decoration-4 active:decoration-gray-600 active:decoration-4">Books</a>
-                    </li>
-                    <li>
-                        <a href="#"
-                            class="hover:underline underline-offset-4 decoration-gray-600 decoration-4 active:decoration-gray-600 active:decoration-4">Readlists</a>
                     </li>
                 </ul>
             </div>

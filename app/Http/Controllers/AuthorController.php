@@ -31,8 +31,9 @@ class AuthorController extends Controller
     // creation 
     public function creation()
     {
+        $book = auth()->user()->books()->latest()->paginate(10);
         return view("author.creation", [
-            "books" => auth()->user()->books
+            "books" => $book
         ]);
     }
 
@@ -61,9 +62,10 @@ class AuthorController extends Controller
         return redirect("/user-profile/" . auth()->user()->username)->with("success", "Successfully Archived Book ✅");
     }
 
-    public function comments(Book $user)
+    public function comments(User $user)
     {
-        return view("author.comments", ["reviews" => $user->reviews->load(["user", "book"])]);
+       
+        return view("author.comments", ["books" => $user->books]);
     }
 
     public function incomes($author)

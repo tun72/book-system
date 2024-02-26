@@ -43,7 +43,8 @@
             <div class="lg:w-[60%] w-full">
                 <div class="w-full ">
 
-                    <input type="text" placeholder="Book Title" name="title" value="{{ old('title', $book?->title) }}"
+                    <input type="text" placeholder="Book Title" name="title"
+                        value="{{ old('title', $book?->title) }}"
                         class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 px-4 py-3 pr-10 intro-y !box" />
 
                     <x-error name="title" />
@@ -217,7 +218,8 @@
                                 </div>
                                 <div class="mt-5">
                                     <label class="inline-block mb-2">Caption</label>
-                                    <input type="text" placeholder="Book Caption" name="caption" value="{{ old('caption', $book?->caption) }}"
+                                    <input type="text" placeholder="Book Caption" name="caption"
+                                        value="{{ old('caption', $book?->caption) }}"
                                         class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80">
                                     <x-error name="caption" />
                                 </div>
@@ -310,12 +312,30 @@
                     </div>
                     <div class="relative mt-3 mb-4" id="drop-down-section">
                         <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
-                            class="inline-flex justify-between items-center  flex-wrap gap-3 w-full px-4 py-2 text-sm font-medium text-center text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-                            type="button">Choose Genres<svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg></button>
+                            class="inline-flex  items-center  flex-wrap gap-3 w-full px-4 py-2 text-sm font-medium text-center text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                            type="button">
+
+                            @php
+                                $arr = [];
+                                if ($book?->genres) {
+                                    # code...
+                                    foreach ($book?->genres as $gen) {
+                                        array_push($arr, $gen->name);
+                                    }
+                                }
+                                $text = implode(',', $arr);
+                            @endphp
+                            <input type="hidden" name="" value="{{ $text }}" id="genArr">
+
+                            @if ($book?->genres)
+                                @foreach ($book?->genres as $gen)
+                                    <span
+                                        class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300 {{ $gen->name }}">{{ $gen->name }}</span>
+                                @endforeach
+                            @else
+                                Choose Genres
+                            @endif
+                        </button>
 
                         <div id="dropdownSearch"
                             class="z-10 hidden  bg-white rounded-lg shadow  dark:bg-gray-700 mt-5">

@@ -5,7 +5,7 @@
     <!-- Upper part     Starts -->
 
     <div data-popover-target="popover-default" style="background-image: url('{{ asset(auth()->user()->background) }}')"
-        class="relative w-[100%] bg-cover bg-center bg-no-repeat bg-gray-700 bg-blend-multiply">
+        class="relative w-[100%] bg-cover bg-center bg-no-repeat bg-gray-500 bg-blend-multiply">
         <!-- circles and infos        Start-->
         <div class="w-[100%] h-[360px] flex justify-center items-center flex-col">
             <img src="" alt="">

@@ -19,8 +19,13 @@ class AuthorBookMiddleware
 
         $countStatus = count(auth()->user()->books()->where("status", "complete")->get());
 
+       
+
         // dd(count($books));
         if (count($books) >= 3) {
+            if (count($books) ===  $countStatus) {
+                return $next($request);
+            }
             if (count($books) - 2 !== $countStatus) {
                 return  redirect('/author/dashboard')->with(["error" => "Complete one of your 3 book to create another book."]);
             }

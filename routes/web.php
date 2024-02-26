@@ -120,7 +120,6 @@ Route::middleware(["auth", "isVerify"])->group(function () {
 
     #Chapter
     /* GET */
-
     Route::get("/author/chapter/{book:id}/create", [ChapterController::class, "create"])->middleware(["isAuthor"]);
     Route::get("/chapter/{chapter:slug}/edit", [ChapterController::class, "edit"])->middleware(["isAuthor"]);
 
@@ -133,7 +132,8 @@ Route::middleware(["auth", "isVerify"])->group(function () {
     #dashboard
     Route::get("/author/dashboard", [AuthorController::class, "index"])->middleware(["isAuthor"]);
     Route::get("/author/creation", [AuthorController::class, "creation"])->middleware(["isAuthor"]);
-    Route::get("/author/{user:user_id}/comments", [AuthorController::class, "comments"])->middleware(["isAuthor"]);
+
+    Route::get("/author/{user:id}/comments", [AuthorController::class, "comments"])->middleware(["isAuthor"]);
 
     #income coin
     Route::get("/author/{author}/incomes", [AuthorController::class, "incomes"])->middleware(["isAuthor"]);
@@ -142,8 +142,8 @@ Route::middleware(["auth", "isVerify"])->group(function () {
 
     #reader
     Route::get("/author/{username}/profile", [AuthorProfileController::class, "index"]);
-    Route::get("/author/{username}/books", [AuthorProfileController::class, "books"])->middleware(["isAuthor"]);
-    Route::get("/author/{username}/readlists", [AuthorProfileController::class, "index"])->middleware(["isAuthor"]);
+    Route::get("/author/{username}/books", [AuthorProfileController::class, "books"]);
+    Route::get("/author/{username}/readlists", [AuthorProfileController::class, "index"]);
     Route::get("/author/readers", [AuthorController::class, "reader"])->middleware(["isAuthor"]);
 
     #notifications
