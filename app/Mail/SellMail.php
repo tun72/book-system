@@ -16,7 +16,7 @@ class SellMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public $name)
+    public function __construct(public $name, public $status)
     {
         //
     }

@@ -223,10 +223,7 @@ class BookController extends Controller
         return back()->with("error", "To Publish need to complete at least 10 Chapters!");
     }
 
-    public function welcome()
-    {
-        return view("other.welcome");
-    }
+   
 
 
     public function archive(Book $book)

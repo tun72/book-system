@@ -61,8 +61,6 @@ class SellsController extends Controller
         ]);
 
 
-
-
         return redirect("/success");
     }
 
@@ -71,16 +69,17 @@ class SellsController extends Controller
         $sell->status = "success";
         $sell->save();
 
-        Mail::to($sell->user->email)->queue(new SellMail($sell->user->name));
-
-
-
+        Mail::to($sell->user->email)->queue(new SellMail($sell->user->name, "success"));
         return back()->with("success", "Successfully transfered Chief🪲 ✅.");
     }
 
     public function delete(Sells $sell)
     {
 
+        Mail::to("locog863@gmail.com")->queue(new SellMail($sell->user->name, "denied"));
+
+        $sell->user->ggcoin += $sell->ggcoin;
+        $sell->user->update();
         $sell->delete();
         return back()->with("success", "Successfully deleted Chief🪲 ✅.");
     }

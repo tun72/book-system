@@ -9,6 +9,7 @@ use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\OtherController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ReadListController;
 use App\Http\Controllers\ReportController;
@@ -239,4 +240,9 @@ Route::post("/auth/user/second-complete", [AuthController::class, "secondComplet
 Route::post("/checkOTP", [AuthController::class, "checkOTP"]);
 
 // welcome 
-Route::get("/welcome", [BookController::class, "welcome"]);
+Route::get("/welcome", [OtherController::class, "welcome"]);
+Route::get("/contact", [OtherController::class, "contact"]);
+Route::get("/about", [OtherController::class, "about"]);
+
+Route::get("/qanda", [OtherController::class, "qanda"]);
+

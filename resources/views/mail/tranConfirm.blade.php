@@ -63,23 +63,44 @@
 
 
     <section class="container">
-        <div class="main">
-            <div class="logo">
-                <img src="./img/logo.jpg" alt="">
-            </div>
-            <div class="line"></div>
-            <div class="heading">
-                <p>Hi {{ $name }},</p>
-            </div>
-            <div class="first_para">
-                <p>Transaction Complete.✅ Check your payment account. ✅</p>
-            </div>
-            <div class="second_para">
-                <p>Thanks for your hard work.👏</p>
-            </div>
+        @if ($status === 'success')
+            <div class="main">
+                <div class="logo">
+                    <img src="./img/logo.jpg" alt="">
+                </div>
+                <div class="line"></div>
+                <div class="heading">
+                    <p>Hi {{ $name }},</p>
+                </div>
+                <div class="first_para">
+                    <p>Transaction Complete.✅ Check your payment account. ✅</p>
+                </div>
+                <div class="second_para">
+                    <p>Thanks for your hard work.👏</p>
+                </div>
 
 
-        </div>
+            </div>
+        @else
+            <div class="main">
+                <div class="logo">
+                    <img src="./img/logo.jpg" alt="">
+                </div>
+                <div class="line"></div>
+                <div class="heading">
+                    <p>Hi {{ $name }},</p>
+                </div>
+                <div class="first_para">
+                    <p>Transaction Denied.❌ Your payment information is incorrect ! </p>
+                </div>
+                <div class="second_para">
+                    <p>Please try again !</p>
+                </div>
+
+
+            </div>
+        @endif
+
 
     </section>
 </body>
