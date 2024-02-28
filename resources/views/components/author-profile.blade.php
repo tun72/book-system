@@ -1,9 +1,9 @@
 <x-home-layout>
     <section class="px-5">
         <div>
-            <div class="w-full h-44 rounded-xl overflow-hidden">
-                <img src="{{ $author->user->imageUrl }}" alt="" class="w-full h-full object-cover object-center">
-            </div>
+            {{-- <div class="w-full h-44 rounded-xl overflow-hidden">
+                <img src="{{ $author->user->background }}" alt="" class="w-full h-full object-cover object-center ">
+            </div> --}}
 
             <div class="w-full mt-5 flex gap-5">
                 <div class="w-[11.5rem] h-[11.5rem] rounded-full overflow-hidden">
@@ -14,25 +14,29 @@
                         <h4 class="xl:text-3xl lg:text-5xl md:text-3xl font-bold">{{ $author->name }}</h4>
                         <span><i class="fa-solid fa-music"></i></span>
                     </div>
-                    <div class=" lg:text-lg md:text-lg text-sm font-semibold text-gray-400">
+                    <div class=" lg:text-lg md:text-lg text-sm font-semibold text-gray-700">
                         <p>@ {{ $author->user->username }} . {{ count($author->subscribers) }} subscriber .
                             {{ count($author->user->books) }} books</p>
                     </div>
-                    <div class="flex items-center gap-3 text-base font-semibold text-gray-400">
+                    <div class="flex items-center gap-3 text-base font-semibold text-gray-700">
                         <p>Official Artist profile of {{ $author->user->name }}.</p>
                     </div>
                     <div class="text-base font-semibold xl:block lg:block md:block hidden">
                         <p><a href="#" class="text-blue-500">smarturl.it/rapunzelep</a> and 4 more links</p>
                     </div>
 
+
+
                     <form action="/user/{{ $author->id }}/subscribe" method="POST">
                         @csrf
                         @if (auth()->user()->isSubscribed($author))
                             <button type="submit"
-                                class="py-3 px-5 bg-gray-700 text-white text-sm font-semibold text-center rounded-3xl ml-[-5px]">Subscribed</button>
+                                class="px-2.5 py-2 bg-green-400 text-green-100 text-sm font-semibold text-center rounded-3xl ml-[-5px]">following
+                                &check;</button>
                         @else
-                            <button type="submit"
-                                class="py-3 px-5 bg-white text-black text-sm font-semibold text-center rounded-3xl ml-[-5px]">Subscribe</button>
+                            <button
+                                class="px-2.5 py-2 bg-green-400 text-green-100 text-base font-semibold text-center rounded-3xl ml-[-7px] mt-[-4px]">+
+                                follow</button>
                         @endif
 
                     </form>

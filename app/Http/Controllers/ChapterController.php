@@ -17,18 +17,38 @@ class ChapterController extends Controller
 
         $nextChapter = $book->chapters()->where("chapter", $chapter->chapter + 1)->first();
         $prevChapter = $book->chapters()->where("chapter", $chapter->chapter - 1)->first();
+        $complete = false;
+
+       
+        
 
         if ($prevChapter && request("complete") === "true") {
             $prevChapter->is_finish = 1;
             $prevChapter->save();
         }
 
+        $totalComplete = count($book->chapters()->where("is_finish", 1)->get());
+        // dd($totalComplete  );
+        if (!$nextChapter) {
+            $complete = $totalComplete  === count($book->chapters) ||  $totalComplete === count($book->chapters) - 1;
+        }
+
+
         return view("book.read-book", [
             "chapter" => $chapter,
             "book" => $book,
             "nextChapter" => $nextChapter,
-            "prevChapter" => $prevChapter
+            "prevChapter" => $prevChapter,
+            "complete" => $complete
         ]);
+    }
+
+    public function complete(Chapter $chapter)
+    {
+        $chapter->is_finish = 1;
+        $chapter->save();
+
+        return redirect("/user/library");
     }
 
     public function create(Book $book)

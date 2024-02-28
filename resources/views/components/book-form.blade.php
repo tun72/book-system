@@ -379,11 +379,11 @@
                         <div class="relative mt-3">
                             <div>
                                 <label class="inline-block mb-2">Status</label>
-                                @if (count($book->chapters) < 10)
+                                @if (!$book->isPublished)
                                     <input type="hidden" value="ongoing" name="status">
                                 @endif
                                 <input type="text" placeholder="status" name="status"
-                                    value="{{ old('status', $book?->status) }}" @disabled(count($book->chapters) < 10)
+                                    value="{{ old('status', $book?->status) }}" @disabled(!$book->isPublished)
                                     class="disabled:bg-slate-100 w-full disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out  text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80" />
                                 <x-error name="status" />
                             </div>
@@ -393,7 +393,7 @@
                             <h1 class="font-semibold text-gray-500 mb-3">Published</h1>
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" value="1" class="sr-only peer" name="isPublished"
-                                    @disabled(count($book->chapters) < 5) {{ $book->isPublished ? 'checked' : '' }}>
+                                    disabled {{ $book->isPublished ? 'checked' : '' }}>
                                 <div
                                     class="w-11  h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                                 </div>

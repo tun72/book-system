@@ -18,7 +18,7 @@ class ReportController extends Controller
             "about" => request("about"),
             "user_id" => request("user_id")
         ]);
-        return back();
+        return back()->with("success", "Successfully Report admin will check soon... ✅");
     }
 
     public function index()

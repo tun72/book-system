@@ -11,9 +11,9 @@
                         @php
                             $url1 = '#';
                             if ($noti->book_id) {
-                                $url1 = '/book-details/' . $noti->book->slug;
+                                $url1 = '/book-details/' . $noti?->book?->slug;
                             } elseif ($noti->chapter_id) {
-                                $url1 = '/book/chapter/' . $noti->chapter->slug . '/read';
+                                $url1 = '/book/chapter/' . $noti?->chapter?->slug . '/read';
                             }
                         @endphp
                         <a href="{{ $url1 }}">

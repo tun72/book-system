@@ -57,52 +57,7 @@
     </div>
 
 
-    {{-- <div class="relative">
-        <img src="{{ asset(auth()->user()->background) }}" alt=""
-            class="w-full  h-[350px] object-cover z-20">
-        <div class="w-full h-full bg-gray-400 absolute"></div>
-        <div class="absolute top-[3rem] left-[50%] flex flex-col items-center translate-x-[-50%]   h-fit">
-            <div
-                class="h-[100px] w-[100px] rounded-full outline-white overflow-hidden border border-[#2a685d] flex justify-center items-center">
-                <img src="{{ auth()->user()->imageUrl }}" alt="">
-            </div>
-            <h1 class="text-white font-semibold text-xl">{{ auth()->user()->name }}</h1>
-            <span class="text-white font-md">@ {{ auth()->user()->username }}
-                ({{ auth()->user()->role !== 1 ? (auth()->user()->role === 2 ? 'author' : 'user') : '' }})</span>
-            <!-- infos -->
-            <div class="flex justify-center items-center gap-[30px] mt-[10px]">
-                <div class="text-center">
-                    <p class="text-white">{{ count(auth()->user()->books) }}</p>
-                    <span class="text-white">Books</span>
-                </div>
-                <div class="text-center" style="cursor: pointer">
-                    <p class="text-white">{{ count(auth()->user()->readLists) }}</p>
-                    <span class="text-white">Reading List</span>
-                </div>
-                <div class="text-center">
-                    <p class="text-white">0</p>
-                    <span class="text-white">Followers</span>
-                </div>
-            </div>
 
-            <form id="background-form" enctype="multipart/form-data" method="POST"
-                action="/user/update-background/{{ auth()->user()->username }}"
-                class="absolute  top-[10px] right-[10px] inline-block rounded-full text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200  shadow-sm  dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                @method('PATCH')
-                @csrf
-                <div class="px-3 py-2" id="image">
-                    <label for="background-img" class="cursor-pointer"><i class="fa-solid fa-pen"></i></label>
-                </div>
-                <input type="file" name="image" id="background-img" class="hidden" />
-            </form>
-
-            <script>
-                document.getElementById("background-img").onchange = function() {
-                    document.getElementById("background-form").submit();
-                };
-            </script>
-        </div>
-    </div> --}}
 
     <!-- Nav -->
     <div class="px-[100px] w-[100%] mt-4 flex justify-between items-center mb-5">
@@ -321,7 +276,6 @@
             </div>
             <div class="h-[1px] w-[100%] bg-gray-300 mt-[10px] mb-[10px] px-[10px]"></div>
             <!-- username's list Header -->
-
             @foreach (auth()->user()->readLists as $readlist)
                 @if (count($readlist->books))
                     <div class="px-[2rem] mt-[10px]">

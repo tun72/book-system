@@ -59,7 +59,7 @@ class AuthorController extends Controller
 
         $author = AuthorRegister::create($cleanData);
         $author->save();
-        return redirect("/user-profile/" . auth()->user()->username)->with("success", "Successfully Archived Book ✅");
+        return redirect("/user-profile/" . auth()->user()->username)->with("success", "Successfully Registered ✅");
     }
 
     public function comments(User $user)

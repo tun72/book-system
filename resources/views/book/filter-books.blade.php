@@ -54,8 +54,8 @@
 
             <section class="px-4 py-5 border border-gray-300 bg-white shadow-xl rounded-lg">
                 <div class="flex justify-between items-center">
-                    <h1 class="text-lg font-semibold text-button-800">{{ count($books )}} books</h1>
-                    
+                    <h1 class="text-lg font-semibold text-button-800">{{ count($books) }} books</h1>
+
                 </div>
                 <div class="w-full h-[1px] bg-gray-200 mt-5 mb-4"></div>
                 <div class="grid grid-cols-2 gap-7">
@@ -65,7 +65,7 @@
                             <div class="w-[142px] h-[221.88px] relative flex-grow-1 overflow-hidden rounded-lg">
                                 <img src="{{ $book->image }}" alt="" class="w-full h-full object-cover">
                                 <div class="absolute top-0 left-0 text-white bg-brand-700 px-1">
-                                    <h1>#{{$book->id}}</h1>
+                                    <h1>#{{ $book->id }}</h1>
                                 </div>
                             </div>
                             <div class="flex flex-col gap-1  w-[50%] flex-auto">
@@ -111,12 +111,12 @@
 
             </section>
 
-           
+
 
             <!-- blog section end -->
 
 
-
+            {{ $books->links('pagination::tailwind') }}
         </section>
 
 

@@ -9,7 +9,7 @@
         <img src="{{ auth()->user()->imageUrl }}" alt="" width="100px" height="100px">
 
 
-        <form class="mt-4" action="/user/update-user/{{ auth()->user()->username }}" method="POST">
+        <form class="mt-4" action="/user/update-user/{{ auth()->user()->username }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="grid gap-6 mb-6 md:grid-cols-2">
@@ -30,9 +30,7 @@
                     <input type="text" id="last_name" name="username"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         value="{{ old('username') ? old('username') : auth()->user()->username }}" required>
-                    @error('usernaem')
-                        <p>{{ $message }}</p>
-                    @enderror
+                    <x-error name="'username'" />
                 </div>
                 <div>
                     <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
@@ -41,14 +39,17 @@
                         value="{{ old('phoneNumber') ? old('phoneNumber') : auth()->user()->phoneNumber }}"
                         name="phoneNumber"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                    <x-error name="'phoneNumber'" />
                 </div>
 
                 <div>
-                    <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website
-                        URL</label>
-                    <input type="url" id="website" value="{{ auth()->user()->imageUrl }}" name="imageUrl"
+                    <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile
+                        Photo</label>
+                    <input type="file" id="website" value="{{ auth()->user()->imageUrl }}" name="imageUrl"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="flowbite.com" required>
+                    <x-error name="'imageUrl'" />
                 </div>
             </div>
             <div class="mb-6">
@@ -58,6 +59,7 @@
                     name="email"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="john.doe@company.com" required>
+                <x-error name="'email'" />
             </div>
 
 
@@ -68,6 +70,7 @@
                     <textarea id="message" rows="4" name="about"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Write your thoughts here...">{{ old('about') ? old('about') : auth()->user()->reader->about }}</textarea>
+                    <x-error name="'about'" />
                 </div>
             @elseif(auth()->user()->role === 2)
                 <div class="mb-6">
@@ -76,6 +79,7 @@
                     <textarea id="message" rows="4" name="about"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Write your thoughts here...">{{ old('about') ? old('about') : auth()->user()->author->about }}</textarea>
+                    <x-error name="'about'" />
                 </div>
             @endif
 

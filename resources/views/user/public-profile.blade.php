@@ -218,13 +218,12 @@
             <!-- username's list Header -->
 
             @foreach ($user->readLists as $readlist)
-                @if (count($readlist->books))
+                @if (count($readlist->books) && !$readlist->private)
                     <div class="px-[2rem] mt-[10px]">
                         <a href="" class="flex mb-[10px] mt-[10px]">
                             <h1 class="text-2xl font-semibold">{{ $readlist->title }}</h1>
 
                         </a>
-
                         <span class="text-sm text-light">Reading List .
                             {{ count($readlist->books) ? count($readlist->books) : 0 }} Books</span>
                     </div>

@@ -64,6 +64,7 @@
                                 </ul>
                                 <form class="py-2" action="/readlist/{{ $readlist->id }}/delete" method="POST">
                                     @csrf
+                                    @method("DELETE")
                                     <button
                                         class="px-4 py-2 text-sm text-red-700  dark:hover:bg-red-600 dark:text-red-200">Delete
                                         Lists</button>

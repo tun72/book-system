@@ -7,13 +7,11 @@
     </div>
     @if (count($notifications))
         <div class="divide-y divide-gray-100 dark:divide-gray-700">
-
-
             @foreach ($notifications as $notification)
                 @php
                     $url = '#';
                     if ($notification->book_id) {
-                        $url = '/book-details/' . $notification->book->slug;
+                        $url = '/book-details/' . $notification?->book?->slug;
                     } elseif ($notification->chapter_id) {
                         $url = '/book/chapter/' . $notification->chapter->slug . '/read';
                     }
@@ -57,7 +55,7 @@
             </div>
         </a>
     @else
-    <h4 class="py-2 text-center">No notifications</h4>
+        <h4 class="py-2 text-center">No notifications</h4>
     @endif
 
 

@@ -3,10 +3,10 @@
 
 
     <div class="max-w-[68rem] mx-auto">
-        <h3 class="text-3xl mb-6"><i class="fas fa-star me-2"></i>Readlist</h3>
+        <h3 class="text-3xl mb-6">My Readlist</h3>
         <div class="flex items-start gap-8 ">
-            <div class="w-[25rem] ">
-                <div class="h-[56vh]">
+            <div class="w-[40rem] ">
+                <div class="h-[56vh] w-[18rem]">
                     <img src="{{ count($readlist->books) ? $readlist->books[0]->image : '' }}" alt=""
                         class="w-full h-full">
                 </div>
@@ -14,7 +14,7 @@
                     <h5 class="text-3xl">{{ $readlist->title }}</h5>
                     <span>ReadingList . {{ count($readlist->books) }} books</span>
                     <button type="button"
-                        class="text-white rounded-lg bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium  text-sm py-2.5 text-center mb-2 dark:focus:ring-yellow-900 px-10">Edit</button>
+                        class="text-white rounded-lg bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium  text-sm py-2.5 text-center mb-2 dark:focus:ring-blue-900 px-10">Edit</button>
                 </div>
                 <div class="mt-4  hidden" id="edit-toggle">
                     <div class="flex">
@@ -24,7 +24,7 @@
                             <input type="text" id="small-input" value="{{ $readlist->title }}" name="title"
                                 class="block mb-4 w-[160%] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <button type="submit"
-                                class="text-white rounded-lg bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium  text-sm py-2.5 text-center mb-2 dark:focus:ring-yellow-900 px-10">Done</button>
+                                class="text-white rounded-lg bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium  text-sm py-2.5 text-center mb-2 dark:focus:ring-blue-900 px-10">Done</button>
                         </form>
 
                         <form action="/readlist/{{ $readlist->id }}/delete" method="POST" class="mt-[3.1rem] -ml-5">
@@ -32,7 +32,7 @@
                             @method('DELETE')
                             <input type="hidden" name="readlist" id="" value="{{ $readlist->id }}">
                             <button type="submit"
-                                class="text-white rounded-lg bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium  text-sm py-2.5 text-center mb-2 dark:focus:ring-yellow-900 px-5">Delete
+                                class="text-white rounded-lg bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium  text-sm py-2.5 text-center mb-2 dark:focus:ring-blue-900 px-5">Delete
                                 List</button>
                         </form>
                     </div>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col gap-1  w-[50%] flex-auto">
-                                <h1 class="text-dm font-semibold"><a href="#">{{ $book->title }}</a></h1>
+                                <h1 class="text-dm font-semibold"><a href="/book-details/{{$book->slug}}">{{ $book->title }}</a></h1>
                                 <h2 class="text-gray-400"><a href="#" class="text-sm">by
                                         {{ $book->user->name }}</a>
                                 </h2>

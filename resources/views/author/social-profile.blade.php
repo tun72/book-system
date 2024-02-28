@@ -5,7 +5,7 @@
             <h1 class="text-lg font-semibold text-button-800">New books</h1>
         </div>
         <div class="w-full h-[1px] bg-gray-200 mt-5 mb-4"></div>
-        <div class="grid grid-cols-3 gap-7">
+        <div class="grid grid-cols-2 gap-7">
             @foreach ($books as $book)
                 <div class="flex gap-4" data-modal-target="default-modal-{{ $book->id }}"
                     data-modal-toggle="default-modal-{{ $book->id }}">
@@ -36,7 +36,7 @@
                         <div class="">
                             <p class="line-clamp-2">{{ $book->body }}</p>
                         </div>
-                        <div class="flex gap-2 items-center">
+                        <div class="flex gap-2 items-center flex-wrap">
                             <span class="w-fit px-2 py-1 bg-lime-600 text-sm font-semibold text-white rounded-md">
                                 {{ $book->status }}
                             </span>

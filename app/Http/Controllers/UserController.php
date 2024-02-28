@@ -43,8 +43,19 @@ class UserController extends Controller
             "username" => ["required", "max:20", auth()->user()->username == request("username") ? "" : Rule::unique("users", "username")],
             "email" => ["required", "max:20", auth()->user()->email == request("email") ? "" : Rule::unique("users", "email")],
             "phoneNumber" => ["required", "max:20"],
-            "about" => ["required"]
+            "about" => ["required"],
+            "imageUrl" => ["image"]
         ]);
+
+
+
+       
+        if ($file = request("imageUrl")) {
+            if ($path = public_path($user->imageUrl)) {
+                File::delete($path);
+            }
+            $user->imageUrl = '/storage/' . $file->store('/users');
+        }
 
 
 
@@ -53,9 +64,15 @@ class UserController extends Controller
             $user->reader->update();
         } else {
             $user->author->about = $cleanData["about"];
-            $user->reader->update();
+            // dd($user->author);
+            $user->author->name = $cleanData["name"];
+            $user->author->update();
         }
-        $user->update($cleanData);
+        $user->name = $cleanData["name"];
+        $user->email = $cleanData["email"];
+        $user->phoneNumber = $cleanData["phoneNumber"];
+        $user->update();
+
         return redirect("/user-profile/" . $user->username)->with("success", "Successfully Updated !");
     }
 
@@ -141,7 +158,7 @@ class UserController extends Controller
     public function deleteArchive(Archive $archive)
     {
         $archive->delete();
-        $archive->book->isArchive = true;
+        $archive->book->isArchive = false;
         $archive->book->update();
         // $book->archive = true;
         // $book->update();
@@ -149,8 +166,9 @@ class UserController extends Controller
         return back()->with("success", "Successfully Archived Removed ✅");
     }
 
-    public function invite(User $user) {
-        $cleanData= request()->validate([
+    public function invite(User $user)
+    {
+        $cleanData = request()->validate([
             "email" => ["required"]
         ]);
 

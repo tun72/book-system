@@ -14,8 +14,9 @@
                     <li class="{{ request()->routeIs('purchased') ? 'bg-[#9b9b9b7a]' : '' }}"><a
                             href="/user/{{ auth()->user()->username }}/purchased">
                             <i class="fas fa-heart"></i>Purchased</a>
-                    @endauth
-                </li>
+                    </li>
+                @endauth
+
             </ul>
 
         </div>
@@ -24,7 +25,8 @@
             <h4 class="text-brand-300 px-[1.3rem] py-4 text-base">LIBRARY</h4>
             <ul>
                 @auth
-                    <li class="{{ request()->routeIs('readlist') ? 'bg-[#9b9b9b7a]' : '' }}"><a href="/user/{{ auth()->user()->username }}/readlist"><svg class="w-5 h-5 text-gray-900"
+                    <li class="{{ request()->routeIs('readlist') ? 'bg-[#9b9b9b7a]' : '' }}"><a
+                            href="/user/{{ auth()->user()->username }}/readlist"><svg class="w-5 h-5 text-gray-900"
                                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
@@ -33,8 +35,9 @@
                     </li>
                 @endauth
 
-                <li><a href="/user/library" data-mdb-toggle="modal" data-mdb-target="#author"><i
-                            class="fas fa-book-reader"></i>Library</a></li>
+                <li class="{{ request()->routeIs('library') ? 'bg-[#9b9b9b7a]' : '' }}"><a href="/user/library"
+                        data-mdb-toggle="modal" data-mdb-target="#author"><i class="fas fa-book-reader"></i>Library</a>
+                </li>
                 </li>
 
 
@@ -75,18 +78,18 @@
         <div class="w-full pl-3">
             <h4 class="text-brand-300 px-[1.3rem] py-4 text-base">Explore</h4>
             <ul>
-                <li><a href="/book/trends" data-mdb-toggle="modal" data-mdb-target="#author"><i
-                            class="fa-solid fa-fire"></i>Trends</a></li>
+                <li class="{{ request()->routeIs('trend') ? 'bg-[#9b9b9b7a]' : '' }}"><a href="/book/trends"
+                        data-mdb-toggle="modal" data-mdb-target="#author"><i class="fa-solid fa-fire"></i>Trends</a>
                 </li>
-                <li><a href="/book/populars" data-mdb-toggle="modal" data-mdb-target="#author"><i
-                            class="fa-solid fa-star"></i>Popular</a></li>
                 </li>
-                <li><a href="#" data-mdb-toggle="modal" data-mdb-target="#author"><i
-                            class="fa-regular fa-circle-question"></i>Help</a></li>
+                <li class="{{ request()->routeIs('popular') ? 'bg-[#9b9b9b7a]' : '' }}"><a href="/book/populars"
+                        data-mdb-toggle="modal" data-mdb-target="#author"><i class="fa-solid fa-star"></i>Popular</a>
+                </li>
                 </li>
 
-                <li><a href="/user/feedback" data-mdb-toggle="modal" data-mdb-target="#author"><i
-                            class="fa-solid fa-message"></i>Sent Feedback</a></li>
+                <li class="{{ request()->routeIs('feedback') ? 'bg-[#9b9b9b7a]' : '' }}"><a href="/user/feedback"
+                        data-mdb-toggle="modal" data-mdb-target="#author"><i
+                            class="fa-solid fa-message"></i>Feedback</a></li>
                 </li>
             </ul>
         </div>

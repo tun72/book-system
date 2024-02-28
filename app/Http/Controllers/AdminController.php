@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookConfirmMail;
 use App\Mail\BookDeleteMail;
 use App\Mail\CoinConfirm;
 use App\Mail\ConfirmAuthorMail;
@@ -10,6 +11,7 @@ use App\Models\AuthorProfile;
 use App\Models\AuthorRegister;
 use App\Models\Book;
 use App\Models\Genres;
+use App\Models\Notification;
 use App\Models\Sells;
 use App\Models\Setting;
 use App\Models\Tag;
@@ -26,7 +28,7 @@ class AdminController extends Controller
         return view("admin.index", [
             "users" => User::whereIn("role", [0, 2])->latest()->limit(10)->get(),
             "books" => Book::all(),
-            "histories" => AdminHistory::get(),
+            "histories" => AdminHistory::limit(5)->latest()->get(),
             "incomes" => AdminHistory::where('status', 'income')->sum('ggcoin'),
             "outcomes" => AdminHistory::where('status', 'outcome')->sum('ggcoin'),
             "requsers" => AuthorRegister::where("status", "pending")->get()
@@ -156,7 +158,7 @@ class AdminController extends Controller
         ]);
         $transfer->delete();
         Mail::to($transfer->user->email)->queue(new CoinConfirm($transfer->user->name, $transfer->user->ggcoin));
-        return back()->with("success", "Successfully transfered Chief🪲 ✅.");;
+        return back()->with("success", "Successfully transfered Chief🪲 ✅.");
     }
 
 
@@ -241,16 +243,9 @@ class AdminController extends Controller
         // $ROLE = ["free" => [0], "author" => [2], "all" => [0, 2], "" => [0, 2]];
         $book = Book::with(["user"])->filter(request(["status", "search", "author", "price", "id"]));
 
-        $bookQuery = $book->orderBy("created_at", "DESC");
+        $bookQuery = $book->where("isPublished", true)->orWhere('isRequested', true)->orderBy("created_at", "DESC");
         $bookQuery = $bookQuery->latest()->paginate(10)->withQueryString();
-        // if ($filter !== "all" && $filter !== "") {
-        //     $book = $book::where("status", $filter);
-        // }
 
-        // if ($filter === "free") {
-        //     $book = $book->where("ggcoin", 1000);
-        //     // dd($book);
-        // }
 
         return view("admin.books", ["books" => $bookQuery]);
     }
@@ -260,7 +255,7 @@ class AdminController extends Controller
 
         $delete =  $book->delete();
         if ($delete)
-            Mail::to("shinesilwin@gmail.com")->queue(new BookDeleteMail($book->title, $book->user->name));
+            Mail::to($book->user->email)->queue(new BookDeleteMail($book->title, $book->user->name));
 
         return back()->with("success", "Successfully Deleted Chief🪲 ✅.");
     }
@@ -301,6 +296,35 @@ class AdminController extends Controller
         $admin->username = $clean_data["username"];
         $admin->email = $clean_data["email"];
         $admin->update();
+
+        return back()->with("success", "Successfully Updated Chief🪲 ✅.");
+    }
+
+
+    public function publishConfirm(Book $book)
+    {
+        $book->isPublished = true;
+        $book->isRequested = false;
+        $book->save();
+        $subscribers = $book->user->author->subscribers;
+        foreach ($subscribers as $subscriber) {
+            Notification::create([
+                "about" => "create new book",
+                "book_id" => $book->id,
+                "user_id" => $book->user_id,
+                "recipient_id" => $subscriber->id
+            ]);
+        }
+
+        Notification::create([
+            "about" => "confrim your book",
+            "book_id" => $book->id,
+            "user_id" => auth()->user()->id,
+            "recipient_id" => $subscriber->id
+        ]);
+
+        Mail::to($book->user->email)->queue(new BookConfirmMail($book->user->name));
+
 
         return back()->with("success", "Successfully Updated Chief🪲 ✅.");
     }

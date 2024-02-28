@@ -148,7 +148,7 @@
                 <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
                     <div class="flex justify-between mb-3">
                         <div class="flex justify-center items-center">
-                            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Book Summary
+                            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pe-1">Genres Summary
                             </h5>
                         </div>
                         <div>
@@ -179,16 +179,29 @@
                 @php
                     $genres = [];
                     $books = auth()->user()->books;
+                    $book_ = [];
 
+                    $index = 0;
                     foreach ($books as $book) {
                         foreach ($book->genres as $gen) {
                             if (!in_array($gen->name, $genres)) {
                                 array_push($genres, $gen->name);
+                                $index = $index + 1;
                             }
                         }
+
+                        array_push($book_, $index);
+                        $index = 0;
                     }
 
+                    rsort($genres);
+                    rsort($book_);
+
+                    $genres = array_slice($genres, 0, 4);
                     $genres = implode(',', $genres);
+
+                    $books = array_slice($book_, 0, 4);
+                    $books = implode(',', $books);
                 @endphp
 
 
@@ -200,9 +213,13 @@
                         let genres = "{{ $genres }}";
                         genres = genres.split(",");
 
+                        let books = "{{ $books }}";
+                        books = books.split(",").map((book) => +book);
+
+                        console.log(books);
                         const getChartOptions = () => {
                             return {
-                                series: [35.1, 23.5, 2.4, 5.4],
+                                series: books,
                                 colors: ["#1C64F2", "#16BDCA", "#FDBA8C", "#E74694"],
                                 chart: {
                                     height: 320,
@@ -232,7 +249,7 @@
                                                         const sum = w.globals.seriesTotals.reduce((a, b) => {
                                                             return a + b
                                                         }, 0)
-                                                        return `${sum}k`
+                                                        return `${sum}`
                                                     },
                                                 },
                                                 value: {
@@ -240,7 +257,7 @@
                                                     fontFamily: "Inter, sans-serif",
                                                     offsetY: -20,
                                                     formatter: function(value) {
-                                                        return value + "k"
+                                                        return value
                                                     },
                                                 },
                                             },
@@ -264,14 +281,14 @@
                                 yaxis: {
                                     labels: {
                                         formatter: function(value) {
-                                            return value + "k"
+                                            return value
                                         },
                                     },
                                 },
                                 xaxis: {
                                     labels: {
                                         formatter: function(value) {
-                                            return value + "k"
+                                            return value
                                         },
                                     },
                                     axisTicks: {
@@ -294,24 +311,7 @@
                             // Function to handle the checkbox change event
                             function handleCheckboxChange(event, chart) {
                                 const checkbox = event.target;
-                                if (checkbox.checked) {
-                                    switch (checkbox.value) {
-                                        case 'desktop':
-                                            chart.updateSeries([15.1, 22.5, 4.4, 8.4]);
-                                            break;
-                                        case 'tablet':
-                                            chart.updateSeries([25.1, 26.5, 1.4, 3.4]);
-                                            break;
-                                        case 'mobile':
-                                            chart.updateSeries([45.1, 27.5, 8.4, 2.4]);
-                                            break;
-                                        default:
-                                            chart.updateSeries([55.1, 28.5, 1.4, 5.4]);
-                                    }
-
-                                } else {
-                                    chart.updateSeries([35.1, 23.5, 2.4, 5.4]);
-                                }
+                                chart.updateSeries(books);
                             }
 
                             // Attach the event listener to each checkbox
@@ -329,8 +329,7 @@
         <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
             <div class="flex justify-between">
                 <div>
-                    <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Author Incomes</p>
                 </div>
                 <div
                     class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
@@ -344,65 +343,13 @@
             </div>
             <div id="area-chart"></div>
             <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-                <div class="flex justify-between items-center pt-5">
-                    <!-- Button -->
-                    <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
-                        data-dropdown-placement="bottom"
-                        class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-                        type="button">
-                        Last 7 days
-                        <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
-                        </svg>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div id="lastDaysdropdown"
-                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdownDefaultButton">
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                    7 days</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                    30 days</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last
-                                    90 days</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#"
-                        class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                        Users Report
-                        <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 9 4-4-4-4" />
-                        </svg>
-                    </a>
-                </div>
+
             </div>
         </div>
 
 
         @php
-           
+
             $arr = [];
             foreach ($earns as $earn) {
                 $date = $earn->created_at->format('Y-m-d');
@@ -412,7 +359,6 @@
                     $arr[$date] = $earn->ggcoin;
                 }
             }
-
 
             $date = array_keys($arr);
             $coins = array_values($arr);

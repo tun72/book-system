@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
@@ -40,6 +41,10 @@ Route::middleware(["auth", "isVerify"])->group(function () {
     Route::get("/book/chapter/{chapter:slug}/read", [ChapterController::class, "show"]);
     Route::post("/book/{book:id}/archive", [BookController::class, "archive"]);
 
+    #complete
+    Route::get("/book/chapter/{chapter:slug}/complete", [ChapterController::class, "complete"]);
+
+
     #readlist
     Route::delete("/readlist/{readlist:id}/delete", [ReadListController::class, "destory"]);
     Route::patch("/readlist/{readlist:id}/edit", [ReadListController::class, "update"]);
@@ -55,7 +60,7 @@ Route::middleware(["auth", "isVerify"])->group(function () {
     #user 
     Route::get('/user-profile/{user:username}', [UserController::class, "getUser"]);
     Route::get('/user/notification', [UserController::class, "notification"]);
-    Route::get('/user/library', [UserController::class, "library"]);
+    Route::get('/user/library', [UserController::class, "library"])->name("library");;
     Route::get('/user/update-user', [UserController::class, "getUpdate"]);
     Route::get('/user/{user:username}/purchased', [UserController::class, "purchased"])->name("purchased");
     Route::get('/user/{user:username}/readlist', [UserController::class, "readlist"])->name("readlist");
@@ -73,7 +78,7 @@ Route::middleware(["auth", "isVerify"])->group(function () {
     Route::patch('/user/update-background/{user:username}', [UserController::class, "changeBackground"]);
 
     #feedback
-    Route::get('/user/feedback', [SentFeedBackController::class, "index"]);
+    Route::get('/user/feedback', [SentFeedBackController::class, "index"])->name("feedback");
     Route::post('/user/feedback', [SentFeedBackController::class, "insert"]);
 
     #subscribe
@@ -152,8 +157,6 @@ Route::middleware(["auth", "isVerify"])->group(function () {
 
     #verify
     Route::post("/author/{user:username}/verify", [AuthorController::class, "verify"])->middleware(["isAuthor"]);
-
-    
 });
 
 
@@ -200,13 +203,14 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
     #books
     Route::get("/admin/books", [AdminController::class, "books"]);
     Route::delete("/admin/book/{book:id}/delete", [AdminController::class, "deleteBook"]);
- 
+    Route::post("/admin/book/{book:id}/confirm", [AdminController::class, "publishConfirm"]);
+
     #setting
     Route::get("/admin/setting", [AdminController::class, "setting"]);
     Route::patch("/admin/setting", [AdminController::class, "updateSetting"]);
 
     #report
-    
+
     Route::get("/admin/books/reports", [ReportController::class, "index"]);
 
     #history
@@ -220,8 +224,8 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
 Route::get('/', [BookController::class, "index"])->name("home");
 Route::get('/search-books', [BookController::class, "books"]);
 Route::get("/book-details/{book:slug}", [BookController::class, "show"]);
-Route::get("/book/trends", [BookController::class, "trends"]);
-Route::get("/book/populars", [BookController::class, "populars"]);
+Route::get("/book/trends", [BookController::class, "trends"])->name("trend");
+Route::get("/book/populars", [BookController::class, "populars"])->name("popular");;
 
 
 // Auth Route - GET
@@ -245,4 +249,3 @@ Route::get("/contact", [OtherController::class, "contact"]);
 Route::get("/about", [OtherController::class, "about"]);
 
 Route::get("/qanda", [OtherController::class, "qanda"]);
-

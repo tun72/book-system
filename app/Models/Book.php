@@ -115,7 +115,7 @@ class Book extends Model
 
         if ($status = $filters["status"] ?? null) {
             $bookQuery->where(function ($query) use ($status) {
-                $query->where("status", $status);
+                $query->where("isPublished", $status === "true");
             });
         }
 

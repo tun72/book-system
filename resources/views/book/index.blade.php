@@ -1,5 +1,6 @@
 <x-home-layout>
     @vite('resources/js/readlist.js')
+    @vite('resources/js/myslider.js')
     <x-genres-component />
     <x-trend-component />
     <div class="books mb-10">
@@ -10,7 +11,7 @@
 
     @auth
 
-        @if (auth()->user()->role === 0)
+        @if (auth()->user()->role !== 1)
             <x-user-choise />
         @endif
 

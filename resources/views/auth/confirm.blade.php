@@ -1,10 +1,10 @@
 <x-layout>
     @vite('resources/js/countdown.js')
     <section class="font-poppins ">
-        <div class="hidden py-[4rem] text-center bg-gradient-to-r from-yellow-200 to-lime-200 dark:bg-gray-700 lg:block">
+        <div class="hidden py-[4rem] text-center bg-gradient-to-r from-cyan-500 to-blue-500 dark:bg-gray-700 lg:block">
             <div class="max-w-6xl mx-auto mb-[7rem]">
                 {{-- <span class="inline-block text-lg font-medium text-yellow-600 dark:text-blue-300">Welcome Back 😍</span> --}}
-                <h2 class="mb-6 font-semibold text-gray-800 text-6xl dark:text-gray-300">Confirm your Email!</h2>
+                <h2 class="mb-6 font-semibold text-blue-100 text-6xl dark:text-gray-300">Confirm your Email!</h2>
             </div>
         </div>
         <div class="max-w-xl mx-auto ">
@@ -32,10 +32,10 @@
                             <div class="otp-countdown hidden bg-gray-400 text-gray-200 w-fit px-3 py-1 rounded-xl"
                                 id="timer-countdown"></div>
 
-                            <button type="button" id="resend" class="bg-yellow-400 px-3 py-1 rounded-lg text-white">restart</button>
+                            <button type="button" id="resend" class="bg-gray-400 px-3 py-1 rounded-lg text-white">restart</button>
                         </div>
                         <button
-                            class="w-full px-4 py-4 mt-6 font-medium text-gray-200 bg-blue-700 rounded-lg dark:bg-blue-500 hover:text-blue-200 "
+                            class="w-full px-4 py-4 mt-6 font-medium text-gray-200 bg-button-800 rounded-lg dark:bg-blue-500 hover:text-blue-200 "
                             type="submit">Save</button>
                     </form>
                 </div>

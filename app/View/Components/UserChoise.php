@@ -23,7 +23,7 @@ class UserChoise extends Component
     public function render(): View|Closure|string
     {
         
-        $genres = explode(',', auth()->user()->reader->genres);
+        $genres = explode(',', auth()->user()->reader?->genres);
         $genres = Genres::whereIn("id", $genres)->get();
 
         

@@ -297,7 +297,20 @@
 
                     </div>
                     @auth
-                        @if (!auth()->user()?->isBought($book))
+
+                        @if (auth()->user()->isAuthorBook($book))
+                            <div class="wrapper">
+                                <div class="link_wrapper">
+                                    <a href="/book/chapter/{{ $book->chapters[0]->slug }}/read">Read Now</a>
+                                    <div class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+                                            <path
+                                                d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif (!auth()->user()?->isBought($book))
                             <div>
                                 {{-- <button type="button" data-modal-target="popup-modal-{{ $book->id }}"
                                     
@@ -355,6 +368,8 @@
                 <div>
                     <h1 class="text-3xl text-gray-700 font-semibold">{{ $book->title }}</h1>
                 </div>
+               
+                <span class="text-2xl text-button-800"> <i class="fa-brands fa-gg-circle text-primary fs-5"></i> {{ $book->ggcoin }} coins</span>
 
                 <div class="flex text-xl font-light ">
                     <h1 class="font-semibold text-button-800"> <a
@@ -395,7 +410,7 @@
 
 
                 <div class="text-gray-500">
-                    <p>{{ count($book->chapters) }} chapters, Kindle Edition</p>
+                    <p>{{ count($book->chapters) }} chapters, <span class="text-button-800 text-2xl">{{ $book->status }}</span></p>
                 </div>
 
                 <div class="text-gray-500">
@@ -477,6 +492,8 @@
                                 <span class="font-light text-sm text-gray-700">{{ count($book->user->books) }}
                                     books</span>
                                 <span class="font-light text-sm"> . </span>
+
+
                                 <span class="font-light text-sm">{{ count($book->user->author->subscribers) }}
                                     followers</span>
                             </div>
@@ -523,11 +540,21 @@
                                     <span>#{{ $chapter->chapter }}</span>
                                     <h3 class="flex h-14 cursor-pointer items-center font-bold">
                                         {{ $chapter->title }} </h3>
-                                    @if (!$chapter->isfree)
-                                        <a href="{{ $chapter->isfree ? '/book/chapter/' . $chapter->slug . '/read' : '#' }}"
-                                            class="text-sm text-gray-800"><i class="fas fa-lock"></i></a>
+
+                                    @if (auth()->user()->role === 1)
+                                        <a href='{{ '/book/chapter/' . $chapter->slug . '/read' }}'
+                                            class="text-sm text-gray-800"><i class="fas fa-lock-open"></i></a>
                                     @else
-                                        <span class="text-sm text-gray-800"><i class="fas fa-lock-open"></i></span>
+                                        @if (auth()->user()?->isBought($book))
+                                            <a href="{{ '/book/chapter/' . $chapter->slug . '/read' }}"
+                                                class="text-sm text-gray-800"><i class="fas fa-lock-open"></i></a>
+                                        @elseif (!$chapter->is_free)
+                                            <a href='#' class="text-sm text-gray-800"><i
+                                                    class="fas fa-lock"></i></a>
+                                        @else
+                                            <a href='{{ '/book/chapter/' . $chapter->slug . '/read' }}'
+                                                class="text-sm text-gray-800"><i class="fas fa-lock-open"></i></a>
+                                        @endif
                                     @endif
                                 </div>
                                 <p class="mb-2">{{ $chapter->intro }}</p>
@@ -774,18 +801,6 @@
                                         <span>comment</span>
                                     </div>
 
-
-                                    <!-- see more -->
-                                    {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24">
-                                        <g fill="none">
-                                            <path
-                                                d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-                                            <path fill="currentColor"
-                                                d="M5 10a2 2 0 1 1 0 4a2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4a2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4a2 2 0 0 1 0-4" />
-                                        </g>
-                                    </svg> --}}
-
                                 </div>
 
                                 <div id="dropdown-comment-{{ $review->id }}" class="hidden">
@@ -888,7 +903,7 @@
                                 <input type="text" id="quantity-input" data-input-counter
                                     aria-describedby="helper-text-explanation" name="rating"
                                     class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="999" required>
+                                    placeholder="⭐" required max="5" min="1">
                                 <button type="button" id="increment-button"
                                     data-input-counter-increment="quantity-input"
                                     class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
@@ -901,7 +916,7 @@
                             </div>
                             <textarea id="description" rows="4" name="body"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Write product description here"></textarea>
+                                placeholder="Write your review here"></textarea>
                         </div>
                     </div>
                     <button type="submit"
@@ -912,7 +927,7 @@
                                 d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        Add new product
+                        Submit
                     </button>
                 </form>
             </div>
@@ -950,7 +965,7 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
                                 <input type="text" name="title" id="title"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                    placeholder="name@company.com" required>
+                                    placeholder="title" required>
                             </div>
                             <div>
 
@@ -959,7 +974,7 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
                                 <textarea id="message" rows="4" name="about"
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Write your thoughts here..."></textarea>
+                                    placeholder="Write your issue ..."></textarea>
 
                             </div>
 
@@ -972,22 +987,5 @@
             </div>
         </div>
     @endauth
-    {{-- <script>
-        let arrowBtn = document.querySelector('.arrow');
-        let detail = document.querySelector('.detail');
-        let arrowDiv = document.querySelector('.arrowDiv');
 
-        function none() {
-            arrowBtn.style.display = 'none';
-        }
-
-        function flex() {
-            detail.style.display = 'flex';
-        }
-
-        arrowBtn.addEventListener('click', function() {
-            none();
-            flex();
-        })
-    </script> --}}
 </x-home-layout>

@@ -45,13 +45,7 @@
                     </li>
                     <li> <a href="/author/readers" class="text-lg items-center"><i
                                 class="fas fa-feather-alt text-lg"></i>Followers</a></li>
-                    <li>
-                        <a href="" class="text-lg items-center"><i class="fas fa-cogs text-lg"></i>Setting</a>
-                    </li>
 
-                    <li>
-                        <a href="" class="text-lg items-center"><i class="fas fa-comment-alt text-lg"></i>Feedback</a>
-                    </li>
 
 
                 </ul>
