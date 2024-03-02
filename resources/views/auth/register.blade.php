@@ -73,7 +73,7 @@
                             type="submit">SIGNUP</button>
                         <div class="py-5 text-base text-center text-gray-600 dark:text-gray-400">Or login with</div>
                         <div class="flex justify-center">
-                            <a href="" class="">
+                            <a href="{{ url('/login/google') }}" class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30"
                                     fill="currentColor" class="mr-6 text-blue-700 dark:text-blue-400 bi bi-facebook"
                                     viewBox="0 0 16 16">

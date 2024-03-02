@@ -31,4 +31,17 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+
+    // 'google' => [
+    //     'client_id' => env("GOOGLE_CLIENT_ID"),
+    //     "client_secret" => env("GOOGLE_CLIENT_SECRET"),
+    //     "redirect" => env("GOOGLE_REDIRECT_URL")
+    // ],
+
+    'google' => [
+        'client_id' => '1068362827732-h2m711lk5hhemiu7vvktii655a1if0tv.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://127.0.0.1:8000/complete-your-profile/1',
+    ],
+
 ];

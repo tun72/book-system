@@ -9,6 +9,7 @@ use App\Http\Controllers\BuyBookController;
 use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FavouriteController;
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\OtherController;
 use App\Http\Controllers\PriceController;
@@ -60,7 +61,8 @@ Route::middleware(["auth", "isVerify"])->group(function () {
     #user 
     Route::get('/user-profile/{user:username}', [UserController::class, "getUser"]);
     Route::get('/user/notification', [UserController::class, "notification"]);
-    Route::get('/user/library', [UserController::class, "library"])->name("library");;
+    Route::get('/user/library', [UserController::class, "library"])->name("library");
+    ;
     Route::get('/user/update-user', [UserController::class, "getUpdate"]);
     Route::get('/user/{user:username}/purchased', [UserController::class, "purchased"])->name("purchased");
     Route::get('/user/{user:username}/readlist', [UserController::class, "readlist"])->name("readlist");
@@ -225,7 +227,8 @@ Route::get('/', [BookController::class, "index"])->name("home");
 Route::get('/search-books', [BookController::class, "books"]);
 Route::get("/book-details/{book:slug}", [BookController::class, "show"]);
 Route::get("/book/trends", [BookController::class, "trends"])->name("trend");
-Route::get("/book/populars", [BookController::class, "populars"])->name("popular");;
+Route::get("/book/populars", [BookController::class, "populars"])->name("popular");
+;
 
 
 // Auth Route - GET
@@ -234,6 +237,8 @@ Route::get("/register", [AuthController::class, "viewRegister"]);
 Route::get("/complete-your-profile/{id}", [AuthController::class, "completeProfile"]);
 Route::get("/confirm-email", [AuthController::class, "confirm"]);
 Route::get("/success", [SuccessController::class, "index"]);
+
+Route::get("/login/google", [GoogleLoginController::class, 'handleGoogleCallback'])->name("auth.google");
 
 // Auth Route - POST
 Route::post("/register", [AuthController::class, "register"]);

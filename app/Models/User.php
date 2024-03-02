@@ -27,7 +27,8 @@ class User extends Authenticatable
         "phoneNumber",
         "background",
         "otp",
-        "otp_expires_at"
+        "otp_expires_at",
+        "google_id"
     ];
 
     public static function boot()
