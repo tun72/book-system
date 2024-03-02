@@ -430,7 +430,8 @@
             aria-label="Sidenav" id="drawer-navigation">
             <div class="flex flex-col gap-[0.25rem] items-center w-full mt-[4rem]">
                 <img src="/img/logo.svg" alt="" class="w-[6rem] h-[6rem]">
-                <h3 class="font-bold text-xl">THE BOOK STORE</h3>
+                <h3 class="font-bold text-xl w-[70%] mx-auto">Online <span class="text-button-800">books</span> store
+                    system</h3>
             </div>
             <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
                 <form action="#" method="GET" class="md:hidden mb-2">

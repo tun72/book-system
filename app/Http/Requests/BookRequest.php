@@ -38,7 +38,7 @@ class BookRequest extends FormRequest
             "image" => [$this->isupdate ? "required" : "", "image"],
             "discount" => [""],
             "status" => [$this->isupdate ? "required" : ""],
-            "caption" => ["required"]
+            "caption" => ["required"],
 
         ];
     }

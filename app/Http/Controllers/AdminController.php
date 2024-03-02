@@ -27,7 +27,7 @@ class AdminController extends Controller
     {
         return view("admin.index", [
             "users" => User::whereIn("role", [0, 2])->latest()->limit(10)->get(),
-            "books" => Book::all(),
+            "books" => Book::where("publish", true)->get(),
             "histories" => AdminHistory::limit(5)->latest()->get(),
             "incomes" => AdminHistory::where('status', 'income')->sum('ggcoin'),
             "outcomes" => AdminHistory::where('status', 'outcome')->sum('ggcoin'),
@@ -242,8 +242,7 @@ class AdminController extends Controller
     {
         // $ROLE = ["free" => [0], "author" => [2], "all" => [0, 2], "" => [0, 2]];
         $book = Book::with(["user"])->filter(request(["status", "search", "author", "price", "id"]));
-
-        $bookQuery = $book->where("isPublished", true)->orWhere('isRequested', true)->orderBy("created_at", "DESC");
+        $bookQuery = $book->where('isRequested', true)->orderBy("created_at", "DESC");
         $bookQuery = $bookQuery->latest()->paginate(10)->withQueryString();
 
 
@@ -317,10 +316,10 @@ class AdminController extends Controller
         }
 
         Notification::create([
-            "about" => "confrim your book",
+            "about" => "confrim your book " . $book->title ,
             "book_id" => $book->id,
             "user_id" => auth()->user()->id,
-            "recipient_id" => $subscriber->id
+            "recipient_id" => $book->user->id
         ]);
 
         Mail::to($book->user->email)->queue(new BookConfirmMail($book->user->name));

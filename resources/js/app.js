@@ -1,7 +1,3 @@
-// import "./darkmode";
-import "./bookeditor";
-
-import ClassicEditor from "./ckeditor";
 
 import axios from "axios";
 import jQuery from "jquery";
@@ -21,15 +17,7 @@ $("#toggle-readlist").on("click", function () {
 
 
 
-ClassicEditor
-    // Note that you do not have to specify the plugin and toolbar configuration — using defaults from the build.
-    .create(document.querySelector("#editortext"))
-    .then((editor) => {
-        console.log("Editor was initialized", editor);
-    })
-    .catch((error) => {
-        // console.error(error.stack);
-    });
+
 
 $(".all-check").on("click", function () {
     let allckeck = $(this).is(":checked");

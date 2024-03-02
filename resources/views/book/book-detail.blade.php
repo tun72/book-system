@@ -541,7 +541,7 @@
                                     <h3 class="flex h-14 cursor-pointer items-center font-bold">
                                         {{ $chapter->title }} </h3>
 
-                                    @if (auth()->user()->role === 1)
+                                    @if (auth()->user()?->role === 1)
                                         <a href='{{ '/book/chapter/' . $chapter->slug . '/read' }}'
                                             class="text-sm text-gray-800"><i class="fas fa-lock-open"></i></a>
                                     @else

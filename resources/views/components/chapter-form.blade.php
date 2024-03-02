@@ -1,5 +1,5 @@
 @props(['type', 'book', 'chapter' => null])
-
+@vite('resources/js/bookeditor.js')
 <form
     action="{{ $type === 'create' ? '/author/chapter/' . $book->id . '/store' : '/chapter/' . $chapter?->slug . '/update' }}"
     method="POST" class="px-10 py-5 w-full h-[100vh]  dark:bg-gray-800 overflow-scroll">

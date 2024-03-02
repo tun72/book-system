@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('books', function (Blueprint $table) {
             //
-            $table->boolean("isRequested")->default(false);
+            $table->boolean("isRequested")->default(true);
         });
     }
 

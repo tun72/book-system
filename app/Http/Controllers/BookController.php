@@ -127,6 +127,7 @@ class BookController extends Controller
 
         $cleanData["isPublished"] = false;
         $cleanData["status"] = "ongoing";
+        $cleanData["isRequested"] = false;
 
 
         if (!auth()->user()->author->isVerified) {
@@ -155,6 +156,7 @@ class BookController extends Controller
 
         $book->title = $cleanData["title"];
         $book->slug = $cleanData["slug"];
+
         $book->publish = $cleanData["publish"];
         $book->body = $cleanData["body"];
         $book->ggcoin = $cleanData["ggcoin"];

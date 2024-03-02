@@ -255,8 +255,8 @@
             <div class="w-[70px]">
                 <img src="./img/book-and-person-summer-svgrepo-com.svg" alt="">
             </div>
-            <span class="text-[#2993FF]">Literlary</span>
-            <span class="text-[#a1cc35]">Loom</span>
+            <span class="text-white">Online <span class="text-button-800">Book</span> Store System</span>
+    
         </div>
         <div class="md:block hidden">
             <ul class="flex gap-9 text-brand-200 cursor-pointer text-lg">
