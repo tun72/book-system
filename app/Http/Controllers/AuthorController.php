@@ -31,7 +31,8 @@ class AuthorController extends Controller
     // creation 
     public function creation()
     {
-        $book = auth()->user()->books()->latest()->paginate(10);
+        $book = auth()->user()->books()->filter(request(["search"]))->latest()->paginate(10)->withQueryString();
+
         return view("author.creation", [
             "books" => $book
         ]);
@@ -64,7 +65,7 @@ class AuthorController extends Controller
 
     public function comments(User $user)
     {
-       
+
         return view("author.comments", ["books" => $user->books]);
     }
 

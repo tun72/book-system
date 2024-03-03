@@ -5,210 +5,6 @@
 @endphp
 
 
-{{-- <style>
-    @import url("https://fonts.googleapis.com/css?family=Poppins:900i");
-
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .wrapper {
-        display: flex;
-        justify-content: center;
-    }
-
-    .cta {
-        display: flex;
-        padding: 10px 45px;
-        text-decoration: none;
-        font-family: "Poppins", sans-serif;
-        font-size: 40px;
-        color: white;
-        background: #6225e6;
-        transition: 1s;
-        box-shadow: 6px 6px 0 black;
-        transform: skewX(-15deg);
-    }
-
-    .cta:focus {
-        outline: none;
-    }
-
-    .cta:hover {
-        transition: 0.5s;
-        box-shadow: 10px 10px 0 #fbc638;
-    }
-
-    .cta span:nth-child(2) {
-        transition: 0.5s;
-        margin-right: 0px;
-    }
-
-    .cta:hover span:nth-child(2) {
-        transition: 0.5s;
-        margin-right: 45px;
-    }
-
-    span {
-        transform: skewX(15deg);
-    }
-
-    span:nth-child(2) {
-        width: 20px;
-        margin-left: 30px;
-        position: relative;
-        top: 12%;
-    }
-
-    /**************SVG****************/
-
-    path.one {
-        transition: 0.4s;
-        transform: translateX(-60%);
-    }
-
-    path.two {
-        transition: 0.5s;
-        transform: translateX(-30%);
-    }
-
-    .cta:hover path.three {
-        animation: color_anim 1s infinite 0.2s;
-    }
-
-    .cta:hover path.one {
-        transform: translateX(0%);
-        animation: color_anim 1s infinite 0.6s;
-    }
-
-    .cta:hover path.two {
-        transform: translateX(0%);
-        animation: color_anim 1s infinite 0.4s;
-    }
-
-    /* SVG animations */
-
-    @keyframes color_anim {
-        0% {
-            fill: white;
-        }
-
-        50% {
-            fill: #fbc638;
-        }
-
-        100% {
-            fill: white;
-        }
-    }
-</style> --}}
-
-<!-- designed by me... enjoy! -->
-
-
-
-{{-- <style>
-    html,
-    body {
-        height: 100%;
-    }
-
-    .wrap {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .button {
-        min-width: 300px;
-        min-height: 60px;
-        font-family: 'Nunito', sans-serif;
-        font-size: 22px;
-        text-transform: uppercase;
-        letter-spacing: 1.3px;
-        font-weight: 700;
-        color: #313133;
-        background: #4FD1C5;
-        background: linear-gradient(90deg, rgba(129, 230, 217, 1) 0%, rgba(79, 209, 197, 1) 100%);
-        border: none;
-        border-radius: 1000px;
-        box-shadow: 12px 12px 24px rgba(79, 209, 197, .64);
-        transition: all 0.3s ease-in-out 0s;
-        cursor: pointer;
-        outline: none;
-        position: relative;
-        padding: 10px;
-    }
-
-    button::before {
-        content: '';
-        border-radius: 1000px;
-        min-width: calc(300px + 12px);
-        min-height: calc(60px + 12px);
-        border: 6px solid #00FFCB;
-        box-shadow: 0 0 60px rgba(0, 255, 203, .64);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0;
-        transition: all .3s ease-in-out 0s;
-    }
-
-    .button:hover,
-    .button:focus {
-        color: #313133;
-        transform: translateY(-6px);
-    }
-
-    button:hover::before,
-    button:focus::before {
-        opacity: 1;
-    }
-
-    button::after {
-        content: '';
-        width: 30px;
-        height: 30px;
-        border-radius: 100%;
-        border: 6px solid #00FFCB;
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        animation: ring 1.5s infinite;
-    }
-
-    button:hover::after,
-    button:focus::after {
-        animation: none;
-        display: none;
-    }
-
-    @keyframes ring {
-        0% {
-            width: 30px;
-            height: 30px;
-            opacity: 1;
-        }
-
-        100% {
-            width: 300px;
-            height: 300px;
-            opacity: 0;
-        }
-    }
-</style> --}}
-
 <style>
     .wrapper {}
 
@@ -368,8 +164,19 @@
                 <div>
                     <h1 class="text-3xl text-gray-700 font-semibold">{{ $book->title }}</h1>
                 </div>
-               
-                <span class="text-2xl text-button-800"> <i class="fa-brands fa-gg-circle text-primary fs-5"></i> {{ $book->ggcoin }} coins</span>
+
+
+
+                <div>
+                    <i class="fa-brands fa-gg-circle text-primary fs-5 text-2xl"></i>
+                    <span class=" text-button-800 text-2xl">{{ $book->ggcoin - $book->discount }}</span>
+                    @if ($book->discount > 0)
+                        <span
+                            class="ml-3  font-normal text-gray-500 line-through dark:text-gray-400 text-2xl ">{{ $book->ggcoin }}</span>
+                    @endif
+
+                </div>
+
 
                 <div class="flex text-xl font-light ">
                     <h1 class="font-semibold text-button-800"> <a
@@ -410,7 +217,8 @@
 
 
                 <div class="text-gray-500">
-                    <p>{{ count($book->chapters) }} chapters, <span class="text-button-800 text-2xl">{{ $book->status }}</span></p>
+                    <p>{{ count($book->chapters) }} chapters, <span
+                            class="text-button-800 text-2xl">{{ $book->status }}</span></p>
                 </div>
 
                 <div class="text-gray-500">

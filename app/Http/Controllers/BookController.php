@@ -127,7 +127,7 @@ class BookController extends Controller
 
         $cleanData["isPublished"] = false;
         $cleanData["status"] = "ongoing";
-        $cleanData["isRequested"] = false;
+        $cleanData["isRequested"] = 0;
 
 
         if (!auth()->user()->author->isVerified) {
@@ -141,9 +141,10 @@ class BookController extends Controller
         }
 
 
+
         $book = Book::create($cleanData);
 
-        // dd($book);
+        dd($book);
         $book->genres()->attach($cleanData["genres"]);
 
         return redirect("/author/creation");

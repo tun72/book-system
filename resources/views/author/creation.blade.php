@@ -3,7 +3,13 @@
         <div class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 mb-5 ">
             <h3 class="text-3xl font-bold dark:text-white">All Books</h3>
 
-            <div>
+            <div class="flex gap-2 items-center">
+                <form action="/author/creation" method="GET">
+                    <input type="text" id="table-search-users" name="search"
+                        class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search for users">
+                </form>
+
                 <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction"
                     class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                     type="button">
@@ -18,6 +24,7 @@
                 <!-- Dropdown menu -->
                 <div id="dropdownAction"
                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+
                     <form action="/book/book-delete" method="POST" class="py-2 delete-form">
                         @csrf
                         @method('DELETE')
@@ -136,7 +143,8 @@
                 <h1
                     class="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-primary-600 dark:text-primary-500">
                     204</h1>
-                <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">No Books Found</p>
+                <p class="mb-4 text-3xl tracking-tight font-bold text-gray-900 md:text-4xl dark:text-white">No Books
+                    Found</p>
                 <p class="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">Sorry, we can't find that page.
                     You'll need to write book first.</p>
                 <a href="/"

@@ -24,7 +24,8 @@ class Book extends Model
         "isPublished",
         "status",
         "discount",
-        "caption"
+        "caption",
+        "isRequested"
     ];
 
     public static function boot()

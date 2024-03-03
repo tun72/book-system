@@ -238,7 +238,8 @@ Route::get("/complete-your-profile/{id}", [AuthController::class, "completeProfi
 Route::get("/confirm-email", [AuthController::class, "confirm"]);
 Route::get("/success", [SuccessController::class, "index"]);
 
-Route::get("/login/google", [GoogleLoginController::class, 'handleGoogleCallback'])->name("auth.google");
+Route::get("/login/google", [GoogleLoginController::class, 'signInwithGoogle']);
+Route::get("/callback/google", [GoogleLoginController::class, 'callbackToGoogle']);
 
 // Auth Route - POST
 Route::post("/register", [AuthController::class, "register"]);

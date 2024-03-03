@@ -70,7 +70,7 @@ class AuthController extends Controller
     public function checkOTP()
     {
 
-        $storedResponse = json_decode(Session::get('user_data'), true);
+        
 
         // dd($storedResponse);
         $user = User::where('email',  auth()->user()->email)
@@ -105,11 +105,13 @@ class AuthController extends Controller
             "username" => ["required", "min:3", Rule::unique("users", "username")],
             "about" => ["required"],
             "address" => ["required"],
-            "photo" => ["required", "image"]
+            "photo" => ["", "image"]
         ]);
 
         if ($file = request("photo")) {
             $cleanData["photo"] = "/storage/" . $file->store("/users");
+        } else {
+            $cleanData["photo"] = auth()->user()?->imageUrl;
         }
 
         // Session::put('user_data', json_encode($cleanData));

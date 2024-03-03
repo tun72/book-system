@@ -32,16 +32,10 @@ return [
     ],
 
 
-    // 'google' => [
-    //     'client_id' => env("GOOGLE_CLIENT_ID"),
-    //     "client_secret" => env("GOOGLE_CLIENT_SECRET"),
-    //     "redirect" => env("GOOGLE_REDIRECT_URL")
-    // ],
-
     'google' => [
-        'client_id' => '1068362827732-h2m711lk5hhemiu7vvktii655a1if0tv.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'http://127.0.0.1:8000/complete-your-profile/1',
+        'client_id' => '1068362827732-b7h6855jj0km55g36ud3vcarrn795q7r.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://127.0.0.1:8000/callback/google',
     ],
 
 ];
