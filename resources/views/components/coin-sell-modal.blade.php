@@ -13,7 +13,7 @@
                         Account Name - {{ $sell->accname }}
                     </p>
                     <p class="text-base">
-                        Amount - {{ $sell->ggcoin * 800 }} mmk
+                        Amount - {{ $sell->ggcoin * $limit }} mmk
                     </p>
                     <p class="text-base">
                         Coins - {{ $sell->ggcoin }} coins
@@ -21,7 +21,7 @@
                     <p class="text-base">
                         sell Payment Method - {{ $sell->payment }}
                     </p>
-                </div>
+                </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
                 <div>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex dark:hover:bg-gray-600 dark:hover:text-white"

@@ -43,25 +43,27 @@
                     <tbody>
 
                         @foreach ($earns as $earn)
-                            <tr
-                                class="text-sm {{ $index % 2 != 0 ? 'bg-gray-100' : '' }} dark:text-gray-400 dark:bg-transparent">
-                                <td class="px-6 py-5 font-medium">#{{ $earn->id }}</td>
-                                <td class="px-6 py-5 font-medium "><a href="#"
-                                        class="text-blue-400">{{ $earn->book->title }}</a></td>
-                                <td class="px-6 py-5 font-medium ">{{ $earn->user->name }}</td>
-                                <td>
-                                    <span
-                                        class="inline-block px-2 py-1 text-center text-green-600 bg-green-100 rounded-full dark:text-green-700 dark:bg-green-200">+
-                                        {{ $earn->ggcoin }} coins</span>
-                                </td>
+                            @if ($earn->book)
+                                <tr
+                                    class="text-sm {{ $index % 2 != 0 ? 'bg-gray-100' : '' }} dark:text-gray-400 dark:bg-transparent">
+                                    <td class="px-6 py-5 font-medium">#{{ $earn->id }}</td>
+                                    <td class="px-6 py-5 font-medium "><a href="#"
+                                            class="text-blue-400">{{ $earn->book->title }}</a></td>
+                                    <td class="px-6 py-5 font-medium ">{{ $earn->user->name }}</td>
+                                    <td>
+                                        <span
+                                            class="inline-block px-2 py-1 text-center text-green-600 bg-green-100 rounded-full dark:text-green-700 dark:bg-green-200">+
+                                            {{ $earn->ggcoin }} coins</span>
+                                    </td>
 
-                                <td class="px-6 py-5 font-medium ">{{ $earn->created_at->diffForHumans() }}</td>
+                                    <td class="px-6 py-5 font-medium ">{{ $earn->created_at->diffForHumans() }}</td>
 
 
-                            </tr>
-                            @php
-                                $index++;
-                            @endphp
+                                </tr>
+                                @php
+                                    $index++;
+                                @endphp
+                            @endif
                         @endforeach
 
                     </tbody>

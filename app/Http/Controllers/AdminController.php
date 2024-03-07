@@ -134,8 +134,10 @@ class AdminController extends Controller
 
     public function coinsBuy()
     {
+        
         return view("admin.coin-buy", [
-            "transfers" => Transfer::all()
+            "transfers" => Transfer::all(),
+          
         ]);
     }
 
@@ -143,7 +145,9 @@ class AdminController extends Controller
     {
 
         return view("admin.coin-sell", [
-            "sells" => Sells::all()
+            "sells" => Sells::all(),
+            "limit" => Setting::where("id",  1)->first()->limit_coin
+
         ]);
     }
 
@@ -156,6 +160,13 @@ class AdminController extends Controller
             "ggcoin" => $transfer->ggcoin,
             "status" => "Income"
         ]);
+
+        Notification::create([
+            "about" => "confrim your coin request ",
+            "user_id" => auth()->user()->id,
+            "recipient_id" => $transfer->user->id
+        ]);
+
         $transfer->delete();
         Mail::to($transfer->user->email)->queue(new CoinConfirm($transfer->user->name, $transfer->user->ggcoin));
         return back()->with("success", "Successfully transfered Chief🪲 ✅.");
@@ -303,7 +314,7 @@ class AdminController extends Controller
     public function publishConfirm(Book $book)
     {
         $book->isPublished = true;
-        $book->isRequested = false;
+        // $book->isRequested = false;
         $book->save();
         $subscribers = $book->user->author->subscribers;
         foreach ($subscribers as $subscriber) {
@@ -316,7 +327,7 @@ class AdminController extends Controller
         }
 
         Notification::create([
-            "about" => "confrim your book " . $book->title ,
+            "about" => "confrim your book " . $book->title,
             "book_id" => $book->id,
             "user_id" => auth()->user()->id,
             "recipient_id" => $book->user->id

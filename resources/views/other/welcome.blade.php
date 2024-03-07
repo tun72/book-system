@@ -111,8 +111,8 @@
             font-size: 14px;
             letter-spacing: 0.04em;
             text-align: left;
-            color: #fff;
-            opacity: 0.65;
+            color: #4b5563;
+            opacity: 0.9;
         }
 
         .unt {
@@ -249,17 +249,18 @@
 
     <!-- Nab bar -->
     <div
-        class="w-[100%] h-[15vh] bg-brand-600 gap-[30px] lg:px-[60px] flex md:justify-evenly justify-between items-center relative overflow-hidden">
-        <div
+        class="w-[100%] h-[15vh] bg-[#93c5fd] gap-[30px] lg:px-[60px] flex md:justify-evenly justify-between items-center relative overflow-hidden">
+        <a href="http://127.0.0.1:8001/welcome"
             class="lg:text-[32px] md:pl-[0px] px-[20px] text-[24px] font-extrabold flex justify-center items-center gap-[10px]">
             <div class="w-[70px]">
                 <img src="./img/book-and-person-summer-svgrepo-com.svg" alt="">
             </div>
-            <span class="text-white">Online <span class="text-button-800">Book</span> Store System</span>
-    
-        </div>
+            <span class="text-button-800">Online</span>
+            <span class="text-button-800">Book </span>
+            <span class="text-white">Store System</span>
+        </a>
         <div class="md:block hidden">
-            <ul class="flex gap-9 text-brand-200 cursor-pointer text-lg">
+            <ul class="flex gap-9 text-white cursor-pointer text-xl">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About us</a></li>
                 <li><a href="/qanda">Q & A</a></li>
@@ -267,12 +268,12 @@
         </div>
         <div class="md:mr-[150px]">
             <a href="/contact"
-                class="px-[20px] py-[5px] border border-[#2993FF] rounded-lg border-solid cursor-pointer text-white text-lg font-semibold">Contact
+                class="px-[20px] py-[5px]  bg-button-800 rounded-lg  cursor-pointer text-white text-lg font-semibold">Contact
                 Us</a>
         </div>
 
         <div class="hidden text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" >
                 <path fill="currentColor"
                     d="M2 8a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h12a1 1 0 1 0 0-2H3Z" />
             </svg>
@@ -290,17 +291,17 @@
     </div>
 
     <!-- welcome section -->
-    <div class="lg:h-[550px] md:h-[500px] h-[420px] w-[100%] bg-brand-100 mb-[50px] relative">
+    <div class="lg:h-[550px] md:h-[500px] h-[420px] w-[100%] bg-[#93c5fd] mb-[50px] relative">
         <!-- header and p tab -->
         <div
-            class="w-[100%] flex flex-col justify-center items-center lg:pt-[100px] md:pt-[80px] pt-[50px] relative overflow-hidden">
+            class="w-[100%] flex flex-col justify-center items-center  lg:pt-[100px] md:pt-[80px] pt-[50px] relative overflow-hidden">
             <h1
-                class="text-brand-600 md:text-4xl text-3xl xl:w-[30%] lg:w-[55%] md:w-[60%] w-[80%] font-bold text-center">
-                NEED SOMETHING TO FILL YOUR KID'S TIME & ENERGY?
+                class="text-white md:text-4xl mt-2 text-3xl xl:w-[45%] lg:w-[55%] md:w-[60%] w-[80%] font-bold text-center">
+                Unleash your imagination. Write. Read. Share. Explore
             </h1>
-            <p class="text-xl text-brand-600 lg:w-[40%] md:w-[70%] text-center lg:pt-[30px] md:pt-[20px] pt-[15px]">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam
-                consequuntur dicta aspernatur!
+            <p class="text-lg text-white lg:w-[40%] md:w-[70%] text-center lg:pt-[30px] md:pt-[20px] pt-[15px]">
+                "Embark on a literary journey like never before! Discover a treasure trove of captivating stories,
+                unleash your creativity, and connect with fellow writers on our vibrant novel website"
             </p>
             <div class="h-[150px] w-[200px] absolute md:block hidden left-0 top-0 translate-x-[-80px]">
                 <img src="./img/cloud1.png" alt="" />
@@ -308,13 +309,13 @@
             <div class="h-[100px] w-[150px] lg:block hidden absolute left-[20%] bottom-0 rotate-[20deg]">
                 <img src="./img/book.png" alt="" />
             </div>
-            <div class="h-[100px] w-[150px] absolute md:block hidden right-[23%] top-[20px] rotate-[10degs]">
+            <div class="h-[100px] w-[150px] absolute md:block hidden right-[15%] top-[20px] rotate-[10degs]">
                 <img src="./img/book2.png" alt="" />
             </div>
         </div>
         <!-- button -->
         <div class="w-[100%] flex justify-center items-center md:mt-[20px] mt-[20px]">
-            <button class="px-[40px] py-[10px] bg-brand-400 text-brand-100">
+            <button class="px-[40px] py-[10px] bg-button-800 text-gray-100">
                 Contact Us
             </button>
         </div>
@@ -322,17 +323,17 @@
             <img src="./img/cloud.png" class="w-[100%] lg:h-[200px] md:h-[160px] h-[100px]" alt="" />
         </div>
 
-        <div class="absolute right-[40px] w-[230px] h-[350px]">
+        <!-- <div class="absolute right-[40px] w-[230px] h-[350px]">
             <img src="./img/shineArrow.png" alt="" class="w-full h-full">
-        </div>
+        </div> -->
     </div>
 
     <!-- u tube section start -->
 
     <section class="relative">
         <h1
-            class="text-gray-400 lg:text-4xl md:text-2xl text-xl font-semibold mt-[0px] pt-[50px] mb-[30px] translate-y-[-30px] text-center">
-            You can get the first box free!
+            class="text-gray-600  lg:text-4xl md:text-2xl text-xl font-semibold mt-[0px] pt-[50px] mb-[30px] translate-y-[-30px] text-center">
+            Explore fantasy realms beyond imagination!
         </h1>
         <!-- phone -->
         <div
@@ -363,7 +364,7 @@
             <img src="./img/cloud2.png" alt="" />
         </div>
         <!-- arrow -->
-        <div class="absolute h-[300px] w-[300px] right-[15%] top-[0%] translate-y-[-250px] lg:block hidden">
+        <div class="absolute h-[300px] w-[300px] right-[8%] top-[0%] translate-y-[-250px] lg:block hidden">
             <img src="./img/shineArrow.png" alt="" />
         </div>
     </section>
@@ -376,7 +377,7 @@
         <div class="flex justify-center items-center lg:px-[40px] md:px-[20px] px-[20px]">
             <div class="xl:w-[80%] lg:w-[80%] md:w-[80%] w-[89%]">
                 <p
-                    class="xl:text-[120px] lg:text-[100px] md:text-[80px] text-[40px] xl:font-bold lg:font-bold md:font-bold font-semibold text-brand-100 p-[10px]">
+                    class="xl:text-[120px] lg:text-[100px] md:text-[80px] text-[40px] xl:font-bold lg:font-bold md:font-bold font-semibold text-blue-300 p-[10px]">
                     How it Works
                 </p>
             </div>
@@ -389,52 +390,48 @@
         <div
             class="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 xl:gap-9 lg:gap-8 md:gap-4 gap-5 xl:px-[60px] lg:px-[20px] px-[30px] xl:pt-[70px] lg:pt-[40px] relative">
             <div class="flex flex-col xl:gap-3 lg:gap-3 md:gap-2">
-                <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-brand-800">
+                <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-button-800">
                     Sign Up
                 </h1>
                 <p class="xl:w-[85%] lg:w-[85%] md:w-[95%] xl:text-xl lg:text-xl md:text-lg text-brand-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente,
-                    iure id consequatur molestias dolor eos. Accusantium est non
-                    expedita odit.
+                    Sign up now to explore limitless literary realms and connect with a vibrant community of readers and
+                    writers on our novel web platform
                 </p>
                 <p class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
                     Learn more
                 </p>
             </div>
             <div class="flex flex-col xl:gap-3 lg:gap-3 md:gap-2">
-                <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-brand-800">
+                <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-button-800">
                     Book & activities
                 </h1>
                 <p class="xl:w-[85%] lg:w-[85%] md:w-[95%] xl:text-xl lg:text-xl md:text-lg text-brand-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum optio
-                    dolorem libero alias, quos vitae veritatis magnam. Temporibus, amet
-                    quod!
+                    From virtual book clubs to interactive writing workshops, our website offers a diverse array of
+                    engaging events and activities to connect book enthusiasts and fuel literary passions. </p>
+                <p class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
+                    Learn more
+                </p>
+            </div>
+            <div class="flex flex-col xl:gap-3 lg:gap-3 md:gap-2">
+                <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-button-800">
+                    Over 20+ generes
+                </h1>
+                <p class="xl:w-[85%] lg:w-[85%] md:w-[95%] xl:text-xl lg:text-xl md:text-lg text-brand-300">
+                    Discover a universe of storytelling possibilities on our novel website, where an expansive library
+                    awaits with tales spanning countless genres.
                 </p>
                 <p class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
                     Learn more
                 </p>
             </div>
             <div class="flex flex-col xl:gap-3 lg:gap-3 md:gap-2">
-                <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-brand-800">
-                    Book we send
+                <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-button-800">
+                    Explore Many Interesting Books
                 </h1>
                 <p class="xl:w-[85%] lg:w-[85%] md:w-[95%] xl:text-xl lg:text-xl md:text-lg text-brand-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-                    adipisci porro recusandae saepe, velit cumque excepturi ea nobis
-                    quam aliquam!
-                </p>
-                <p class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
-                    Learn more
-                </p>
-            </div>
-            <div class="flex flex-col xl:gap-3 lg:gap-3 md:gap-2">
-                <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-brand-800">
-                    Book & activities
-                </h1>
-                <p class="xl:w-[85%] lg:w-[85%] md:w-[95%] xl:text-xl lg:text-xl md:text-lg text-brand-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum optio
-                    dolorem libero alias, quos vitae veritatis magnam. Temporibus, amet
-                    quod!
+                    Dive into the captivating tapestry of tales waiting for you on Literary Loom! Our website weaves
+                    together a rich assortment of intriguing stories that promise to enthrall and delight readers of all
+                    tastes.
                 </p>
                 <p class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
                     Learn more
@@ -446,7 +443,7 @@
             </div>
         </div>
 
-        <div class="mt-[40px] w-[200px] translate-x-[70px] translate-y-[60px] xl:block hidden">
+        <div class="mt-[40px] w-[200px] translate-x-[70px] translate-y-[10px] xl:block hidden">
             <img src="./img/shineArrow.png" alt="" class="w-full" />
         </div>
 
@@ -460,7 +457,7 @@
     <!-- slider section end -->
 
     <!-- info -->
-    <div class="xl:h-[500px] lg:h-[600px] w-[100%] px-[30px] flex lg:flex-row flex-col mt-[30px] mb-[30px] relative">
+    <div class="xl:h-[500px] lg:h-[600px] w-[100%] px-[30px] flex lg:flex-row flex-col mt-[100px] mb-[30px] relative">
         <!-- image part -->
         <div class="xl:w-[50%] lg:w-[40%] w-[100%] h-[100%] flex justify-center items-center">
             <img src="./img/teacher2.jpg" alt="this is teacher and student picture"
@@ -473,21 +470,20 @@
         <div class="absolute w-[250px] right-0 "><img src="./img/shineBook3.png" alt=""></div>
         <!-- paragraph part -->
         <div class="lg:w-[50%] w-[100%] h-[100%] flex justify-center flex-col px-[30px] mt-[20px]">
-            <h1 class="text-brand-600 font-bold md:text-4xl text-2xl xl:py-[20px] py-[15px]">
-                From parent to parent
+            <h1 class="text-button-800 font-bold md:text-4xl text-2xl xl:py-[20px] py-[15px]">
+                From Readers to Writers
             </h1>
             <p
-                class="xl:text-xl md:text-lg text-sm font-semibold xl:w-[75%] lg:w-[80%] w-[100%] xl:py-[10px] py-[5px]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio atque
-                dolorem tempore excepturi qui autem deserunt, voluptatum quos beatae
-                voluptate eius nesciunt et. Id, voluptates. Dicta exercitationem quas
-                totam ipsam?
+                class="xl:text-xl text-gray-500 md:text-lg text-sm font-semibold xl:w-[75%] lg:w-[80%] w-[100%] xl:py-[10px] py-[5px]">
+                At Literary Loom, we're dedicated to bridging the gap between readers and writers. Through our
+                user-friendly platform, readers can easily engage with authors, offering feedback and insights on their
+                favorite stories.
             </p>
-            <p class="xl:text-xl md:text-lg text-sm font-semibold w-[80%] lg:w-[90%] w-[100%] xl:py-[10px] py-[5px]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-                temporibus, a perspiciatis exercitationem, ratione aut expedita facere
-                maxime unde cumque porro dolorem minima, ab corrupti et doloribus eos
-                dolor distinctio ex ut officiis. Adipisci, temporibus?
+            <p
+                class="xl:text-xl md:text-lg text-sm text-gray-500 font-semibold  lg:w-[90%] w-[100%] xl:py-[10px] py-[5px]">
+                At the heart of Literary Loom lies a commitment to facilitating meaningful interactions between readers
+                and writers. Through our intuitive platform, readers can seamlessly communicate with authors, providing
+                feedback, asking questions, and participating in vibrant discussions.
             </p>
         </div>
     </div>
@@ -498,9 +494,9 @@
             <div class="w-[20%] xl:translate-x-[50px] lg:translate-x-[10px]">
                 <img src="./img/down_book.png" alt="" />
             </div>
-            <div class="lg:w-[50%] w-[100%] flex justify-center items-center xl:pb-0  md:pb-10 md:mb-[0px]">
-                <p class="xl:text-5xl lg:text-[30px] md:text-4xl text-[24px] font-bold text-brand-500">
-                    So how Much Does it Cost
+            <div class="lg:w-[60%] w-[100%] flex justify-center items-center xl:pb-0  md:pb-10 md:mb-[0px]">
+                <p class="xl:text-5xl lg:text-[30px] md:text-4xl text-[24px] font-bold text-button-800">
+                    About our currency?
                 </p>
             </div>
             <div
@@ -517,10 +513,9 @@
                 class="xl:mx-0 xl:mt-[150px] lg:mt-[50px] lg:mx-0 mx-auto xl:w-[50%] lg:w-[40%] md:w-[60%] w-[100%] flex justify-center items-center xl:translate-y-[-70px] lg:translate-y-[-70px] md:translate-y-[-70px] translate-y-[-20px] xl:pt-0 lg:pt-4 md:pt-6 md:px-[10px] px-[20px] md:pt-[40px] pt-[50px]">
                 <p
                     class="text-center translate-y-[-100px] xl:text-xl lg:text-xl md:text-xl text-[16px] font-semibold text-brand-700 xl:pr-[30px]">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident
-                    dolor nesciunt unde aspernatur. Aperiam, provident dolores
-                    aspernatur esse totam accusamus hic numquam doloremque quae!
-                </p>
+                    Delve into the world of Literary Loom and discover the value of our exclusive currency – gold coins!
+                    With each purchase, these gleaming tokens unlock premium features, from early access to new releases
+                    to ad-free reading experiences.
             </div>
         </div>
 
@@ -541,10 +536,10 @@
                 <ul
                     class="list-disc xl:text-xl lg:text-xl translate-y- md:text-xl text-md flex flex-col gap-4 font-semibold text-brand-700">
                     <li>
-                        <span class="line-through">$79.90</span><span>$49.90<sub>per</sub>month</span>
+                       convenient to buy coins
                     </li>
-                    <li>No hidden fee</li>
-                    <li>Cancel anytime</li>
+                    <li>Payments are secure</li>
+                    <li>Can buy at a low price</li>
                 </ul>
             </div>
             <div class="w-[20%] rotate-[355deg] relative xl:mr-0 lg:mr-0 md:mr-9">
@@ -565,7 +560,7 @@
 
     <section class="spacer relative">
 
-        <h1 class="absolute left-[50%] translate-x-[-50%] top-10 text-5xl  text-brand-600 font-bold">BOOK REVIEWS</h1>
+        <h1 class="absolute right-[0%] translate-x-[-75%] top-10 text-5xl  text-gray-600 font-bold">BOOK REVIEWS</h1>
         <div class="testimonial-section">
             <div class="testi-user-img">
                 <div class="swiper-container gallery-thumbs">
@@ -594,8 +589,14 @@
                     </div>
                 </div>
             </div>
-            <div class="user-saying bg-brand-300">
-                <div class="swiper-container testimonial">
+            <div class="user-saying bg-brand-100 relative">
+                <div class="w-[200px] absolute top-0 translate-y-[-100px]">
+                    <img src="./img/shineCloud.png" alt="">
+                </div>
+                <div class="w-[250px] absolute right-[50px] ">
+                    <img src="./img/book3.png" alt="">
+                </div>
+                <div class="swiper-container testimonial text-gray-700">
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper ">
                         <!-- Slides -->
@@ -604,12 +605,12 @@
                                 <img class="quote-icon" src="https://md-aqil.github.io/images/quote.png"
                                     alt="">
                                 <p>
-                                    “This is best and biggest unified platform
-                                    for instant online admission. We can easily
-                                    take admission for any course in any institute..“
+                                    “"The Literary Loom Reader Subscription is a game-changer! Early access to new
+                                    releases, ad-free reading, and personalized recommendations make it a must-have for
+                                    any book lover." “
                                 </p>
-                                <div class="name">-Ramkishor Verma-</div>
-                                <div class="designation">University Student</div>
+                                <div class="name">-Sarah M-</div>
+                                <div class="designation ">Admin :)</div>
 
                             </div>
                         </div>
@@ -619,12 +620,12 @@
                                     alt="">
 
                                 <p>
-                                    “This is best and biggest unified platform
-                                    for instant online admission. We can easily
-                                    take admission for any course in any institute..“
+                                    "With the Literary Loom Reader Subscription, connecting with favorite authors is
+                                    effortless. Exclusive events and early promotions add extra value to an already
+                                    amazing reading experience."
                                 </p>
-                                <div class="name">-Ramkishor Verma-</div>
-                                <div class="designation">University Student</div>
+                                <div class="name">-James H-</div>
+                                <div class="designation">free lancer</div>
 
                             </div>
                         </div>
@@ -634,12 +635,12 @@
                                     alt="">
 
                                 <p>
-                                    “This is best and biggest unified platform
-                                    for instant online admission. We can easily
-                                    take admission for any course in any institute..“
+                                    "The Literary Loom Reader Subscription has enhanced both my reading and writing
+                                    journey. From discovering new stories to connecting with fellow enthusiasts, it's a
+                                    subscription worth every cent!"
                                 </p>
-                                <div class="name">-Ramkishor Verma-</div>
-                                <div class="designation">University Student</div>
+                                <div class="name">-Emily L-</div>
+                                <div class="designation">Designer</div>
 
                             </div>
                         </div>
@@ -674,20 +675,20 @@
     <!-- register 2. -->
     <div
         class="lg:h-[750px] md:h-[700px] h-[620px] w-[100%] flex justify-center items-center flex-col  relative mt-[0px] md:mb-[30px] translate-y-[-50px]">
-        <h1 class="lg:text-5xl md:text-4xl text-3xl font-bold text-brand-600 py-[5px]">
-            Ready to take a free trial?
+        <h1 class="lg:text-5xl md:text-4xl text-3xl font-bold text-button-800 py-[5px]">
+            Ready to Enter Literlary Loom?
         </h1>
         <p
             class="md:text-xl text-lg lg:w-[50%] md:w-[60%] w-[90%] text-center py-[30px] text-brand-600 lg:leading-relaxed">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum sint
-            repellat veritatis quasi placeat odio possimus aperiam minus.
-        </p>
+            At Literary Loom, user-friendliness and convenience are at the forefront of our design. Navigate seamlessly
+            through our intuitive interface, where finding your next favorite read is just a click away. </p>
         <!-- form start -->
-        <div
-            class="lg:h-[400px] md:h-[400px] h-[450px] xl:w-[35%] lg:w-[45%] md:w-[60%] w-[100%] bg-brand-200 md:border md:border-brand-600 md:border-solid md:rounded-3xl flex items-center flex-col gap-5">
+        <form action="/email" method="POST"
+            class="lg:h-[400px] md:h-[400px] h-[450px] xl:w-[35%] lg:w-[45%] md:w-[60%] w-[100%] bg-gray-300 md:border md:border-brand-600 md:border-solid md:rounded-3xl flex items-center flex-col gap-5">
             <!-- form header -->
+            @csrf
             <div class="py-[20px] px-[60px] w-[100%] flex">
-                <h1 class="text-2xl font-semibold text-brand-600 md:ml-[0px] ml-[65px]">
+                <h1 class="text-2xl font-semibold text-gray-600 md:ml-[0px] ml-[65px]">
                     Email Us Now
                 </h1>
             </div>
@@ -695,27 +696,27 @@
             <div class="flex justify-center md:gap-2 gap-[30px] md:flex-row flex-col md:mr-[0px] mr-[20px]">
                 <input type="text"
                     class="h-[40px] md:w-[200px] w-[310px] px-[5px] outline-none border border-brand-400"
-                    placeholder="First Name" />
+                    placeholder="First Name" name="fname" />
                 <input type="text"
                     class="h-[40px] md:w-[200px] w-[310px] px-[5px] outline-none border border-brand-400"
-                    placeholder="Last Name" />
+                    placeholder="Last Name" name="lname" />
             </div>
             <!-- email -->
             <div>
                 <input type="text"
                     class="h-[40px] md:w-[410px] w-[310px] px-[5px] outline-none border border-brand-400 md:mr-[0px] mr-[20px]"
-                    placeholder="E-mail address" />
+                    placeholder="E-mail address" name="email" />
             </div>
             <!-- Phone Number -->
             <div>
                 <input type="text"
                     class="h-[40px] md:w-[410px] w-[310px] px-[5px] outline-none border border-brand-400 md:mr-[0px] mr-[20px]"
-                    placeholder="Phone Number" />
+                    placeholder="Phone Number" name="phone" />
             </div>
             <!-- button -->
             <div
                 class="w-[100%] flex md:justify-normal justify-center xl:px-[60px] lg:px-[30px] md:px-[30px] pt-[20px] md:mr-[0px] mr-[20px]">
-                <button class="h-[40px] w-[100px] bg-brand-300 rounded-xl"
+                <button class="h-[40px] w-[100px] bg-button-800 text-gray-100 rounded-xl"
                     style="
            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
              0 1px 2px rgba(0, 0, 0, 0.24);
@@ -723,8 +724,8 @@
                     Send Now
                 </button>
             </div>
-        </div>
-        <div class="h-[300px] w-[300px] lg:block hidden absolute right-[2%] top-[8%] z-[-1]">
+        </form>
+        <div class="h-[300px] w-[300px] lg:block hidden absolute right-[2%] top-[0%] translate-y-[-40px] z-[-1]">
             <img src="./img/cloud2.png" alt="" />
         </div>
         <div class="h-[280px] w-[250px] absolute left-[10%] xl:block hidden">
@@ -742,16 +743,17 @@
 
 
     <!-- footer section start -->
-    <footer class="bg-brand-200 rounded-lg shadow dark:bg-gray-900 ">
+    <footer class="bg-gray-300 rounded-lg shadow dark:bg-gray-900 ">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                     <img src="./img/book-and-person-summer-svgrepo-com.svg" class="h-12" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Literlary
-                        Loom</span>
+                    <span
+                        class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white text-[#2993FF]">Literlary
+                        <span class="text-[#a1cc35]">Loom</span> </span>
                 </a>
                 <ul
-                    class="flex flex-wrap gap-5 items-center mb-6 text-lg font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    class="flex flex-wrap gap-5 items-center mb-6 text-lg font-medium text-gray-600 sm:mb-0 dark:text-gray-400">
                     <li>
                         <a href="#" class="hover:underline me-4 md:me-6">About</a>
                     </li>

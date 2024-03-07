@@ -24,7 +24,7 @@
                         </span>
                     </div>
                     <div>
-                        <p class="mb-2 text-gray-700 dark:text-gray-400">Earnings Coins</p>
+                        <p class="mb-2 text-gray-700 dark:text-gray-400">Coins</p>
                         <h2 class="text-2xl font-bold text-gray-700 dark:text-gray-400">
                             {{ auth()->user()->ggcoin }}</h2>
                     </div>

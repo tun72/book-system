@@ -7,6 +7,7 @@ use App\Mail\SellMail;
 use App\Models\AdminHistory;
 use App\Models\History;
 use App\Models\Sells;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -17,8 +18,10 @@ class SellsController extends Controller
 
     public function index()
     {
+        $limit = Setting::where("id", 1)->first()->limit_coin;
         return view("author.sell", [
-            "type" => "normal"
+            "type" => "normal",
+            "limit" => $limit
         ]);
     }
 

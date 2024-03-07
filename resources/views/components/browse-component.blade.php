@@ -85,23 +85,29 @@
 
                                 <div class="relative ">
                                     <label for="labels-range-input" class="sr-only">Labels range</label>
-                                    <input id="labels-range-input ggcoin" type="range" value="0" min="100"
-                                        name="ggcoin" max="15000" 
+                                    <input id="labels-range-input ggcoin" type="range" value="0" min="0"
+                                        name="ggcoin" max="10000"
                                         class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                                     <span
-                                        class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">Min
-                                        ($1000)</span>
+                                        class="text-sm text-gray-500 dark:text-gray-400 absolute start-0 -bottom-6">$0</span>
                                     <span
-                                        class="text-sm text-gray-500 dark:text-gray-400 absolute start-1/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$5000</span>
+                                        class="text-sm text-gray-500 dark:text-gray-400 absolute start-[10%] -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$1000</span>
                                     <span
-                                        class="text-sm text-gray-500 dark:text-gray-400 absolute start-2/3 -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$10000</span>
-                                    <span class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">Max
-                                        ($15000)</span>
+                                        class="text-sm text-gray-500 dark:text-gray-400 absolute start-[30%] -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$3000</span>
+                                    <span
+                                        class="text-sm text-gray-500 dark:text-gray-400 absolute start-[50%] -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$5000</span>
+                                    <span
+                                        class="text-sm text-gray-500 dark:text-gray-400 absolute start-[80%] -translate-x-1/2 rtl:translate-x-1/2 -bottom-6">$8000</span>
+                                    <span
+                                        class="text-sm text-gray-500 dark:text-gray-400 absolute end-0 -bottom-6">($10000)</span>
                                 </div>
                             </div>
                         </div>
 
                     </div>
+
+
+
 
 
                 </div>

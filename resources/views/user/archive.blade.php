@@ -1,4 +1,4 @@
-<x-user-layout>
+<x-home-layout>
     <style>
         .main {
             padding: 20px;
@@ -30,22 +30,20 @@
         <div class="grid grid-cols-5 gap-12">
             @foreach ($archives as $arch)
                 <div class="">
-                   
+
                     @php
                         $book = $arch->book;
                         $chapters = count($book->chapters);
 
-                        
                         $finish = $book->chapters->filter(function ($chapter) {
                             return $chapter['is_finish'];
                         });
-                        
 
                         $current = $book->chapters->where('is_finish', false)->first();
                     @endphp
                     <!-- for image -->
                     <div class="relative">
-                        <img class="h-[250px] w-[100%] rounded-md" src="{{ $book->image }}" alt="" />
+                        <img class="h-[250px] w-[90%] rounded-md object-cover object-center" src="{{ $book->image }}" alt="" />
                         <div
                             class="opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-white font-semibold bg-slate-200/20 backdrop-blur-sm">
 
@@ -69,14 +67,9 @@
                     <!-- Body -->
                     <div class="w-[100%] flex justify-center items-center gap-3">
                         <div class="">
-                            <h1 class="font-semibold line-clamp-1">{{ $book->title }}</h1>
-                            <span
-                                class="text-sm text-gray-400">{{ count($book->genres) ? $book->genres[0]->name : '' }}</span>
+                            <h1 class="font-semibold line-clamp-1 text-2xl">{{ $book->title }}</h1>
                         </div>
-                        <div class="h-[45px] w-[45px] rounded-full overflow-hidden">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0KH1x6QLGpap_5s9EEP3y2Zr0fjCf2Pmw1w&usqp=CAU"
-                                alt="" />
-                        </div>
+
                     </div>
                 </div>
             @endforeach
@@ -84,4 +77,4 @@
         </div>
     </div>
 
-</x-user-layout>
+</x-home-layout>

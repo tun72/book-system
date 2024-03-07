@@ -1,8 +1,8 @@
 <x-author-layout>
     <section class="container">
         <div class="max-w-6xl px-4 mx-auto">
-            <form class="rounded-lg shadow bg-gray-50 dark:bg-gray-900 dark:border-gray-900"
-                action="/author/incomes/sell" method="POST" enctype="multipart/form-data">
+            <form class="rounded-lg shadow bg-gray-50 dark:bg-gray-900 dark:border-gray-900" action="/author/incomes/sell"
+                method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="p-6">
                     <div class="pb-6 border-b border-gray-100 dark:border-gray-800 ">
@@ -93,7 +93,7 @@
                                 <div class="w-full p-3 md:w-1/3"></div>
                                 <div class="w-full p-3 md:flex-1">
                                     <p class="mb-1.5 font-medium text-base text-gray-800 dark:text-gray-400">Coin
-                                        Amount
+                                        Amount ({{ $limit }}mmk * Your Coins)
                                     </p>
                                     <input name="ggcoin" value="{{ old('ggcoin') }}"
                                         class="w-full px-4 py-2.5 dark:bg-gray-800 dark:border-gray-800 dark:placeholder-gray-500 dark:text-gray-400  text-base text-gray-900 rounded-lg font-normal border border-gray-200"

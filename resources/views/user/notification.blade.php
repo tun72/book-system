@@ -1,34 +1,45 @@
 <x-user-layout>
 
     <section class="">
-        <h1 class="text-2xl font-semibold text-gray-500 py-1 w-fit mb-4">Notification</h1>
+
         <div class="w-full flex gap-10 items-start">
             <div class="w-[60%] flex flex-col gap-5">
+                <div class="flex items-center justify-between mb-3">
+                    <h1 class="text-2xl font-semibold text-gray-500">Notification</h1>
+                    <form action="/noti/clear" method="POST">
+                        @csrf
+                        <button class="text-button-800 mt-3">clear</button>
+                    </form>
+                </div>
+                @if (count($notifications) === 0)
+                    <p class="text-xl">No notification 🧐</p>
+                @else
                 @foreach ($notifications as $noti)
-                    <div class="w-full shadow-md flex gap-4 px-[20px] py-2 bg-white">
-                        <div class="w-[50px] h-[50px] rounded-full overflow-hidden"><img src="{{ $noti->user->imageUrl }}"
-                                alt=""></div>
-                        @php
-                            $url1 = '#';
-                            if ($noti->book_id) {
-                                $url1 = '/book-details/' . $noti?->book?->slug;
-                            } elseif ($noti->chapter_id) {
-                                $url1 = '/book/chapter/' . $noti?->chapter?->slug . '/read';
-                            }
-                        @endphp
-                        <a href="{{ $url1 }}">
-                            <div class=" flex flex-col gap-1 text-lg text-gray-500 font-semibold">
-                                <p class=""><span
-                                        class="text-gray-700 me-3">{{ $noti->user->name }}</span>{{ $noti->about }}</p>
-                                <div class="flex items-center gap-2">
-                                    <span><i class="fas fa-clock"></i></span>
-                                    <p>{{ $noti->created_at->diffForHumans() }}</p>
-                                </div>
-                                <p class=""> {{ $noti->comment?->body }}</p>
+                <div class="w-full shadow-md flex gap-4 px-[20px] py-2 bg-white">
+                    <div class="w-[50px] h-[50px] rounded-full overflow-hidden"><img
+                            src="{{ $noti->user->imageUrl }}" alt=""></div>
+                    @php
+                        $url1 = '#';
+                        if ($noti->book_id) {
+                            $url1 = '/book-details/' . $noti?->book?->slug;
+                        } elseif ($noti->chapter_id) {
+                            $url1 = '/book/chapter/' . $noti?->chapter?->slug . '/read';
+                        }
+                    @endphp
+                    <a href="{{ $url1 }}">
+                        <div class=" flex flex-col gap-1 text-lg text-gray-500 font-semibold">
+                            <p class=""><span
+                                    class="text-gray-700 me-3">{{ $noti->user->name }}</span>{{ $noti->about }}</p>
+                            <div class="flex items-center gap-2">
+                                <span><i class="fas fa-clock"></i></span>
+                                <p>{{ $noti->created_at->diffForHumans() }}</p>
                             </div>
-                        </a>
-                    </div>
-                @endforeach
+                            <p class=""> {{ $noti->comment?->body }}</p>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+                @endif
             </div>
             <div class="w-[30%] shadow-md px-3 py-2 rounded-sm bg-white">
                 <div class="bg-blue-300 flex flex-col justify-center gap-3 items-center py-10 mb-3">

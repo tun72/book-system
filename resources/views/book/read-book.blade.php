@@ -142,7 +142,7 @@
                         Prev Chapter </a>
             @endif --}}
 
-            @if (auth()->user()?->isBought($book) || auth()->user()->role === 1)
+            @if (auth()->user()?->isBought($book) || auth()->user()->role === 1 || auth()->user()->isAuthorBook($book))
                 @if ($nextChapter)
                     <div class="wrapper">
                         <a class="cta" href="/book/chapter/{{ $nextChapter->slug }}/read?complete=true">
@@ -198,14 +198,14 @@
 
         <section class="not-format" id="user-comment">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Comment
+                <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Chapter Reviews
                     ({{ count($chapter->comments) }})</h2>
             </div>
             <form class="mb-6" action="/chapter/{{ $chapter->id }}/comment" method="POST">
                 @csrf
                 <div
                     class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                    <label for="comment" class="sr-only">Your comment</label>
+                    <label for="comment" class="sr-only">Your Chapter Reviews</label>
                     <textarea id="comment" rows="6" name="body"
                         class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                         placeholder="Write a comment..." required></textarea>
@@ -242,21 +242,27 @@
                         @method('PATCH')
                         <textarea id="message" rows="4" name="body"
                             class="block p-2.5 mb-4 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $comment->body }}</textarea>
-                        <button type="submit"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
 
+                        @if (auth()->user()->id === $user->id)
+                            <button type="submit"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
+                        @endif
                         <button type="button" data-id="{{ $index }}"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 close-comment">Cancel</button>
+
                     </form>
 
-                    <form class="flex items-center mt-2" action="/comment/{{ $comment->id }}/delete" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit"
-                            class="flex items-center font-medium text-sm text-red-500  dark:text-red-400">
-                            <i class="fas fa-trash-alt me-2"></i> delete
-                        </button>
-                    </form>
+                    @if (auth()->user()->id === $user->id)
+                        <form class="flex items-center mt-2" action="/comment/{{ $comment->id }}/delete"
+                            method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="flex items-center font-medium text-sm text-red-500  dark:text-red-400">
+                                <i class="fas fa-trash-alt me-2"></i> delete
+                            </button>
+                        </form>
+                    @endif
 
                 </article>
                 @php

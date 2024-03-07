@@ -14,9 +14,10 @@
                         </div>
                     </div>
                     <div class="flex flex-col gap-2  w-[50%] flex-auto">
-                        <h1 class="text-base font-semibold"><a href="#">{{ $book->title }}</a></h1>
+                        <h1 class="text-base font-semibold"><a href="/book-details/{{ $book->slug }}">{{ $book->title }}</a></h1>
 
-                        <h2 class="text-button-800"><a href="#">by {{ $book->user->name }}</a></h2>
+                        <h2 class="text-button-800"><a href="#">by
+                                {{ $book->user->name }}</a></h2>
                         <div class="flex gap-3 text-gray-400">
                             <div class="flex gap-2">
                                 <span><i class="fa-regular fa-eye"></i></span>

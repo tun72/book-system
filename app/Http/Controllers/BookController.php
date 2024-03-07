@@ -144,7 +144,6 @@ class BookController extends Controller
 
         $book = Book::create($cleanData);
 
-        dd($book);
         $book->genres()->attach($cleanData["genres"]);
 
         return redirect("/author/creation");
@@ -210,11 +209,12 @@ class BookController extends Controller
             $book->isRequested = true;
             $book->update();
             return back()->with("success", "Successfully Request to Admin!");
-        } else if ($book?->isPublished === 1) {
-            $book->isPublished = false;
-            $book->update();
-            return back()->with("success", "Successfully unPublished!");
-        } else if ($book?->isRequested === 1) {
+            // } else if ($book?->isPublished === 1) {
+            //     $book->isPublished = false;
+            //     $book->update();
+            //     return back()->with("success", "Successfully unPublished!");
+        } else if ($book->isRequested === 1) {
+            // dd("hit");
             return back()->with("error", "Already Published");
         }
         return back()->with("error", "To Publish need to complete at least" . $setting["limit_author"] . "Chapters!");

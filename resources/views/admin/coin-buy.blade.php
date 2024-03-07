@@ -30,33 +30,36 @@
                 </thead>
                 <tbody>
                     @foreach ($transfers as $transfer)
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $transfer->user->name }}
-                            </th>
+                        @if ($transfer->user)
+                            <tr
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $transfer->user->name }}
+                                </th>
 
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $transfer->user->username }}
-                            </th>
-                            <td class="px-6 py-4">
-                                {{ $transfer->accname }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $transfer->payment }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $transfer->ggcoin }} coins
-                            </td>
-                            <td class="px-6 py-4 text-right">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                    id="readProductButton" data-modal-target="coinModal-{{ $transfer->id }}"
-                                    data-modal-toggle="coinModal-{{ $transfer->id }}">Detail</a>
-                            </td>
-                        </tr>
-                        <x-coin-check-modal :transfer="$transfer" />
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ $transfer->user->username }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $transfer->accname }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $transfer->payment }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $transfer->ggcoin }} coins
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <a href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                        id="readProductButton" data-modal-target="coinModal-{{ $transfer->id }}"
+                                        data-modal-toggle="coinModal-{{ $transfer->id }}">Detail</a>
+                                </td>
+                            </tr>
+                            <x-coin-check-modal :transfer="$transfer" :limit="$limit" />
+                        @endif
                     @endforeach
 
                 </tbody>

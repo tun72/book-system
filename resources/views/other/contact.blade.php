@@ -16,17 +16,18 @@
 <body>
     <!-- Header -->
     <div
-        class="w-[100%] h-[15vh] bg-brand-600 gap-[30px] lg:px-[60px] flex md:justify-evenly justify-between items-center relative overflow-hidden">
-        <div
+        class="w-[100%] h-[15vh] bg-[#93c5fd] gap-[30px] lg:px-[60px] flex md:justify-evenly justify-between items-center relative overflow-hidden">
+        <a href="http://127.0.0.1:8001/welcome"
             class="lg:text-[32px] md:pl-[0px] px-[20px] text-[24px] font-extrabold flex justify-center items-center gap-[10px]">
             <div class="w-[70px]">
                 <img src="./img/book-and-person-summer-svgrepo-com.svg" alt="">
             </div>
-            <span class="text-[#2993FF]">Literlary</span>
-            <span class="text-[#a1cc35]">Loom</span>
-        </div>
+            <span class="text-button-800">Online</span>
+            <span class="text-button-800">Book </span>
+            <span class="text-white">Store System</span>
+        </a>
         <div class="md:block hidden">
-            <ul class="flex gap-9 text-brand-200 cursor-pointer text-lg">
+            <ul class="flex gap-9 text-white cursor-pointer text-xl">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About us</a></li>
                 <li><a href="/qanda">Q & A</a></li>
@@ -34,7 +35,7 @@
         </div>
         <div class="md:mr-[150px]">
             <a href="/contact"
-                class="px-[20px] py-[5px] border border-[#2993FF] rounded-lg border-solid cursor-pointer text-white text-lg font-semibold">Contact
+                class="px-[20px] py-[5px] border border-[#2993FF] bg-button-800 rounded-lg border-solid cursor-pointer text-white text-lg font-semibold ">Contact
                 Us</a>
         </div>
 
@@ -55,20 +56,21 @@
             </svg>
         </div>
     </div>
-    <div class="flex justify-center items-center gap-[10px] mt-[30px] mb-[30px]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 256 256">
+    <div class="flex justify-center items-center gap-[10px] mt-[30px] mb-[30px] ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 256 256"
+            class="text-[#2993FF]">
             <path fill="currentColor"
                 d="M224 52H32a4 4 0 0 0-4 4v136a12 12 0 0 0 12 12h176a12 12 0 0 0 12-12V56a4 4 0 0 0-4-4m-10.28 8L128 138.57L42.28 60ZM216 196H40a4 4 0 0 1-4-4V65.09L125.3 147a4 4 0 0 0 5.4 0L220 65.09V192a4 4 0 0 1-4 4" />
         </svg>
-        <h1 class="text-4xl font-semibold">Contact Us</h1>
+        <h1 class="text-4xl font-semibold ">Contact Us</h1>
     </div>
 
     <!-- p tab -->
-    <div class="flex justify-center items-center mb-[30px]">
+    <div class="flex justify-center items-center text-gray-500 mb-[30px]">
         <p class="w-[50%] text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-            reprehenderit sed a iste itaque. Incidunt possimus quam ratione harum
-            eveniet.
+            At Literary Loom, we value every member's voice and believe that contacting us is a powerful way to enhance
+            our community. Whether you have feedback, suggestions, or simply want to share your thoughts, we're here to
+            listen.
         </p>
     </div>
     <!-- Body -->
@@ -90,7 +92,9 @@
         </div>
 
         <!-- form -->
-        <div class="w-[50%] mx-[50px] flex flex-col justify-center items-center mt-[10px] border-l-[1px]">
+        <form class="w-[50%] mx-[50px] flex flex-col justify-center items-center mt-[10px] border-l-[1px]"
+            action="/contact/admin" method="POST">
+            @csrf
             <div class="flex flex-col gap-[5px] mb-[20px]">
                 <label for="name" class="text-lg font-semibold">Name</label>
                 <input class="bg-gray-200 py-[10px] px-[10px] h-[50px] w-[400px] outline-none rounded" type="text"
@@ -99,29 +103,31 @@
             <div class="flex flex-col gap-[5px] mb-[20px]">
                 <label for="email" class="text-lg font-semibold">E-mail</label>
                 <input class="bg-gray-200 py-[10px] px-[10px] h-[50px] w-[400px] outline-none rounded" type="email"
-                    placeholder="Enter Your E-mail" />
+                    name="username" placeholder="Enter Your E-mail" />
             </div>
             <div class="flex flex-col gap-[5px] mb-[20px]">
                 <label for="message" class="text-lg font-semibold">Your Message</label>
                 <textarea class="h-[300px] w-[400px] bg-gray-200 rounded px-[10px] py-[10px]" name="" id="message"
-                    cols="30" rows="10" placeholder="Enter Your Message"></textarea>
+                    name="body" cols="30" rows="10" placeholder="Enter Your Message"></textarea>
             </div>
             <button type="submit"
                 class="text-white bg-blue-700 hover:bg-blue-800 w-[200px] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 block">
                 Send message
             </button>
-        </div>
+        </form>
     </div>
-    <footer class="bg-gray-200 shadow dark:bg-gray-900">
+    <footer class="bg-[#93c5fd] shadow dark:bg-gray-900">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
-                <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Literlary
-                        Loom</span>
+                <a href="https://flowbite.com/"
+                    class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse text-2xl">
+                    <img src="./img/book-and-person-summer-svgrepo-com.svg" class="h-10" alt="Flowbite Logo" />
+                    <span class="text-button-800">Online</span>
+                    <span class="text-button-800">Book </span>
+                    <span class="text-white">Store System</span>
                 </a>
                 <ul
-                    class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-00 sm:mb-0 dark:text-gray-400">
                     <li>
                         <a href="#" class="hover:underline me-4 md:me-6">About</a>
                     </li>
@@ -137,9 +143,7 @@
                 </ul>
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023
-                <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>.
-                All Rights Reserved.</span>
+
         </div>
     </footer>
 

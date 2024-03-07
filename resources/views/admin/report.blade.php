@@ -39,7 +39,7 @@
                             class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $report->user->name }}
+                                {{ $report?->user?->name }}
                             </th>
                             <td class="px-6 py-4">
                                 <span class="me-1">#{{ $report->book?->id }}</span>{{ $report->book?->title }}
@@ -56,6 +56,13 @@
                                 <a href="#" data-modal-target="report-{{ $report->id }}"
                                     data-modal-toggle="report-{{ $report->id }}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">detail</a>
+
+                                <form action="/admin/reports/{{ $report->id }}/delete" method="POST"> 
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endif
@@ -112,7 +119,7 @@
                                 <div class="text-lg text-gray-900 md:text-xl dark:text-white p-4">
 
                                     <p class="text-base">
-                                        User Name - {{ $report->user->name }}
+                                        User Name - {{ $report?->user?->name }}
                                     </p>
                                     <p class="text-base">
                                         Book Id - {{ $report->book?->id }}

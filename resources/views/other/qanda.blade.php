@@ -17,17 +17,18 @@
 
 <body>
     <div
-        class="w-[100%] h-[15vh] bg-brand-600 gap-[30px] lg:px-[60px] flex md:justify-evenly justify-between items-center relative overflow-hidden">
-        <div
+        class="w-[100%] h-[15vh] bg-[#93c5fd] gap-[30px] lg:px-[60px] flex md:justify-evenly justify-between items-center relative overflow-hidden">
+        <a href="http://127.0.0.1:8001/welcome"
             class="lg:text-[32px] md:pl-[0px] px-[20px] text-[24px] font-extrabold flex justify-center items-center gap-[10px]">
             <div class="w-[70px]">
                 <img src="./img/book-and-person-summer-svgrepo-com.svg" alt="">
             </div>
-            <span class="text-[#2993FF]">Literlary</span>
-            <span class="text-[#a1cc35]">Loom</span>
-        </div>
+            <span class="text-button-800">Online</span>
+            <span class="text-button-800">Book </span>
+            <span class="text-white">Store System</span>
+        </a>
         <div class="md:block hidden">
-            <ul class="flex gap-9 text-brand-200 cursor-pointer text-lg">
+            <ul class="flex gap-9 text-white cursor-pointer text-xl">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About us</a></li>
                 <li><a href="/qnada">Q & A</a></li>
@@ -35,7 +36,7 @@
         </div>
         <div class="md:mr-[150px]">
             <a href="/contact"
-                class="px-[20px] py-[5px] border border-[#2993FF] rounded-lg border-solid cursor-pointer text-white text-lg font-semibold">Contact
+                class="px-[20px] py-[5px] border border-[#2993FF] rounded-lg bg-[#2993FF] border-solid cursor-pointer text-white text-lg font-semibold">Contact
                 Us</a>
         </div>
 
@@ -56,13 +57,8 @@
             </svg>
         </div>
     </div>
-    <div class="flex justify-center items-center mt-[30px] gap-[20px] h-[100px]">
-        <div class="h-[60px] w-[60px] rounded-full bg-[gray] flex justify-center items-center"></div>
-        <p class="text-3xl font-bold italic text-gray-500 text-center">
-            Literlary Loom
-        </p>
-    </div>
-    <p class="text-xl text-gray-400 text-center mt-[20px] mb-[20px]">
+   
+    <p class="text-xl text-gray-400 text-center mt-[50px] mb-[20px]">
         How can we help you?
     </p>
     <div class="flex justify-center items-center">
@@ -233,13 +229,14 @@
     </div>
 
     <!-- footer -->
-    <footer class="bg-gray-200 shadow dark:bg-gray-900">
+    <footer class="bg-[#93c5fd] shadow dark:bg-gray-900">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
-                <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Literlary
-                        Loom</span>
+                <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse text-2xl">
+                    <img src="./img/book-and-person-summer-svgrepo-com.svg" class="h-11" alt="Flowbite Logo" />
+                    <span class="text-button-800">Online</span>
+                    <span class="text-button-800">Book </span>
+                    <span class="text-white">Store System</span>
                 </a>
                 <ul
                     class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
@@ -258,9 +255,7 @@
                 </ul>
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023
-                <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>.
-                All Rights Reserved.</span>
+           
         </div>
     </footer>
 

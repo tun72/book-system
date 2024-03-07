@@ -86,7 +86,7 @@
                                     <p>Followed</p>
                                 </button>
                             @elseif(auth()->user()->id === $author->id)
-                                <button
+                                <button type="button"
                                     class="text-white flex justify-center items-center bg-[#00b2b2] py-2 px-10 ml-[30px] mr-[30px] translate-y-[-45px] rounded-xl">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                         viewBox="0 0 14 14">
@@ -97,6 +97,19 @@
                                         </g>
                                     </svg>
                                     <p>Followed-You</p>
+                                </button>
+                            @else
+                                <button
+                                    class="text-white flex justify-center items-center bg-[#00b2b2] py-2 px-10 ml-[30px] mr-[30px] translate-y-[-45px] rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 14 14">
+                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <circle cx="5" cy="2.75" r="2.25" />
+                                            <path d="M4.5 12.5h-4V11A4.51 4.51 0 0 1 7 7m3.5.5v6m-3-3h6" />
+                                        </g>
+                                    </svg>
+                                    <p>Followed</p>
                                 </button>
                             @endif
                         </form>

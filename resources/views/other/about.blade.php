@@ -17,17 +17,18 @@
 
 <body>
     <div
-        class="w-[100%] h-[15vh] bg-brand-600 gap-[30px] lg:px-[60px] flex md:justify-evenly justify-between items-center relative overflow-hidden">
-        <div
+        class="w-[100%] h-[15vh] bg-[#93c5fd] gap-[30px] lg:px-[60px] flex md:justify-evenly justify-between items-center relative overflow-hidden">
+        <a href="http://127.0.0.1:8001/welcome"
             class="lg:text-[32px] md:pl-[0px] px-[20px] text-[24px] font-extrabold flex justify-center items-center gap-[10px]">
             <div class="w-[70px]">
                 <img src="./img/book-and-person-summer-svgrepo-com.svg" alt="">
             </div>
-            <span class="text-[#2993FF]">Literlary</span>
-            <span class="text-[#a1cc35]">Loom</span>
-        </div>
+            <span class="text-button-800">Online</span>
+            <span class="text-button-800">Book </span>
+            <span class="text-white">Store System</span>
+        </a>
         <div class="md:block hidden">
-            <ul class="flex gap-9 text-brand-200 cursor-pointer text-lg">
+            <ul class="flex gap-9 text-gray-200 cursor-pointer text-xl">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About us</a></li>
                 <li><a href="/qanda">Q & A</a></li>
@@ -35,7 +36,7 @@
         </div>
         <div class="md:mr-[150px]">
             <a href="/contact"
-                class="px-[20px] py-[5px] border border-[#2993FF] rounded-lg border-solid cursor-pointer text-white text-lg font-semibold">Contact
+                class="px-[20px] py-[5px] border border-[#2993FF] rounded-lg border-solid bg-[#2993FF] cursor-pointer text-white text-lg font-semibold">Contact
                 Us</a>
         </div>
 
@@ -60,18 +61,18 @@
     <section class="flex items-center py-24 bg-stone-100 font-poppins dark:bg-gray-800 ">
         <div class="justify-center flex-1 px-4 py-6 mx-auto max-w-7xl lg:py-4 md:px-6">
             <div class="mb-10 text-center">
-                <span
+                <!-- <span
                     class="block mb-4 text-xs font-semibold leading-4 tracking-widest text-center text-blue-500 uppercase dark:text-gray-400">
                     Team
-                </span>
-                <h1 class="text-3xl font-bold capitalize dark:text-white"> Meet Special Team </h1>
+                </span> -->
+                <h1 class="text-3xl font-bold capitalize text-button-800"> Meet Special Team </h1>
             </div>
 
             <a class="xl:w-[50%] lg:w-[50%] md:w-[50%] w-full mx-auto xl:mb-[80px] lg:mb-[50px] md:mb-[30px] mb-[20px] flex flex-col flex-wrap overflow-hidden rounded lg:flex-row dark:bg-gray-800"
                 href="#">
                 <div class="w-full overflow-hidden lg:w-2/4 h-80">
                     <img class="object-cover w-full h-full transition-all hover:scale-110"
-                        src="https://i.postimg.cc/4NMZPYdh/pexels-dinielle-de-veyra-4195342.jpg" alt="">
+                        src="./img/Tun Tun Myint.jpg" alt="">
                 </div>
                 <div
                     class="relative flex self-center flex-1 p-8 ml-0 bg-white border rounded shadow dark:border-gray-700 dark:bg-gray-700 lg:items-center lg:-ml-12">
@@ -114,7 +115,7 @@
                     href="#">
                     <div class="w-full overflow-hidden lg:w-2/4 h-80">
                         <img class="object-cover w-full h-full transition-all hover:scale-110"
-                            src="https://i.postimg.cc/4NMZPYdh/pexels-dinielle-de-veyra-4195342.jpg" alt="">
+                            src="./img/Shine Si Lwin.jpg" alt="">
                     </div>
                     <div
                         class="relative flex self-center flex-1 p-8 ml-0 bg-white border rounded shadow dark:border-gray-700 dark:bg-gray-700 lg:items-center lg:-ml-12">
@@ -155,7 +156,7 @@
                     href="#">
                     <div class="w-full overflow-hidden lg:w-2/4 h-80">
                         <img class="object-cover w-full h-full transition-all hover:scale-110"
-                            src="https://i.postimg.cc/JzmrHQmk/pexels-pixabay-220453.jpg" alt="">
+                            src="./img/Thant Zayar Soe.jpg" alt="">
                     </div>
                     <div
                         class="relative flex self-center flex-1 p-8 ml-0 bg-white border rounded shadow dark:border-gray-700 dark:bg-gray-700 lg:items-center lg:-ml-12">
@@ -196,7 +197,7 @@
                     href="#">
                     <div class="w-full overflow-hidden lg:w-2/4 h-80">
                         <img class="object-cover w-full h-full transition-all hover:scale-110"
-                            src="https://i.postimg.cc/05hmHMx1/pexels-emmy-e-2381069.jpg" alt="">
+                            src="./img/Chaw Yu Thwin.jpg" alt="">
                     </div>
                     <div
                         class="relative flex self-center flex-1 p-8 ml-0 bg-white border rounded shadow dark:border-gray-700 dark:bg-gray-700 lg:items-center lg:-ml-12">
@@ -237,7 +238,7 @@
                     href="#">
                     <div class="w-full overflow-hidden lg:w-2/4 h-80">
                         <img class="object-cover w-full h-full transition-all hover:scale-110"
-                            src="https://i.postimg.cc/q7pv50zT/pexels-edmond-dant-s-4342352.jpg" alt="">
+                            src="./img/.jpg" alt="">
                     </div>
                     <div
                         class="relative flex self-center flex-1 p-8 ml-0 bg-white border rounded shadow dark:border-gray-700 dark:bg-gray-700 lg:items-center lg:-ml-12">
@@ -279,7 +280,7 @@
                     href="#">
                     <div class="w-full overflow-hidden lg:w-2/4 h-80">
                         <img class="object-cover w-full h-full transition-all hover:scale-110"
-                            src="https://i.postimg.cc/q7pv50zT/pexels-edmond-dant-s-4342352.jpg" alt="">
+                            src="./img/Kay Zin Soe.jpg" alt="">
                     </div>
                     <div
                         class="relative flex self-center flex-1 p-8 ml-0 bg-white border rounded shadow dark:border-gray-700 dark:bg-gray-700 lg:items-center lg:-ml-12">
@@ -321,7 +322,7 @@
                     href="#">
                     <div class="w-full overflow-hidden lg:w-2/4 h-80">
                         <img class="object-cover w-full h-full transition-all hover:scale-110"
-                            src="https://i.postimg.cc/q7pv50zT/pexels-edmond-dant-s-4342352.jpg" alt="">
+                            src="./img/Myat Noe Paing.jpg" alt="">
                     </div>
                     <div
                         class="relative flex self-center flex-1 p-8 ml-0 bg-white border rounded shadow dark:border-gray-700 dark:bg-gray-700 lg:items-center lg:-ml-12">
@@ -366,12 +367,12 @@
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Literlary
-                        Loom</span>
+                    <img src="./img/book-and-person-summer-svgrepo-com.svg" class="h-11" alt="Flowbite Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap text-[#2993FF]">Literlary
+                    <span class="text-[#a1cc35]">Loom</span></span>
                 </a>
                 <ul
-                    class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-600 sm:mb-0 dark:text-gray-400">
                     <li>
                         <a href="#" class="hover:underline me-4 md:me-6">About</a>
                     </li>
@@ -387,9 +388,7 @@
                 </ul>
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023
-                <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>.
-                All Rights Reserved.</span>
+           
         </div>
     </footer>
 

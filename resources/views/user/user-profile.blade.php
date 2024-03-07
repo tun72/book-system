@@ -20,7 +20,7 @@
             <!-- infos -->
             <div class="flex justify-center items-center gap-[30px] mt-[10px]">
                 <div class="text-center">
-                    <p class="text-white">{{ count(auth()->user()->books) }}</p>
+                    <p class="text-white">{{ count(auth()->user()->boughtBooks) }}</p>
                     <span class="text-white">Books</span>
                 </div>
                 <div class="text-center" style="cursor: pointer">
@@ -207,13 +207,14 @@
             <div class="px-[10px] w-[100%] pb-5">
                 <span class="text-md font-semibold">SHARE PROFILE</span>
                 <div class="flex gap-[10px] mt-[10px]">
-                    <div class="h-[40px] w-[40px] rounded-full flex justify-center items-center bg-[blue]">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8001/user-profile/{{ auth()->user()->username }}&display=popup"
+                        class="h-[40px] w-[40px] rounded-full flex justify-center items-center bg-[blue]">
                         <svg class="text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="-7 -2 24 24">
                             <path fill="currentColor"
                                 d="M2.046 3.865v2.748H.032v3.36h2.014v9.986H6.18V9.974h2.775s.26-1.611.386-3.373H6.197V4.303c0-.343.45-.805.896-.805h2.254V0H6.283c-4.34 0-4.237 3.363-4.237 3.865" />
                         </svg>
-                    </div>
+                    </a>
                     <div class="h-[40px] w-[40px] rounded-full flex justify-center items-center bg-[#55acee]">
                         <svg class="text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24">

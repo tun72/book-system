@@ -88,7 +88,7 @@
 
                         <x-read-list :book="$book" :id="$id" />
                         <div class="text-sm px-2 text-gray-500">
-                            <p>{{ $book->body }}</p>
+                            <p class="line-clamp-5">{{ $book->body }}</p>
                         </div>
 
 

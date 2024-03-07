@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InviteMail;
+use App\Mail\userMessageMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OtherController extends Controller
 {
@@ -26,5 +29,22 @@ class OtherController extends Controller
     public function qanda()
     {
         return view("other.qanda");
+    }
+
+
+    public function email()
+    {
+        if(request("fname") && request("fname"))
+           Mail::to(request("email"))->queue(new InviteMail(request("fname")));
+
+        return back();
+    }
+
+
+    public function message()
+    {
+        dd(request("body"));
+        Mail::to("tunt72553@gmail.com")->queue(new userMessageMail(request("username"), request("body")));
+        return back();
     }
 }

@@ -64,7 +64,7 @@
                                     data-modal-toggle="coinModal-{{ $sell->id }}">Detail</a>
                             </td>
                         </tr>
-                        <x-coin-sell-modal :sell="$sell" />
+                        <x-coin-sell-modal :sell="$sell" :limit="$limit" />
                     @endforeach
 
                 </tbody>

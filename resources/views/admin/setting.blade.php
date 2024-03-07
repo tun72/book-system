@@ -12,7 +12,7 @@
         </div>
         <div class="grid grid-cols-[14rem_1fr_1.2fr] items-center gap-2">
             <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Maximum
-                author/book</label>
+               chapter/publish</label>
             <input type="number" id="password" name="limit_author" value="{{ $setting->limit_author }}"
                 class="shadow-sm  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 required />
@@ -20,7 +20,7 @@
         </div>
         <div class="grid grid-cols-[14rem_1fr_1.2fr] items-center gap-2">
             <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Maximum
-                rating/book</label>
+                author/book</label>
             <input type="number" id="repeat-password" name="limit_rating" value="{{ $setting->limit_rating }}"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 required />
@@ -29,7 +29,7 @@
 
         <div class="grid grid-cols-[14rem_1fr_1.2fr] items-center gap-2">
             <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Maximum
-                coin/sell</label>
+                coin/sells</label>
             <input type="number" id="repeat-password" name="limit_coin" value="{{ $setting->limit_coin }}"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 required />

@@ -25,7 +25,10 @@ class BuyBookController extends Controller
 
         if (!$user->isBought($book)) {
 
+
+
             if ($book->ggcoin > 0) {
+                $book->ggcoin -= $book->discount;
                 $user->ggcoin = $user->ggcoin - $book->ggcoin;
 
                 $book->user->ggcoin += $book->ggcoin;

@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AuthorBookMiddleware;
 use App\Http\Middleware\AuthorMiddleware;
+use App\Http\Middleware\UserCompleteMiddleware;
 use App\Http\Middleware\VerifyMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -62,6 +63,7 @@ class Kernel extends HttpKernel
         "isAuthor" => AuthorMiddleware::class,
         "isAdmin" => AdminMiddleware::class,
         "isVerify" => VerifyMiddleware::class,
+        "isComplete" => UserCompleteMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

@@ -259,18 +259,16 @@
             </div>
             <div class="line"></div>
             <div>
-                <div class="name">
-                    <p>S</p>
-                </div>
-                <p class="para">join Literlary Loom, a free, one-of-a-kind social reading and writing app.</p>
+                <p class="question">Hi,  {{  $username }}</p>
+                <p class="para">Join Literlary Loom, a free, one-of-a-kind social reading and writing app.</p>
             </div>
 
 
             <div class="side">
             </div>
-            <p class="question">My username is {{  $username }}</p>
+       
             <div class="btn">
-                <a href="https://chat.openai.com">Try it Now</a>
+                <a href="#">Try it Now</a>
             </div>
 
         </div>

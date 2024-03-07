@@ -11,6 +11,7 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OtherController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ReadListController;
@@ -25,7 +26,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware(["auth", "isVerify"])->group(function () {
+Route::middleware(["auth", "isVerify", "isComplete"])->group(function () {
 
     ////////////////////////////////////////// USER /////////////////////////////////////////////////////////
     #books
@@ -61,8 +62,7 @@ Route::middleware(["auth", "isVerify"])->group(function () {
     #user 
     Route::get('/user-profile/{user:username}', [UserController::class, "getUser"]);
     Route::get('/user/notification', [UserController::class, "notification"]);
-    Route::get('/user/library', [UserController::class, "library"])->name("library");
-    ;
+    Route::get('/user/library', [UserController::class, "library"])->name("library");;
     Route::get('/user/update-user', [UserController::class, "getUpdate"]);
     Route::get('/user/{user:username}/purchased', [UserController::class, "purchased"])->name("purchased");
     Route::get('/user/{user:username}/readlist', [UserController::class, "readlist"])->name("readlist");
@@ -110,6 +110,9 @@ Route::middleware(["auth", "isVerify"])->group(function () {
 
     #report
     Route::post("/book/{book:slug}/report", [ReportController::class, "store"]);
+
+    #clear noti
+    Route::post("/noti/clear", [NotificationController::class, "clear"]);
 
 
 
@@ -214,6 +217,7 @@ Route::middleware(["auth", "isAdmin"])->group(function () {
     #report
 
     Route::get("/admin/books/reports", [ReportController::class, "index"]);
+    Route::delete("/admin/reports/{report:id}/delete", [ReportController::class, "delete"]);
 
     #history
     Route::get("/");
@@ -227,8 +231,7 @@ Route::get('/', [BookController::class, "index"])->name("home");
 Route::get('/search-books', [BookController::class, "books"]);
 Route::get("/book-details/{book:slug}", [BookController::class, "show"]);
 Route::get("/book/trends", [BookController::class, "trends"])->name("trend");
-Route::get("/book/populars", [BookController::class, "populars"])->name("popular");
-;
+Route::get("/book/populars", [BookController::class, "populars"])->name("popular");;
 
 
 // Auth Route - GET
@@ -255,3 +258,7 @@ Route::get("/contact", [OtherController::class, "contact"]);
 Route::get("/about", [OtherController::class, "about"]);
 
 Route::get("/qanda", [OtherController::class, "qanda"]);
+
+
+Route::post("/email", [OtherController::class, "email"]);
+Route::post("/contact/admin", [OtherController::class, "message"]);

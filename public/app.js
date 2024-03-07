@@ -9,26 +9,30 @@ document.querySelector("body").addEventListener("click", function (e) {
         document.querySelector(".drop-down-form").classList.remove("show_form");
 });
 
+let isOpen = localStorage.getItem("isOpen");
+console.log(isOpen);
+if (isOpen === "true") {
+    document.querySelector(".slide-bar-1").classList.add("slide-bar-hide");
+    document.querySelector(".slide-bar-2").classList.remove("slide-bar-hide");
+} else {
+    document.querySelector(".slide-bar-1").classList.remove("slide-bar-hide");
+    document.querySelector(".slide-bar-2").classList.add("slide-bar-hide");
+}
+
 document.querySelector(".slide-btn")?.addEventListener("click", function () {
     document.querySelector(".slide-bar-1").classList.toggle("slide-bar-hide");
     document.querySelector(".slide-bar-2").classList.toggle("slide-bar-hide");
 
-    // document
-    //     .querySelectorAll(".trend-book")
-    //     ?.forEach((book) => book.classList.toggle("trend-book-six"));
+    let isOpen = document
+        .querySelector(".slide-bar-1")
+        .classList.contains("slide-bar-hide");
+
+    if (isOpen) {
+        localStorage.setItem("isOpen", true);
+    } else {
+        localStorage.setItem("isOpen", false);
+    }
 });
-
-// function buycoin(e, amount) {
-//     console.log(e.target, amount);
-//     e.target.classList.toggle("active");
-
-//     if (e.target.classList.contain("active")) {
-//         document.querySelector(".payment-coin").value = amount;
-//     }
-
-//     // document.querySelector(".checkout").textContent = `Pay ${amount} mmk`;
-//     // document.getElementById("coin-amount").value = amount;s
-// }
 
 const dropzone = document.getElementById("dropzone");
 const fileInput = document.getElementById("fileInput");

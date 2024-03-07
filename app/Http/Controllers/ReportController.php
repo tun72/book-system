@@ -25,4 +25,10 @@ class ReportController extends Controller
     {
         return view("admin.report", ["reports" => Report::all()]);
     }
+
+    public function delete(Report $report)
+    {
+        $report->delete();
+        return back()->with("success", "Successfully deleted admin will check soon... ✅");
+    }
 }
