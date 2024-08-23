@@ -37,6 +37,10 @@ class Chapter extends Model
         return $this->belongsTo(Book::class);
     }
 
+    public function users() {
+        return $this->belongsToMany(User::class, "chapter_user");
+    }
+
     public function comments()
     {
         return $this->morphMany(Comments::class, 'commentable');

@@ -14,6 +14,7 @@
                         <h4 class="xl:text-3xl lg:text-5xl md:text-3xl font-bold">{{ $author->name }}</h4>
                         <span><i class="fa-solid fa-music"></i></span>
                     </div>
+                    <h4 class="xl:text-xl lg:text-5xl md:text-3xl font-bold">{{ $author->user->email }}</h4>
                     <div class=" lg:text-lg md:text-lg text-sm font-semibold text-gray-700">
                         <p>@ {{ $author->user->username }} . {{ count($author->subscribers) }} subscriber .
                             {{ count($author->user->books) }} books</p>

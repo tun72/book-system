@@ -33,17 +33,43 @@
 
                     @php
                         $book = $arch->book;
-                        $chapters = count($book->chapters);
+                        // $chapters = count($book->chapters);
 
+                        // $finish = $book->chapters->filter(function ($chapter) {
+                        //     return $chapter['is_finish'];
+                        // });
+
+                        // $current = $book->chapters->where('is_finish', false)->first();
+
+                        $index = 0;
+                        $flag = true;
+
+                        $current = null;
+
+                        $chapters = count($book->chapters);
                         $finish = $book->chapters->filter(function ($chapter) {
                             return $chapter['is_finish'];
                         });
 
-                        $current = $book->chapters->where('is_finish', false)->first();
+                        foreach ($book->chapters as $chapter) {
+                            if (auth()->user()->isAlreadyRead($chapter)) {
+                                $index++;
+                            } else {
+                                if ($flag) {
+                                    $current = $chapter;
+                                    $flag = false;
+                                }
+                            }
+                        }
+
+                        // $current = $book->chapters->where('is_finish', false)->first();
+                        // $percentage = (count($finish) / $chapters) * 100 . '%';
+
                     @endphp
                     <!-- for image -->
                     <div class="relative">
-                        <img class="h-[250px] w-[90%] rounded-md object-cover object-center" src="{{ $book->image }}" alt="" />
+                        <img class="h-[250px] w-[90%] rounded-md object-cover object-center" src="{{ $book->image }}"
+                            alt="" />
                         <div
                             class="opacity-0 hover:opacity-100 duration-300 absolute inset-0 z-10 flex justify-center items-center text-white font-semibold bg-slate-200/20 backdrop-blur-sm">
 
@@ -57,8 +83,12 @@
                                         <button type="submit">Remove</button>
                                     </form>
                                 </li>
-                                <li class="border border-gray-200 w-full flex justify-center px-2"><a
-                                        href="/book/chapter/{{ $current->slug }}/read">continue reading</a></li>
+
+                                @if ($current)
+                                    <li class="border border-gray-200 w-full flex justify-center px-2"><a
+                                            href="/book/chapter/{{ $current->slug }}/read">continue reading</a></li>
+                                @endif
+
                             </ul>
 
                         </div>

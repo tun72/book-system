@@ -36,13 +36,34 @@
                     @if (!$book->isArchive)
                         <div class="">
                             @php
+
+                                $index = 0;
+                                $flag = true;
+
+                                $current = null;
+                                
                                 $chapters = count($book->chapters);
                                 $finish = $book->chapters->filter(function ($chapter) {
                                     return $chapter['is_finish'];
                                 });
 
-                                $current = $book->chapters->where('is_finish', false)->first();
-                                $percentage = (count($finish) / $chapters) * 100 . '%';
+
+                                foreach ($book->chapters as $chapter) {
+                                    if(auth()->user()->isAlreadyRead($chapter)) {
+                                        $index++; 
+                                    } else {
+                                        if($flag) {
+                                            $current = $chapter;
+                                            $flag = false;
+                                        }
+                                    }
+                                }
+
+                                // dd($current);
+
+                                // $current = $book->chapters->where('is_finish', false)->first();
+                                // $percentage = (count($finish) / $chapters) * 100 . '%';
+                                $percentage = ($index / $chapters) * 100 . '%';
                             @endphp
                             <!-- for image -->
                             <div class="relative">

@@ -58,7 +58,7 @@
                                         data-modal-toggle="coinModal-{{ $transfer->id }}">Detail</a>
                                 </td>
                             </tr>
-                            <x-coin-check-modal :transfer="$transfer" :limit="$limit" />
+                            <x-coin-check-modal :transfer="$transfer"  />
                         @endif
                     @endforeach
 

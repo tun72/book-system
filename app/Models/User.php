@@ -36,12 +36,12 @@ class User extends Authenticatable
         parent::boot();
         static::deleted(function ($userQuery) {
 
-            
+
             if ($userQuery->role === 0) {
                 $userQuery->reader->delete();
             } else if ($userQuery->role === 2) {
                 $userQuery->author->delete();
-                foreach($userQuery->books as $book) {
+                foreach ($userQuery->books as $book) {
                     $book->delete();
                 }
             }
@@ -72,6 +72,20 @@ class User extends Authenticatable
     public function books()
     {
         return $this->hasMany(Book::class);
+    }
+
+    public function chapters()
+    {
+        return $this->belongsToMany(Chapter::class, "chapter_user");
+    }
+
+    public function isAlreadyRead($chapter)
+    {
+        // dd($chapter->id);
+        if (!$chapter) {
+            return false;
+        }
+        return $this->chapters->contains("id", $chapter->id);
     }
 
     public function outcomes()
@@ -157,7 +171,8 @@ class User extends Authenticatable
         return $this->hasMany(ReadList::class);
     }
 
-    public function register_author() {
+    public function register_author()
+    {
         // dd("hello");
         return  $this->belongsTo(AuthorRegister::class, "id", "user_id");
     }

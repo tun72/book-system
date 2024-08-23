@@ -14,31 +14,34 @@
                 @if (count($notifications) === 0)
                     <p class="text-xl">No notification 🧐</p>
                 @else
-                @foreach ($notifications as $noti)
-                <div class="w-full shadow-md flex gap-4 px-[20px] py-2 bg-white">
-                    <div class="w-[50px] h-[50px] rounded-full overflow-hidden"><img
-                            src="{{ $noti->user->imageUrl }}" alt=""></div>
-                    @php
-                        $url1 = '#';
-                        if ($noti->book_id) {
-                            $url1 = '/book-details/' . $noti?->book?->slug;
-                        } elseif ($noti->chapter_id) {
-                            $url1 = '/book/chapter/' . $noti?->chapter?->slug . '/read';
-                        }
-                    @endphp
-                    <a href="{{ $url1 }}">
-                        <div class=" flex flex-col gap-1 text-lg text-gray-500 font-semibold">
-                            <p class=""><span
-                                    class="text-gray-700 me-3">{{ $noti->user->name }}</span>{{ $noti->about }}</p>
-                            <div class="flex items-center gap-2">
-                                <span><i class="fas fa-clock"></i></span>
-                                <p>{{ $noti->created_at->diffForHumans() }}</p>
+                    @foreach ($notifications as $noti)
+                        @if ($noti?->user || null)
+                            <div class="w-full shadow-md flex gap-4 px-[20px] py-2 bg-white">
+                                <div class="w-[50px] h-[50px] rounded-full overflow-hidden"><img
+                                        src="{{ $noti?->user?->imageUrl }}" alt=""></div>
+                                @php
+                                    $url1 = '#';
+                                    if ($noti->book_id) {
+                                        $url1 = '/book-details/' . $noti?->book?->slug;
+                                    } elseif ($noti->chapter_id) {
+                                        $url1 = '/book/chapter/' . $noti?->chapter?->slug . '/read';
+                                    }
+                                @endphp
+                                <a href="{{ $url1 }}">
+                                    <div class=" flex flex-col gap-1 text-lg text-gray-500 font-semibold">
+                                        <p class=""><span
+                                                class="text-gray-700 me-3">{{ $noti?->user->name }}</span>{{ $noti->about }}
+                                        </p>
+                                        <div class="flex items-center gap-2">
+                                            <span><i class="fas fa-clock"></i></span>
+                                            <p>{{ $noti->created_at->diffForHumans() }}</p>
+                                        </div>
+                                        <p class=""> {{ $noti->comment?->body }}</p>
+                                    </div>
+                                </a>
                             </div>
-                            <p class=""> {{ $noti->comment?->body }}</p>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
+                        @endif
+                    @endforeach
                 @endif
             </div>
             <div class="w-[30%] shadow-md px-3 py-2 rounded-sm bg-white">

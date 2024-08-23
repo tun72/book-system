@@ -273,7 +273,7 @@
         </div>
 
         <div class="hidden text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" >
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                 <path fill="currentColor"
                     d="M2 8a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H3a1 1 0 0 1-1-1Zm1 3a1 1 0 1 0 0 2h12a1 1 0 1 0 0-2H3Z" />
             </svg>
@@ -352,8 +352,50 @@
                     class="hidden dark:block w-[272px] h-[572px]" alt="" />
             </div>
             <div class="h-[50px] w-[80px] absolute left-[50%] top-[50%] translate-x-[-50%]  translate-y-[-50%]">
-                <img src="./img/play.png" alt="" />
+                <img src="./img/play.png" data-modal-target="static-modal" data-modal-toggle="static-modal"
+                    alt="" />
             </div>
+
+
+
+
+
+            <!-- Main modal -->
+            <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-full bg-slate-200/20 backdrop-blur-sm">
+                <div class="relative p-4 w-full max-w-2xl max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div
+                            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Static modal
+                            </h3>
+                            <button type="button"
+                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                data-modal-hide="static-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-4 md:p-5 space-y-4">
+                            <iframe width="100%" height="500"
+                                src="https://www.youtube.com/embed/Q3d2ElvU6Iw?si=PbbUKHnoSToIsdi6">
+                            </iframe>
+                        </div>
+                        <!-- Modal footer -->
+
+                    </div>
+                </div>
+            </div>
+
+
         </div>
         <!-- Book -->
         <div class="h-[200px] w-[250px] absolute top-0 ml-[50px] translate-y-[-30px] lg:block hidden">
@@ -397,20 +439,20 @@
                     Sign up now to explore limitless literary realms and connect with a vibrant community of readers and
                     writers on our novel web platform
                 </p>
-                <p class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
+                <a href="/login" class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
                     Learn more
-                </p>
+                </a>
             </div>
             <div class="flex flex-col xl:gap-3 lg:gap-3 md:gap-2">
                 <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-button-800">
-                    Book & activities
+                    Books
                 </h1>
                 <p class="xl:w-[85%] lg:w-[85%] md:w-[95%] xl:text-xl lg:text-xl md:text-lg text-brand-300">
                     From virtual book clubs to interactive writing workshops, our website offers a diverse array of
                     engaging events and activities to connect book enthusiasts and fuel literary passions. </p>
-                <p class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
+                <a href="/" class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
                     Learn more
-                </p>
+                </a>
             </div>
             <div class="flex flex-col xl:gap-3 lg:gap-3 md:gap-2">
                 <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-button-800">
@@ -420,9 +462,9 @@
                     Discover a universe of storytelling possibilities on our novel website, where an expansive library
                     awaits with tales spanning countless genres.
                 </p>
-                <p class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
+                <a href="/" class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
                     Learn more
-                </p>
+                </a>
             </div>
             <div class="flex flex-col xl:gap-3 lg:gap-3 md:gap-2">
                 <h1 class="xl:text-3xl lg:text-3xl md:text-2xl font-semibold text-button-800">
@@ -433,9 +475,9 @@
                     together a rich assortment of intriguing stories that promise to enthrall and delight readers of all
                     tastes.
                 </p>
-                <p class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
+                <a href="/" class="xl:text-2xl lg:text-2xl md:text-xl font-semibold text-brand-900">
                     Learn more
-                </p>
+                </a>
             </div>
 
             <div class="w-[200px] absolute bottom-0 right-0 translate-x-[70px] xl:block hidden">
@@ -536,7 +578,7 @@
                 <ul
                     class="list-disc xl:text-xl lg:text-xl translate-y- md:text-xl text-md flex flex-col gap-4 font-semibold text-brand-700">
                     <li>
-                       convenient to buy coins
+                        convenient to buy coins
                     </li>
                     <li>Payments are secure</li>
                     <li>Can buy at a low price</li>
@@ -659,6 +701,22 @@
 
                             </div>
                         </div>
+
+                        @foreach ($feedbacks as $feedback)
+                            <div class="swiper-slide">
+                                <div class="quote">
+                                    <img class="quote-icon" src="https://md-aqil.github.io/images/quote.png"
+                                        alt="">
+
+                                    <p>
+                                       {{ $feedback->message }}
+                                    </p>
+                                    <div class="name">-{{ $feedback->name }}-</div>
+                                    <div class="designation">{{ $feedback->email }}</div>
+
+                                </div>
+                            </div>
+                        @endforeach
 
                     </div>
                     <!-- If we need pagination -->

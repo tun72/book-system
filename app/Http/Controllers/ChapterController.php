@@ -13,42 +13,53 @@ class ChapterController extends Controller
     public function show(Chapter $chapter)
     {
         // $text = Pdf::getText(public_path($chapter->file), 'C:\Program Files\Git\mingw64\bin\pdftotext.exe');
-        $book = $chapter->book;
 
-        $nextChapter = $book->chapters()->where("chapter", $chapter->chapter + 1)->first();
-        $prevChapter = $book->chapters()->where("chapter", $chapter->chapter - 1)->first();
+        $nextChapter = $chapter->book->chapters()->where("chapter", $chapter->chapter + 1)->first();
+        $prevChapter = $chapter->book->chapters()->where("chapter", $chapter->chapter - 1)->first();
         $complete = false;
+        try {
+            if ($prevChapter && request("complete") === "true") {
+                $prevChapter->is_finish = 1;
+                $prevChapter->save();
+                auth()->user()->chapters()->attach($prevChapter->id);
+            }
 
-       
-        
+            $totalComplete = count($chapter->book->chapters()->where("is_finish", 1)->get());
+            // dd($totalComplete  );
+            if (!$nextChapter) {
+                $complete = $totalComplete  === count($chapter->book->chapters) ||  $totalComplete === count($chapter->book->chapters) - 1;
+            }
 
-        if ($prevChapter && request("complete") === "true") {
-            $prevChapter->is_finish = 1;
-            $prevChapter->save();
+
+            return view("book.read-book", [
+                "chapter" => $chapter,
+                "book" => $chapter->book,
+                "nextChapter" => $nextChapter,
+                "prevChapter" => $prevChapter,
+                "complete" => $complete
+            ]);
+        } catch (\Exception $e) {
+            return view("book.read-book", [
+                "chapter" => $chapter,
+                "book" => $chapter->book,
+                "nextChapter" => $nextChapter,
+                "prevChapter" => $prevChapter,
+                "complete" => $complete
+            ]);
         }
-
-        $totalComplete = count($book->chapters()->where("is_finish", 1)->get());
-        // dd($totalComplete  );
-        if (!$nextChapter) {
-            $complete = $totalComplete  === count($book->chapters) ||  $totalComplete === count($book->chapters) - 1;
-        }
-
-
-        return view("book.read-book", [
-            "chapter" => $chapter,
-            "book" => $book,
-            "nextChapter" => $nextChapter,
-            "prevChapter" => $prevChapter,
-            "complete" => $complete
-        ]);
     }
 
     public function complete(Chapter $chapter)
     {
-        $chapter->is_finish = 1;
-        $chapter->save();
+        try {
+            $chapter->is_finish = 1;
+            $chapter->save();
+            auth()->user()->chapters()->attach($chapter->id);
 
-        return redirect("/user/library");
+            return redirect("/user/library");
+        } catch (\Exception $e) {
+            return redirect("/user/library");
+        }
     }
 
     public function create(Book $book)

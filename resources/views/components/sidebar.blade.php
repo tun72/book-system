@@ -65,7 +65,7 @@
                     @foreach (auth()->user()->subscribe as $author)
                         <li class="flex items-center gap-3">
                             <img src="{{ $author->user->imageUrl }}" alt="" class="w-[30px] h-[30px] rounded-full">
-                            <a href="#"
+                            <a href="author/{{ $author->user->username }}/profile"
                                 class="flex items-center w-full  text-gray-900 transition duration-75 rounded-lg">{{ $author->name }}</a>
                         </li>
                     @endforeach

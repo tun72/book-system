@@ -238,7 +238,7 @@
                     href="#">
                     <div class="w-full overflow-hidden lg:w-2/4 h-80">
                         <img class="object-cover w-full h-full transition-all hover:scale-110"
-                            src="./img/.jpg" alt="">
+                            src="./img/May Thu Thu Kyaw.jpg" alt="">
                     </div>
                     <div
                         class="relative flex self-center flex-1 p-8 ml-0 bg-white border rounded shadow dark:border-gray-700 dark:bg-gray-700 lg:items-center lg:-ml-12">

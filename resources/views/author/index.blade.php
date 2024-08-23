@@ -131,7 +131,7 @@
                                             {{ $earn->created_at }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{ $earn->user->email }}
+                                            {{ $earn?->user?->email }}
                                         </td>
                                         <td class="px-6 py-4 ">
                                             <span class="bg-green-300 px-4 py-2 rounded-full shadow-sm text-green-500">

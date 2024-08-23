@@ -33,10 +33,10 @@
                         </div>
                         <div class="mb-6">
                             <div class="relative flex items-center">
-                                <input type="password"
+                                <input type="password" id="myInput"
                                     class="w-full px-4 py-4 bg-gray-200 rounded-lg lg:py-5 dark:text-gray-300 dark:bg-gray-700 "
                                     name="password" placeholder="Enter password">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" onclick="myFunction()"
                                     class="absolute right-0 mr-3 dark:text-gray-300" fill="currentColor"
                                     viewBox="0 0 16 16">
                                     <path
@@ -110,4 +110,15 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </x-layout>

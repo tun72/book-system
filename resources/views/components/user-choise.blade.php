@@ -21,7 +21,7 @@
                     <div id="slider-new-{{ $gen->id }}"
                         class="h-full flex  lg:gap-10 md:gap-6 gap-14  transition ease-out duration-700">
                         @foreach ($gen->books as $key => $book)
-                            <div class="dark:border-none w-[30rem]">
+                            <div class="dark:border-none ">
                                 <div class="bg-gray-200 w-[8rem] ">
                                     <a href="/book-details/{{ $book->slug }}" class="relative">
                                         <img src="{{ $book->image }}" alt=""

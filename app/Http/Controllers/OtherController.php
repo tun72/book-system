@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\InviteMail;
 use App\Mail\userMessageMail;
+use App\Models\SentFeedBack;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,7 +14,10 @@ class OtherController extends Controller
 
     public function welcome()
     {
-        return view("other.welcome");
+        $feedbacks = SentFeedBack::all();
+        return view("other.welcome", [
+            "feedbacks" => $feedbacks
+        ]);
     }
 
     public function contact()
