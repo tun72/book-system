@@ -1,7 +1,6 @@
 import laravel from "laravel-vite-plugin";
 import { defineConfig } from "vite";
 
-
 import ckeditor5 from "@ckeditor/vite-plugin-ckeditor5";
 
 import { createRequire } from "node:module";
@@ -9,7 +8,16 @@ const require = createRequire(import.meta.url);
 
 export default defineConfig({
     plugins: [
-        laravel(["resources/js/app.js"]),
+        laravel({
+            input: [
+                "resources/css/app.css",
+                "resources/js/app.js",
+                "resources/js/readlist.js",
+                "resources/js/myslider.js",
+                "resources/js/browse.js"
+            ],
+            refresh: true,
+        }),
         {
             name: "blade",
             handleHotUpdate({ file, server }) {
