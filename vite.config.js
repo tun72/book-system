@@ -23,20 +23,7 @@ export default defineConfig({
                 'resources/js/image.js',
                 'resources/js/other.js',
                 'resources/js/select.js',
-                'resources/js/ckeditor.js',
-
                 
-
-
-               
-
-
-
-
-
-
-
-
             ],
             refresh: true,
         }),
