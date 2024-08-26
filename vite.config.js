@@ -14,7 +14,29 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/readlist.js",
                 "resources/js/myslider.js",
-                "resources/js/browse.js"
+                "resources/js/browse.js",
+                'resources/js/countdown.js',
+                'resources/js/darkmode.js',
+                'resources/js/dashboard.js',
+                'resources/js/form.js',
+                'resources/js/help.js',
+                'resources/js/image.js',
+                'resources/js/other.js',
+                'resources/js/select.js',
+                'resources/js/ckeditor.js',
+
+                
+
+
+               
+
+
+
+
+
+
+
+
             ],
             refresh: true,
         }),
@@ -32,3 +54,4 @@ export default defineConfig({
         ckeditor5({ theme: require.resolve("@ckeditor/ckeditor5-theme-lark") }),
     ],
 });
+

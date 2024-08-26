@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger("book_id");
 
             $table->boolean("is_free");
-            $table->longText("intro")->default("");
+            $table->longText("intro");
             $table->boolean("is_finish")->default(0);
 
           
